@@ -88,7 +88,7 @@ const Index = () => {
                 </Badge>
                 <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
                   Dẫn bước tương lai với{" "}
-                  <span className="bg-hero-gradient bg-clip-text text-transparent">
+                  <span className="bg-cta text-white px-3 py-1 rounded-lg shadow-medium">
                     Lập trình
                   </span>
                 </h1>
