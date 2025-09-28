@@ -6,7 +6,7 @@ interface CodingTestCTAProps {
   href?: string;
   className?: string;
   size?: "default" | "sm" | "lg" | "xl";
-  variant?: "default" | "hero" | "secondary" | "outline";
+  variant?: "default" | "hero" | "cta" | "secondary" | "outline";
 }
 
 export function CodingTestCTA({ 
@@ -14,7 +14,7 @@ export function CodingTestCTA({
   href = "/test",
   className,
   size = "xl",
-  variant = "hero"
+  variant = "cta"
 }: CodingTestCTAProps) {
   return (
     <Button 
