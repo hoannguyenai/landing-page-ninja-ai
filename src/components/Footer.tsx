@@ -1,108 +1,164 @@
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { 
+  Phone, 
+  Mail, 
+  MapPin, 
+  Facebook, 
+  MessageCircle, 
+  Youtube,
+  Clock,
+  Rocket
+} from "lucide-react";
 
-import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-
-export default function Footer() {
-  const { t } = useLanguage();
-  const currentYear = new Date().getFullYear();
-  
+const Footer = () => {
   return (
-    <footer className="bg-card text-card-foreground pt-16 pb-8 border-t">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <div className="animate-fade-in [animation-delay:100ms]">
-            <h4 className="text-xl font-bold mb-4">MareSereno</h4>
-            <p className="text-muted-foreground mb-4">
-              {t.footer.description}
+    <footer className="bg-muted/30 border-t">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-hero-gradient rounded-lg flex items-center justify-center text-white font-bold">
+                RT
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">Rocket Tech Academy</h3>
+                <p className="text-sm text-muted-foreground">Khơi nguồn sáng tạo</p>
+              </div>
+            </div>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Trung tâm dạy lập trình hàng đầu dành cho học sinh cấp 2-3, 
+              giúp phát triển tư duy logic và kỹ năng công nghệ tương lai.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Facebook size={20} />
-                <span className="sr-only">Facebook</span>
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Instagram size={20} />
-                <span className="sr-only">Instagram</span>
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
-              </a>
+            <div className="flex gap-3">
+              <Button size="sm" variant="outline" className="p-2">
+                <Facebook size={16} />
+              </Button>
+              <Button size="sm" variant="outline" className="p-2">
+                <MessageCircle size={16} />
+              </Button>
+              <Button size="sm" variant="outline" className="p-2">
+                <Youtube size={16} />
+              </Button>
             </div>
           </div>
-          
-          <div className="animate-fade-in [animation-delay:200ms]">
-            <h4 className="text-xl font-bold mb-4">{t.footer.quickLinks}</h4>
-            <ul className="space-y-2">
-              {[
-                { name: t.nav.home, path: "/" },
-                { name: t.nav.apartments, path: "/apartments" },
-                { name: t.nav.amenities, path: "/amenities" },
-                { name: t.nav.gallery, path: "/gallery" },
-                { name: t.nav.contact, path: "/contact" },
-                { name: t.nav.bookNow, path: "/booking" },
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.path} 
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div className="animate-fade-in [animation-delay:300ms]">
-            <h4 className="text-xl font-bold mb-4">{t.footer.contact}</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <MapPin className="w-5 h-5 mr-2 mt-0.5 text-primary" />
-                <span className="text-muted-foreground">
-                  123 Seaside Boulevard<br />
-                  Costa Bella, 12345<br />
-                  Italy
-                </span>
+
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground">Liên kết nhanh</h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a href="#course" className="text-muted-foreground hover:text-primary transition-colors">
+                  Khóa học lập trình
+                </a>
               </li>
-              <li className="flex items-center">
-                <Phone className="w-5 h-5 mr-2 text-primary" />
-                <span className="text-muted-foreground">+39 123 4567 890</span>
+              <li>
+                <a href="#instructors" className="text-muted-foreground hover:text-primary transition-colors">
+                  Đội ngũ giảng viên
+                </a>
               </li>
-              <li className="flex items-center">
-                <Mail className="w-5 h-5 mr-2 text-primary" />
-                <span className="text-muted-foreground">info@maresereno.com</span>
+              <li>
+                <a href="#pricing" className="text-muted-foreground hover:text-primary transition-colors">
+                  Bảng giá & ưu đãi
+                </a>
+              </li>
+              <li>
+                <a href="#test" className="text-muted-foreground hover:text-primary transition-colors">
+                  Test miễn phí
+                </a>
+              </li>
+              <li>
+                <a href="#testimonials" className="text-muted-foreground hover:text-primary transition-colors">
+                  Phản hồi phụ huynh
+                </a>
               </li>
             </ul>
           </div>
-          
-          <div className="animate-fade-in [animation-delay:400ms]">
-            <h4 className="text-xl font-bold mb-4">{t.footer.newsletter}</h4>
-            <p className="text-muted-foreground mb-4">
-              {t.footer.newsletterDesc}
-            </p>
-            <form className="flex flex-col space-y-2">
-              <input 
-                type="email" 
-                placeholder={t.footer.yourEmail} 
-                className="rounded-md px-4 py-2 bg-muted text-foreground"
-                required 
-              />
-              <button 
-                type="submit" 
-                className="btn-primary mt-2"
-              >
-                {t.footer.subscribe}
-              </button>
-            </form>
+
+          {/* Contact Info */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground">Liên hệ</h3>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3">
+                <Phone size={16} className="text-primary flex-shrink-0" />
+                <div>
+                  <p className="font-medium">0901.234.567</p>
+                  <p className="text-muted-foreground">Hotline tư vấn</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <MessageCircle size={16} className="text-primary flex-shrink-0" />
+                <div>
+                  <p className="font-medium">Zalo: 0901.234.567</p>
+                  <p className="text-muted-foreground">Hỗ trợ 24/7</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail size={16} className="text-primary flex-shrink-0" />
+                <div>
+                  <p className="font-medium">info@rockettech.edu.vn</p>
+                  <p className="text-muted-foreground">Email tư vấn</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin size={16} className="text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium">123 Đường ABC, Quận 1</p>
+                  <p className="text-muted-foreground">TP.HCM, Việt Nam</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Office Hours */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground">Giờ làm việc</h3>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-3">
+                <Clock size={16} className="text-primary flex-shrink-0 mt-0.5" />
+                <div className="space-y-2">
+                  <div>
+                    <p className="font-medium">Thứ 2 - Thứ 6</p>
+                    <p className="text-muted-foreground">8:00 - 20:00</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">Thứ 7 - Chủ nhật</p>
+                    <p className="text-muted-foreground">9:00 - 18:00</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="pt-4">
+              <Button size="sm" variant="hero" className="w-full">
+                📞 Gọi tư vấn ngay
+              </Button>
+            </div>
           </div>
         </div>
-        
-        <div className="border-t border-border pt-8 mt-8 text-center text-muted-foreground">
-          <p>&copy; {currentYear} MareSereno. {t.footer.allRights}</p>
+
+        <Separator className="my-8" />
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+          <p>
+            © 2024 Rocket Tech Academy. Tất cả quyền được bảo lưu.
+          </p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-primary transition-colors">
+              Điều khoản sử dụng
+            </a>
+            <a href="#" className="hover:text-primary transition-colors">
+              Chính sách bảo mật
+            </a>
+            <a href="#" className="hover:text-primary transition-colors">
+              Hỗ trợ
+            </a>
+          </div>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
