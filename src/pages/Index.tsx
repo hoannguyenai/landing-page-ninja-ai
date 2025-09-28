@@ -4,8 +4,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { FloatingElement } from "@/components/FloatingElement";
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
@@ -36,6 +40,8 @@ import { CodingTestCTA } from "@/features/coding-test";
 
 const Index = () => {
   const { toast } = useToast();
+  useScrollAnimation();
+  
   const [formData, setFormData] = useState({
     parentName: "",
     phone: "",
@@ -58,6 +64,13 @@ const Index = () => {
     { icon: CheckCircle2, text: "Học xong có thể tự tin viết chương trình đơn giản" },
   ];
 
+  const achievements = [
+    { number: 1200, suffix: "+", label: "Học viên đã học" },
+    { number: 98, suffix: "%", label: "Phụ huynh hài lòng" },
+    { number: 150, suffix: "+", label: "Dự án hoàn thành" },
+    { number: 24, suffix: "h", label: "Hỗ trợ tư vấn" },
+  ];
+
   const testimonials = [
     {
       content: "Con tôi ban đầu không hứng thú với Tin học. Sau khóa học ở Rocket Tech Academy, bé lớp 7 đã tự làm game Snake và rất tự hào khoe với bạn bè.",
@@ -76,46 +89,113 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-hero-bg-light" />
+      <section className="relative py-32 px-4 overflow-hidden bg-gradient-hero-animated">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5" />
+        
+        {/* Floating Elements */}
+        <FloatingElement delay={0} className="absolute top-20 left-10 opacity-20">
+          <div className="w-16 h-16 border-2 border-white rounded-full" />
+        </FloatingElement>
+        <FloatingElement delay={1} className="absolute top-40 right-20 opacity-20">
+          <div className="w-8 h-8 bg-white/30 rounded-full" />
+        </FloatingElement>
+        <FloatingElement delay={2} className="absolute bottom-40 left-1/4 opacity-20">
+          <Rocket className="w-12 h-12 text-white" />
+        </FloatingElement>
         
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8 animate-fade-up">
+            <motion.div 
+              className="space-y-8"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               <div className="space-y-6">
-                <div className="bg-badge-teal inline-flex items-center rounded-full px-4 py-2 text-sm font-medium">
+                <motion.div 
+                  className="bg-gradient-to-r from-white/20 to-white/10 backdrop-blur-sm inline-flex items-center rounded-full px-6 py-3 text-sm font-medium text-white border border-white/20"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                >
                   🚀 Khơi nguồn sáng tạo
-                </div>
-                <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
+                </motion.div>
+                
+                <motion.h1 
+                  className="text-5xl lg:text-6xl font-bold leading-tight text-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 1 }}
+                >
                   Giúp con khám phá{" "}
-                  <span className="text-primary">
+                  <span className="bg-gradient-to-r from-teal-300 to-blue-300 bg-clip-text text-transparent">
                     tư duy lập trình
                   </span>{" "}
                   từ sớm 🚀
-                </h1>
-                <p className="text-xl leading-relaxed" style={{ color: '#374151' }}>
+                </motion.h1>
+                
+                <motion.p 
+                  className="text-xl leading-relaxed text-white/90"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.6 }}
+                >
                   Khóa học giúp học sinh phát triển tư duy logic, sáng tạo qua dự án thực tế.
-                </p>
+                </motion.p>
               </div>
               
-              <div className="space-y-4">
+              <motion.div 
+                className="space-y-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.6 }}
+              >
                 <CodingTestCTA 
                   label="👉 Làm Bài Test Miễn Phí Ngay"
-                  className="animate-scale-in bg-cta-gradient hover:bg-cta-gradient font-bold text-white shadow-[0px_4px_10px_rgba(20,184,166,0.3)] hover:shadow-[0px_6px_15px_rgba(20,184,166,0.4)] transition-all duration-300"
+                  className="btn-slide hover-lift bg-gradient-cta hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-400 font-bold text-white shadow-teal-lg hover:shadow-teal text-lg px-8 py-4 rounded-xl transition-all duration-300"
                 />
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-white/80">
                   Xác định trình độ lập trình của con chỉ trong 5 phút – nhận ngay báo cáo kết quả & lộ trình học phù hợp.
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
             
-            <div className="animate-slide-right">
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-400/20 to-blue-400/20 rounded-2xl blur-2xl transform rotate-3" />
               <img
                 src={heroBanner}
                 alt="Học sinh lập trình tại Rocket Tech Academy"
-                className="rounded-2xl shadow-large w-full"
+                className="relative rounded-2xl shadow-2xl w-full hover-tilt transition-transform duration-500"
               />
-            </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Achievements Section */}
+      <section className="py-16 px-4 bg-surface-light">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {achievements.map((achievement, index) => (
+              <motion.div
+                key={index}
+                className="text-center scroll-animate"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="text-4xl lg:text-5xl font-bold text-accent-teal mb-2">
+                  <AnimatedCounter end={achievement.number} suffix={achievement.suffix} />
+                </div>
+                <p className="text-secondary-gray font-medium">{achievement.label}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -123,36 +203,44 @@ const Index = () => {
       {/* Benefits Section */}
       <section className="py-20 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 animate-fade-up">
-            <h2 className="text-4xl font-bold mb-6" style={{ color: '#111827' }}>
+          <div className="text-center mb-16 scroll-animate">
+            <h2 className="text-4xl font-bold mb-6 text-primary-dark">
               Lý do ba mẹ nên cho con học lập trình sớm
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Benefit 1 */}
-            <div className="flex flex-col space-y-6 animate-fade-up">
+            <motion.div 
+              className="flex flex-col space-y-6 scroll-animate hover-tilt"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
+                <motion.div 
+                  className="w-12 h-12 bg-gradient-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 hover-scale"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
                   1
-                </div>
+                </motion.div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold mb-3 text-primary">
                     Giúp con phát triển trí não trong giai đoạn vàng
                   </h3>
-                  <p className="leading-relaxed" style={{ color: '#374151' }}>
+                  <p className="leading-relaxed text-secondary-gray">
                     Học lập trình sớm giúp kích thích tư duy logic, sáng tạo và giải quyết vấn đề.
                   </p>
                 </div>
               </div>
-              <div className="mt-4">
+              <div className="mt-4 overflow-hidden rounded-xl">
                 <img
                   src={brainDevelopment}
                   alt="Phát triển trí não cho trẻ"
-                  className="w-full h-64 object-cover rounded-xl shadow-medium"
+                  className="w-full h-64 object-cover shadow-md hover-scale transition-transform duration-500"
                 />
               </div>
-            </div>
+            </motion.div>
 
             {/* Benefit 2 */}
             <div className="flex flex-col space-y-6 animate-fade-up">
