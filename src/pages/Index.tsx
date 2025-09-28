@@ -88,23 +88,25 @@ const Index = () => {
                 <div className="bg-badge-teal inline-flex items-center rounded-full px-4 py-2 text-sm font-medium">
                   🚀 Khơi nguồn sáng tạo
                 </div>
-                <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
+                <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
                   <TypewriterText 
-                    text="Giúp con khám phá"
-                    speed={100}
+                    texts={[
+                      "Giúp con khám phá tư duy lập trình từ sớm",
+                      "Khơi dậy sáng tạo & tư duy logic", 
+                      "Trang bị kỹ năng công nghệ cho thế hệ Alpha"
+                    ]}
+                    loop={true}
+                    className="text-gray-900"
+                    speed={50}
                     delay={500}
-                  />{" "}
-                  <span className="text-primary">
-                    <TypewriterText 
-                      text="tư duy lập trình"
-                      speed={80}
-                      delay={2000}
-                    />
-                  </span>{" "}
-                  <TypewriterText 
-                    text="từ sớm 🚀"
-                    speed={120}
-                    delay={3500}
+                    highlights={{
+                      "khám phá": "text-teal-600",
+                      "tư duy lập trình": "text-blue-600",
+                      "sáng tạo": "text-teal-600",
+                      "tư duy logic": "text-blue-600",
+                      "kỹ năng công nghệ": "text-blue-600",
+                      "thế hệ Alpha": "text-teal-600"
+                    }}
                   />
                 </h1>
                 <p className="text-xl leading-relaxed" style={{ color: '#374151' }}>
