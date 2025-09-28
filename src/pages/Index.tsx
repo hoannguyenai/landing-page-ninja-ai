@@ -10,6 +10,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
 import CodingGame from "@/components/CodingGame";
+import { FloatingChatIcon } from "@/components/FloatingChatIcon";
 import heroBanner from "@/assets/hero-banner.jpg";
 import instructor1 from "@/assets/instructor-1.jpg";
 import studentProjects from "@/assets/student-projects.jpg";
@@ -691,6 +692,9 @@ const Index = () => {
       </section>
 
       <Footer />
+      
+      {/* Floating Chat Icon */}
+      <FloatingChatIcon />
     </div>
   );
 };
