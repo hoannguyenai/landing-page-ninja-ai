@@ -72,36 +72,32 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-10"
-          style={{ backgroundImage: `url(${heroBanner})` }}
-        />
-        <div className="absolute inset-0 bg-hero-gradient opacity-5" />
+      <section className="relative py-24 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-hero-bg-light" />
         
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-fade-up">
-              <div className="space-y-4">
-                <Badge variant="secondary" className="text-base px-4 py-2">
+              <div className="space-y-6">
+                <div className="bg-badge-teal inline-flex items-center rounded-full px-4 py-2 text-sm font-medium">
                   🚀 Khơi nguồn sáng tạo
-                </Badge>
-                <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                  Dẫn bước tương lai với{" "}
+                </div>
+                <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
+                  Giúp con khám phá{" "}
                   <span className="text-primary">
-                    Lập trình
-                  </span>
+                    tư duy lập trình
+                  </span>{" "}
+                  từ sớm 🚀
                 </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  Rocket Tech Academy giúp học sinh cấp 2–3 khám phá tư duy lập trình, 
-                  phát triển kỹ năng logic và sáng tạo thông qua các dự án thực tế.
+                <p className="text-xl leading-relaxed" style={{ color: '#374151' }}>
+                  Khóa học giúp học sinh phát triển tư duy logic, sáng tạo qua dự án thực tế.
                 </p>
               </div>
               
               <div className="space-y-4">
                 <CodingTestCTA 
-                  label="Làm Bài Test Miễn Phí Ngay"
-                  className="animate-scale-in"
+                  label="👉 Làm Bài Test Miễn Phí Ngay"
+                  className="animate-scale-in bg-cta-gradient hover:bg-cta-gradient font-bold text-white shadow-[0px_4px_10px_rgba(20,184,166,0.3)] hover:shadow-[0px_6px_15px_rgba(20,184,166,0.4)] transition-all duration-300"
                 />
                 <p className="text-sm text-muted-foreground">
                   Xác định trình độ lập trình của con chỉ trong 5 phút – nhận ngay báo cáo kết quả & lộ trình học phù hợp.

@@ -34,10 +34,14 @@ All colors MUST be HSL.
     --accent: 217 91% 45%;
     --accent-foreground: 0 0% 100%;
 
-    /* Orange CTA */
-    --cta: 29 100% 50%;
+    /* Teal CTA */
+    --cta: 172 85% 40%;
     --cta-foreground: 0 0% 100%;
-    --cta-hover: 17 100% 50%;
+    --cta-hover: 172 85% 35%;
+    
+    /* Teal Badge */
+    --badge-teal: 172 83% 88%;
+    --badge-teal-foreground: 172 85% 35%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -49,7 +53,8 @@ All colors MUST be HSL.
     /* Custom Design Tokens */
     --hero-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 45%));
     --light-gradient: linear-gradient(135deg, hsl(213 94% 88%), hsl(213 94% 95%));
-    --cta-gradient: linear-gradient(135deg, hsl(29 100% 50%), hsl(17 100% 50%));
+    --cta-gradient: linear-gradient(135deg, hsl(172 85% 40%), hsl(172 85% 35%));
+    --hero-bg-light: linear-gradient(135deg, hsl(217 91% 60% / 0.03), hsl(262 72% 51% / 0.03));
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     
@@ -142,6 +147,16 @@ All colors MUST be HSL.
   
   .bg-cta-gradient {
     background: var(--cta-gradient);
+  }
+  
+  .bg-hero-bg-light {
+    background: var(--hero-bg-light);
+  }
+  
+  /* Teal Badge */
+  .bg-badge-teal {
+    background-color: hsl(var(--badge-teal));
+    color: hsl(var(--badge-teal-foreground));
   }
   
   /* Custom Shadows */
