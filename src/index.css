@@ -268,6 +268,10 @@ All colors MUST be HSL.
     animation: targetVibrate 0.3s ease-in-out;
   }
   
+  .cta-shake {
+    animation: ctaShake 2s ease-in-out infinite;
+  }
+  
   .ripple-effect {
     position: relative;
     overflow: hidden;
@@ -411,6 +415,18 @@ All colors MUST be HSL.
   }
   75% {
     transform: rotate(2deg) scale(1.05);
+  }
+}
+
+@keyframes ctaShake {
+  0%, 90%, 100% {
+    transform: translateX(0);
+  }
+  92%, 96% {
+    transform: translateX(-2px);
+  }
+  94%, 98% {
+    transform: translateX(2px);
   }
 }
 
