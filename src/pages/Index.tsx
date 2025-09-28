@@ -125,7 +125,7 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-up">
             <h2 className="text-4xl font-bold mb-6" style={{ color: '#111827' }}>
-              Ba mẹ nên cho con học lập trình sớm để:
+              Lý do ba mẹ nên cho con học lập trình sớm
             </h2>
           </div>
 
