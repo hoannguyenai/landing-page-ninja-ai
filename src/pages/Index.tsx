@@ -149,7 +149,7 @@ const Index = () => {
                 <img
                   src={brainDevelopment}
                   alt="Phát triển trí não cho trẻ"
-                  className="w-full h-48 object-cover rounded-xl shadow-medium"
+                  className="w-full h-64 object-cover rounded-xl shadow-medium"
                 />
               </div>
             </div>
@@ -173,7 +173,7 @@ const Index = () => {
                 <img
                   src={subjectsConnection}
                   alt="Kết nối kiến thức các môn học"
-                  className="w-full h-48 object-cover rounded-xl shadow-medium"
+                  className="w-full h-64 object-cover rounded-xl shadow-medium"
                 />
               </div>
             </div>
@@ -197,7 +197,7 @@ const Index = () => {
                 <img
                   src={techHabits}
                   alt="Thay đổi thói quen công nghệ"
-                  className="w-full h-48 object-cover rounded-xl shadow-medium"
+                  className="w-full h-64 object-cover rounded-xl shadow-medium"
                 />
               </div>
             </div>
@@ -221,7 +221,7 @@ const Index = () => {
                 <img
                   src={alphaGeneration}
                   alt="Thế hệ Alpha và công nghệ AI"
-                  className="w-full h-48 object-cover rounded-xl shadow-medium"
+                  className="w-full h-64 object-cover rounded-xl shadow-medium"
                 />
               </div>
             </div>
