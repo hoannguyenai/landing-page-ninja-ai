@@ -13,6 +13,10 @@ import CodingGame from "@/components/CodingGame";
 import heroBanner from "@/assets/hero-banner.jpg";
 import instructor1 from "@/assets/instructor-1.jpg";
 import studentProjects from "@/assets/student-projects.jpg";
+import brainDevelopment from "@/assets/brain-development.jpg";
+import subjectsConnection from "@/assets/subjects-connection.jpg";
+import techHabits from "@/assets/tech-habits.jpg";
+import alphaGeneration from "@/assets/alpha-generation.jpg";
 import {
   CheckCircle2,
   Code,
@@ -111,6 +115,115 @@ const Index = () => {
                 alt="Học sinh lập trình tại Rocket Tech Academy"
                 className="rounded-2xl shadow-large w-full"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16 animate-fade-up">
+            <h2 className="text-4xl font-bold mb-6" style={{ color: '#111827' }}>
+              Ba mẹ nên cho con học lập trình sớm để:
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Benefit 1 */}
+            <div className="flex flex-col space-y-6 animate-fade-up">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
+                  1
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-3 text-primary">
+                    Giúp con phát triển trí não trong giai đoạn vàng
+                  </h3>
+                  <p className="leading-relaxed" style={{ color: '#374151' }}>
+                    Học lập trình sớm giúp kích thích tư duy logic, sáng tạo và giải quyết vấn đề.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4">
+                <img
+                  src={brainDevelopment}
+                  alt="Phát triển trí não cho trẻ"
+                  className="w-full h-48 object-cover rounded-xl shadow-medium"
+                />
+              </div>
+            </div>
+
+            {/* Benefit 2 */}
+            <div className="flex flex-col space-y-6 animate-fade-up">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
+                  2
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-3 text-accent">
+                    Phát triển tư duy – học tốt các môn trên trường
+                  </h3>
+                  <p className="leading-relaxed" style={{ color: '#374151' }}>
+                    Lập trình rèn luyện khả năng kết nối kiến thức Toán, Lý, Anh, Tin học.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4">
+                <img
+                  src={subjectsConnection}
+                  alt="Kết nối kiến thức các môn học"
+                  className="w-full h-48 object-cover rounded-xl shadow-medium"
+                />
+              </div>
+            </div>
+
+            {/* Benefit 3 */}
+            <div className="flex flex-col space-y-6 animate-fade-up">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
+                  3
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-3 text-primary">
+                    Thay đổi thói quen dùng công nghệ của con
+                  </h3>
+                  <p className="leading-relaxed" style={{ color: '#374151' }}>
+                    Từ người tiêu thụ nội dung sang người sáng tạo, biết làm ra sản phẩm công nghệ.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4">
+                <img
+                  src={techHabits}
+                  alt="Thay đổi thói quen công nghệ"
+                  className="w-full h-48 object-cover rounded-xl shadow-medium"
+                />
+              </div>
+            </div>
+
+            {/* Benefit 4 */}
+            <div className="flex flex-col space-y-6 animate-fade-up">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
+                  4
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-3 text-accent">
+                    Thế hệ Alpha – Công nghệ & AI là kỹ năng bắt buộc
+                  </h3>
+                  <p className="leading-relaxed" style={{ color: '#374151' }}>
+                    Học lập trình giúp trẻ hiểu cách AI hoạt động và làm chủ công nghệ.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4">
+                <img
+                  src={alphaGeneration}
+                  alt="Thế hệ Alpha và công nghệ AI"
+                  className="w-full h-48 object-cover rounded-xl shadow-medium"
+                />
+              </div>
             </div>
           </div>
         </div>
