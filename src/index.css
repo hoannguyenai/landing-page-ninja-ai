@@ -30,8 +30,8 @@ All colors MUST be HSL.
     --muted: 220 13% 91%;
     --muted-foreground: 217 9% 45%;
 
-    /* Modern Purple Accent */
-    --accent: 262 72% 51%;
+    /* Modern Blue Accent */
+    --accent: 217 91% 45%;
     --accent-foreground: 0 0% 100%;
 
     /* Orange CTA */
@@ -47,8 +47,8 @@ All colors MUST be HSL.
     --ring: 217 91% 60%;
 
     /* Custom Design Tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(262 72% 51%));
-    --light-gradient: linear-gradient(135deg, hsl(213 94% 88%), hsl(258 90% 96%));
+    --hero-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 45%));
+    --light-gradient: linear-gradient(135deg, hsl(213 94% 88%), hsl(213 94% 95%));
     --cta-gradient: linear-gradient(135deg, hsl(29 100% 50%), hsl(17 100% 50%));
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
