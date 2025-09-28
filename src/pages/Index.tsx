@@ -88,27 +88,29 @@ const Index = () => {
                 <div className="bg-badge-teal inline-flex items-center rounded-full px-4 py-2 text-sm font-medium">
                   🚀 Khơi nguồn sáng tạo
                 </div>
-                <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                  <TypewriterText 
-                    texts={[
-                      "Giúp con khám phá tư duy lập trình từ sớm",
-                      "Khơi dậy sáng tạo & tư duy logic", 
-                      "Trang bị kỹ năng công nghệ cho thế hệ Alpha"
-                    ]}
-                    loop={true}
-                    className="text-gray-900"
-                    speed={50}
-                    delay={500}
-                    highlights={{
-                      "khám phá": "text-teal-600",
-                      "tư duy lập trình": "text-blue-600",
-                      "sáng tạo": "text-teal-600",
-                      "tư duy logic": "text-blue-600",
-                      "kỹ năng công nghệ": "text-blue-600",
-                      "thế hệ Alpha": "text-teal-600"
-                    }}
-                  />
-                </h1>
+                <div className="min-h-[200px] flex items-start">
+                  <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+                    <TypewriterText 
+                      texts={[
+                        "Giúp con khám phá tư duy lập trình từ sớm",
+                        "Khơi dậy sáng tạo & tư duy logic", 
+                        "Trang bị kỹ năng công nghệ cho thế hệ Alpha"
+                      ]}
+                      loop={true}
+                      className="text-gray-900"
+                      speed={80}
+                      delay={500}
+                      highlights={{
+                        "khám phá": "text-teal-600",
+                        "tư duy lập trình": "text-blue-600",
+                        "sáng tạo": "text-teal-600",
+                        "tư duy logic": "text-blue-600",
+                        "kỹ năng công nghệ": "text-blue-600",
+                        "thế hệ Alpha": "text-teal-600"
+                      }}
+                    />
+                  </h1>
+                </div>
                 <p className="text-xl leading-relaxed" style={{ color: '#374151' }}>
                   Khóa học giúp học sinh phát triển tư duy logic, sáng tạo qua dự án thực tế.
                 </p>

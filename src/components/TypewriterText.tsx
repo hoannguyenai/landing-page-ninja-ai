@@ -98,11 +98,13 @@ export function TypewriterText({
           __html: highlightText(displayText) 
         }} 
       />
-      <span 
-        className={`inline-block w-0.5 h-8 bg-gray-900 ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}
-      >
-        |
-      </span>
+      {(currentCharIndex < texts[currentTextIndex]?.length || isDeleting) && (
+        <span 
+          className={`inline-block w-0.5 h-8 bg-gray-900 ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}
+        >
+          |
+        </span>
+      )}
     </span>
   );
 }
