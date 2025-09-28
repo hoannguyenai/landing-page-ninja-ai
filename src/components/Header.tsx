@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, Menu } from "lucide-react";
 import { useState } from "react";
+import rocketLogo from "@/assets/rocket-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,8 +12,8 @@ const Header = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-hero-gradient rounded-lg flex items-center justify-center text-white font-bold text-lg">
-              RT
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center">
+              <img src={rocketLogo} alt="Rocket Tech Academy Logo" className="w-8 h-8" />
             </div>
             <div>
               <h1 className="font-bold text-lg text-foreground">Rocket Tech</h1>
