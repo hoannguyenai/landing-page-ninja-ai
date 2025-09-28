@@ -19,29 +19,41 @@ export const ConsultationModal = ({ isOpen, onClose }: ConsultationModalProps) =
     phone: "",
     consultationGoals: "",
   });
+  
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const topicsText = selectedTopics.length > 0 ? `Quan tâm về: ${selectedTopics.join(", ")}. ` : "";
     toast({
       title: "Đăng ký thành công!",
       description: "Chúng tôi sẽ liên hệ với bạn trong 24h tới để tư vấn chi tiết.",
     });
     setFormData({ parentName: "", phone: "", consultationGoals: "" });
+    setSelectedTopics([]);
     onClose();
   };
 
+  const toggleTopic = (topic: string) => {
+    setSelectedTopics(prev => 
+      prev.includes(topic) 
+        ? prev.filter(t => t !== topic)
+        : [...prev, topic]
+    );
+  };
+
   const consultationTopics = [
-    { icon: Laptop, label: "Học phí", color: "bg-red-500" },
-    { icon: Clock, label: "Thời gian học", color: "bg-red-500" },
-    { icon: BookOpen, label: "Lộ trình học", color: "bg-red-500" },
-    { icon: Target, label: "Mức độ phù hợp", color: "bg-red-500" },
+    { icon: Laptop, label: "Học phí", color: "bg-primary" },
+    { icon: Clock, label: "Thời gian học", color: "bg-primary" },
+    { icon: BookOpen, label: "Lộ trình học", color: "bg-primary" },
+    { icon: Target, label: "Mức độ phù hợp", color: "bg-primary" },
   ];
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-lg p-0 overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-500 to-pink-500 p-6 text-white relative">
+        <div className="bg-gradient-to-r from-primary to-primary/80 p-6 text-white relative">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-white hover:text-gray-200"
@@ -50,10 +62,10 @@ export const ConsultationModal = ({ isOpen, onClose }: ConsultationModalProps) =
           </button>
           
           <div className="flex items-center gap-3 mb-4">
-            <div className="bg-blue-500 p-2 rounded-lg">
-              <Laptop className="text-white" size={24} />
+            <div className="bg-white p-2 rounded-lg">
+              <Laptop className="text-primary" size={24} />
             </div>
-            <span className="text-sm font-medium">mindX Technology School</span>
+            <span className="text-sm font-medium">Rocket Tech Academy</span>
           </div>
           
           <DialogTitle className="text-2xl font-bold mb-4">
@@ -62,12 +74,17 @@ export const ConsultationModal = ({ isOpen, onClose }: ConsultationModalProps) =
           
           <div className="flex flex-wrap gap-2">
             {consultationTopics.map((topic, index) => (
-              <Badge
+              <button
                 key={index}
-                className={`${topic.color} text-white px-3 py-1 text-sm font-medium`}
+                onClick={() => toggleTopic(topic.label)}
+                className={`px-3 py-1 text-sm font-medium rounded-full transition-all duration-200 ${
+                  selectedTopics.includes(topic.label)
+                    ? 'bg-white text-primary shadow-md scale-105'
+                    : 'bg-white/20 text-white hover:bg-white/30'
+                }`}
               >
                 {topic.label}
-              </Badge>
+              </button>
             ))}
           </div>
         </div>
@@ -120,7 +137,7 @@ export const ConsultationModal = ({ isOpen, onClose }: ConsultationModalProps) =
             
             <Button 
               type="submit" 
-              className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 rounded-full text-lg mt-6"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-full text-lg mt-6"
             >
               GỬI ĐĂNG KÝ
             </Button>
@@ -128,7 +145,7 @@ export const ConsultationModal = ({ isOpen, onClose }: ConsultationModalProps) =
         </div>
 
         {/* Bottom CTA */}
-        <div className="bg-red-500 p-4 text-white text-center">
+        <div className="bg-primary p-4 text-white text-center">
           <p className="text-sm font-medium">
             Ba mẹ để lại thông tin để được{" "}
             <span className="font-bold">giải đáp thông tin khóa học ngay!</span>
