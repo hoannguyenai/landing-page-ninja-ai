@@ -34,6 +34,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { CodingTestCTA } from "@/features/coding-test";
+import { TypewriterText } from "@/components/TypewriterText";
 
 const Index = () => {
   const { toast } = useToast();
@@ -88,11 +89,23 @@ const Index = () => {
                   🚀 Khơi nguồn sáng tạo
                 </div>
                 <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
-                  Giúp con khám phá{" "}
+                  <TypewriterText 
+                    text="Giúp con khám phá"
+                    speed={100}
+                    delay={500}
+                  />{" "}
                   <span className="text-primary">
-                    tư duy lập trình
+                    <TypewriterText 
+                      text="tư duy lập trình"
+                      speed={80}
+                      delay={2000}
+                    />
                   </span>{" "}
-                  từ sớm 🚀
+                  <TypewriterText 
+                    text="từ sớm 🚀"
+                    speed={120}
+                    delay={3500}
+                  />
                 </h1>
                 <p className="text-xl leading-relaxed" style={{ color: '#374151' }}>
                   Khóa học giúp học sinh phát triển tư duy logic, sáng tạo qua dự án thực tế.
@@ -101,8 +114,8 @@ const Index = () => {
               
               <div className="space-y-4">
                 <CodingTestCTA 
-                  label="👉 Làm Bài Test Miễn Phí Ngay"
-                  className="animate-scale-in bg-cta-gradient hover:bg-cta-gradient font-bold text-white shadow-[0px_4px_10px_rgba(20,184,166,0.3)] hover:shadow-[0px_6px_15px_rgba(20,184,166,0.4)] transition-all duration-300"
+                  label="Làm Bài Test Miễn Phí Ngay"
+                  className="cta-entry bg-cta-gradient hover:bg-cta-gradient font-bold text-white shadow-[0px_4px_10px_rgba(20,184,166,0.3)] hover:shadow-[0px_6px_15px_rgba(20,184,166,0.4)] transition-all duration-300 hover:scale-105 group"
                 />
                 <p className="text-sm text-muted-foreground">
                   Xác định trình độ lập trình của con chỉ trong 5 phút – nhận ngay báo cáo kết quả & lộ trình học phù hợp.
@@ -391,8 +404,8 @@ const Index = () => {
                     />
                   </div>
                   
-                  <Button type="submit" size="lg" variant="hero" className="w-full">
-                    👉 Bắt đầu làm bài test ngay
+                  <Button type="submit" size="lg" variant="cta" className="w-full group">
+                    <span className="arrow-slide inline-block">👉</span> Bắt đầu làm bài test ngay
                   </Button>
                 </form>
               </div>
@@ -448,8 +461,8 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Button size="lg" variant="outline" className="w-full">
-                👉 Đăng ký học thử miễn phí 1 buổi
+              <Button size="lg" variant="cta" className="w-full group">
+                <span className="arrow-slide inline-block">👉</span> Đăng ký học thử miễn phí 1 buổi
               </Button>
             </div>
 

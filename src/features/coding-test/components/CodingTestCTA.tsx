@@ -24,7 +24,7 @@ export function CodingTestCTA({
       asChild
     >
       <Link to={href}>
-        🚀 {label}
+        <span className="rocket-fly inline-block">🚀</span> {label}
       </Link>
     </Button>
   );

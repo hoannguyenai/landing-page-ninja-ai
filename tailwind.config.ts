@@ -37,6 +37,7 @@ export default {
           DEFAULT: "hsl(var(--cta))",
           foreground: "hsl(var(--cta-foreground))",
           hover: "hsl(var(--cta-hover))",
+          gradient: "var(--cta-gradient-hover)",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",

@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary-hover shadow-medium hover:shadow-large transform hover:scale-105",
         hero: "bg-hero-gradient text-white hover:opacity-90 shadow-large hover:shadow-xl transform hover:scale-105 font-semibold",
-        cta: "bg-cta text-cta-foreground hover:bg-cta-gradient shadow-medium hover:shadow-large transform hover:scale-105 font-semibold",
+        cta: "bg-cta text-cta-foreground hover:bg-cta-gradient shadow-medium hover:shadow-large transform hover:scale-105 font-semibold cta-pulse cta-shimmer cta-entry",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary-hover shadow-medium hover:shadow-large transform hover:scale-105",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "border border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground",
