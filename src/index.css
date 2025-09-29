@@ -8,67 +8,60 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Rocket Tech Academy Color Palette */
-    --background: 220 14% 97%; /* #F9FAFB - Light main background */
-    --foreground: 217 33% 17%; /* #111827 - Main text */
+    --background: 0 0% 100%;
+    --foreground: 217 33% 13%;
 
-    --card: 0 0% 100%; /* White cards */
-    --card-foreground: 217 33% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 217 19% 27%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 217 33% 17%;
+    --popover-foreground: 217 19% 27%;
 
-    /* Tech Blue Primary - Trust & Modern */
-    --primary: 217 91% 60%; /* #2563EB - Tech Blue */
+    /* Modern Tech Blue Primary */
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 217 91% 50%; /* #1D4ED8 - Blue 700 hover */
+    --primary-hover: 217 91% 55%;
 
-    /* Light Backgrounds */
-    --secondary: 220 14% 96%; /* #F3F4F6 - Gray 100 */
-    --secondary-foreground: 217 33% 17%;
-    --secondary-hover: 220 14% 91%;
+    /* Clean Light Backgrounds */
+    --secondary: 220 14% 98%;
+    --secondary-foreground: 217 33% 13%;
+    --secondary-hover: 220 13% 91%;
 
-    --muted: 220 14% 91%;
-    --muted-foreground: 220 9% 46%; /* #4B5563 - Gray 600 secondary text */
+    --muted: 220 13% 91%;
+    --muted-foreground: 217 9% 45%;
 
-    /* Mint Green Accent - Fresh & Youth-focused */
-    --accent: 160 84% 39%; /* #10B981 - Mint Green */
+    /* Modern Blue Accent */
+    --accent: 217 91% 45%;
     --accent-foreground: 0 0% 100%;
 
-    /* Creative Orange CTA - Energy & Inspiration */
-    --cta: 24 95% 53%; /* #F97316 - Creative Orange */
+    /* Teal CTA */
+    --cta: 172 85% 40%;
     --cta-foreground: 0 0% 100%;
-    --cta-hover: 24 95% 48%; /* #EA580C - Orange 600 hover */
+    --cta-hover: 172 85% 35%;
     
-    /* Orange Badge */
-    --badge-orange: 24 95% 88%;
-    --badge-orange-foreground: 24 95% 35%;
+    /* Teal Badge */
+    --badge-teal: 172 83% 88%;
+    --badge-teal-foreground: 172 85% 35%;
 
-    /* Status Colors */
-    --destructive: 0 84% 60%; /* #EF4444 - Red 500 */
-    --destructive-foreground: 220 14% 97%;
-    
-    --success: 142 71% 45%; /* #22C55E - Green 500 */
-    --success-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 220 14% 91%;
-    --input: 220 14% 91%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
     --ring: 217 91% 60%;
 
     /* Custom Design Tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(222 84% 12%), hsl(217 91% 60%)); /* Dark slate to tech blue */
-    --light-gradient: linear-gradient(135deg, hsl(220 14% 97%), hsl(0 0% 100%));
-    --cta-gradient: linear-gradient(135deg, hsl(24 95% 53%), hsl(24 95% 48%)); /* Orange gradient */
-    --cta-gradient-hover: linear-gradient(135deg, hsl(24 95% 53%), hsl(217 91% 60%)); /* Orange to tech blue */
-    --hero-bg-light: linear-gradient(135deg, hsl(217 91% 60% / 0.03), hsl(160 84% 39% / 0.03)); /* Tech blue to mint */
+    --hero-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 45%));
+    --light-gradient: linear-gradient(135deg, hsl(213 94% 88%), hsl(213 94% 95%));
+    --cta-gradient: linear-gradient(135deg, hsl(172 85% 40%), hsl(172 85% 35%));
+    --cta-gradient-hover: linear-gradient(135deg, hsl(172 85% 40%), hsl(217 91% 60%));
+    --hero-bg-light: linear-gradient(135deg, hsl(217 91% 60% / 0.03), hsl(262 72% 51% / 0.03));
     
-    /* CTA Effects - Updated for Orange */
-    --glow-orange: 0 0 20px rgba(249, 115, 22, 0.3);
-    --glow-orange-intense: 0 0 30px rgba(249, 115, 22, 0.5);
-    
-    /* Tech Purple for AI/Creative highlights */
-    --purple-tech: 255 91% 56%; /* #9333EA - Tech Purple */
-    --purple-tech-foreground: 0 0% 100%;
+    /* CTA Effects */
+    --glow-teal: 0 0 20px rgba(20, 184, 166, 0.3);
+    --glow-teal-intense: 0 0 30px rgba(20, 184, 166, 0.5);
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
     
     /* Modern Shadows */
     --shadow-soft: 0 2px 8px -2px hsl(220 13% 91% / 0.5);
@@ -95,32 +88,32 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222 84% 12%; /* #0F172A - Dark slate background */
-    --foreground: 220 14% 97%; /* #F9FAFB - Light text on dark */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 222 84% 12%;
-    --card-foreground: 220 14% 97%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 222 84% 12%;
-    --popover-foreground: 220 14% 97%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 220 14% 97%;
-    --primary-foreground: 222 84% 12%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217 32.6% 17.5%;
-    --secondary-foreground: 220 14% 97%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 217 32.6% 17.5%;
+    --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217 32.6% 17.5%;
-    --accent-foreground: 220 14% 97%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 220 14% 97%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 217 32.6% 17.5%;
-    --input: 217 32.6% 17.5%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -169,16 +162,10 @@ All colors MUST be HSL.
     background: var(--hero-bg-light);
   }
   
-  /* Orange Badge */
-  .bg-badge-orange {
-    background-color: hsl(var(--badge-orange));
-    color: hsl(var(--badge-orange-foreground));
-  }
-  
-  /* Purple Tech Highlights */
-  .bg-purple-tech {
-    background-color: hsl(var(--purple-tech));
-    color: hsl(var(--purple-tech-foreground));
+  /* Teal Badge */
+  .bg-badge-teal {
+    background-color: hsl(var(--badge-teal));
+    color: hsl(var(--badge-teal-foreground));
   }
   
   /* Custom Shadows */
@@ -242,7 +229,7 @@ All colors MUST be HSL.
   }
   
   .cta-gradient-dynamic {
-    background: linear-gradient(135deg, hsl(24 95% 53%), hsl(217 91% 60%)); /* Orange to tech blue */
+    background: linear-gradient(135deg, hsl(172 85% 40%), hsl(217 91% 60%));
     background-size: 200% 200%;
     transition: all 0.4s ease;
   }
@@ -366,16 +353,16 @@ All colors MUST be HSL.
 
 @keyframes shimmerGlowIntense {
   0%, 85% {
-    box-shadow: var(--glow-orange);
+    box-shadow: var(--glow-teal);
   }
   90% {
-    box-shadow: var(--glow-orange-intense), 0 0 40px rgba(249, 115, 22, 0.4);
+    box-shadow: var(--glow-teal-intense), 0 0 40px rgba(20, 184, 166, 0.4);
   }
   95% {
-    box-shadow: var(--glow-orange-intense), 0 0 50px rgba(59, 130, 246, 0.3);
+    box-shadow: var(--glow-teal-intense), 0 0 50px rgba(59, 130, 246, 0.3);
   }
   100% {
-    box-shadow: var(--glow-orange);
+    box-shadow: var(--glow-teal);
   }
 }
 
@@ -464,13 +451,13 @@ All colors MUST be HSL.
 
 @keyframes shimmerGlow {
   0%, 90% {
-    box-shadow: var(--glow-orange);
+    box-shadow: var(--glow-teal);
   }
   95% {
-    box-shadow: var(--glow-orange-intense);
+    box-shadow: var(--glow-teal-intense);
   }
   100% {
-    box-shadow: var(--glow-orange);
+    box-shadow: var(--glow-teal);
   }
 }
 
