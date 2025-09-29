@@ -179,7 +179,7 @@ const Index = () => {
                   2
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-3 text-accent">
+                  <h3 className="text-xl font-bold mb-3 text-primary">
                     Phát triển tư duy – học tốt các môn trên trường
                   </h3>
                   <p className="leading-relaxed" style={{ color: '#374151' }}>
@@ -227,7 +227,7 @@ const Index = () => {
                   4
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-3 text-accent">
+                  <h3 className="text-xl font-bold mb-3 text-primary">
                     Thế hệ Alpha – Công nghệ & AI là kỹ năng bắt buộc
                   </h3>
                   <p className="leading-relaxed" style={{ color: '#374151' }}>
