@@ -142,8 +142,8 @@ const Index = () => {
       <section className="py-20 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-up">
-            <h2 className="text-4xl font-bold mb-6" style={{ color: '#111827' }}>
-              Lý do ba mẹ nên cho con học lập trình sớm
+            <h2 className="text-5xl font-bold mb-6" style={{ color: '#111827' }}>
+              <span className="text-primary">Lý do</span> ba mẹ nên cho con học lập trình sớm
             </h2>
           </div>
 

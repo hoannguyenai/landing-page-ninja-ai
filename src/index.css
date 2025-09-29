@@ -34,10 +34,10 @@ All colors MUST be HSL.
     --accent: 210 100% 70%;
     --accent-foreground: 0 0% 100%;
 
-    /* Red CTA */
-    --cta: 0 84% 60%;
+    /* Blue CTA */
+    --cta: 217 91% 60%;
     --cta-foreground: 0 0% 100%;
-    --cta-hover: 0 84% 55%;
+    --cta-hover: 217 91% 55%;
     
     /* Light Blue Badge */
     --badge-light-blue: 210 100% 88%;
@@ -53,13 +53,13 @@ All colors MUST be HSL.
     /* Custom Design Tokens */
     --hero-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 45%));
     --light-gradient: linear-gradient(135deg, hsl(213 94% 88%), hsl(213 94% 95%));
-    --cta-gradient: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 55%));
-    --cta-gradient-hover: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 50%));
+    --cta-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 55%));
+    --cta-gradient-hover: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 50%));
     --hero-bg-light: linear-gradient(135deg, hsl(217 91% 60% / 0.03), hsl(262 72% 51% / 0.03));
     
     /* CTA Effects */
-    --glow-red: 0 0 20px rgba(239, 68, 68, 0.3);
-    --glow-red-intense: 0 0 30px rgba(239, 68, 68, 0.5);
+    --glow-blue: 0 0 20px rgba(37, 99, 235, 0.3);
+    --glow-blue-intense: 0 0 30px rgba(37, 99, 235, 0.5);
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     
@@ -229,7 +229,7 @@ All colors MUST be HSL.
   }
   
   .cta-gradient-dynamic {
-    background: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 50%));
+    background: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 50%));
     background-size: 200% 200%;
     transition: all 0.4s ease;
   }
@@ -353,16 +353,16 @@ All colors MUST be HSL.
 
 @keyframes shimmerGlowIntense {
   0%, 85% {
-    box-shadow: var(--glow-red);
+    box-shadow: var(--glow-blue);
   }
   90% {
-    box-shadow: var(--glow-red-intense), 0 0 40px rgba(239, 68, 68, 0.4);
+    box-shadow: var(--glow-blue-intense), 0 0 40px rgba(37, 99, 235, 0.4);
   }
   95% {
-    box-shadow: var(--glow-red-intense), 0 0 50px rgba(239, 68, 68, 0.3);
+    box-shadow: var(--glow-blue-intense), 0 0 50px rgba(37, 99, 235, 0.3);
   }
   100% {
-    box-shadow: var(--glow-red);
+    box-shadow: var(--glow-blue);
   }
 }
 
@@ -451,13 +451,13 @@ All colors MUST be HSL.
 
 @keyframes shimmerGlow {
   0%, 90% {
-    box-shadow: var(--glow-red);
+    box-shadow: var(--glow-blue);
   }
   95% {
-    box-shadow: var(--glow-red-intense);
+    box-shadow: var(--glow-blue-intense);
   }
   100% {
-    box-shadow: var(--glow-red);
+    box-shadow: var(--glow-blue);
   }
 }
 
