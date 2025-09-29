@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { OverlayTransition } from "@/components/OverlayTransition";
 
 interface CodingTestCTAProps {
   label?: string;
@@ -7,6 +7,7 @@ interface CodingTestCTAProps {
   className?: string;
   size?: "default" | "sm" | "lg" | "xl";
   variant?: "default" | "hero" | "cta" | "cta-power" | "secondary" | "outline";
+  useOverlay?: boolean;
 }
 
 export function CodingTestCTA({ 
@@ -14,18 +15,26 @@ export function CodingTestCTA({
   href = "/test",
   className,
   size = "xl",
-  variant = "cta-power"
+  variant = "cta-power",
+  useOverlay = true
 }: CodingTestCTAProps) {
-  return (
+  const buttonContent = (
     <Button 
       size={size} 
       variant={variant} 
       className={className}
-      asChild
     >
-      <Link to={href}>
-        <span className="rocket-fly inline-block">🚀</span> {label}
-      </Link>
+      <span className="rocket-fly inline-block">🚀</span> {label}
     </Button>
   );
+
+  if (useOverlay) {
+    return (
+      <OverlayTransition to={href}>
+        {buttonContent}
+      </OverlayTransition>
+    );
+  }
+
+  return buttonContent;
 }

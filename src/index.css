@@ -294,6 +294,77 @@ All colors MUST be HSL.
     width: 300px;
     height: 300px;
   }
+  
+  /* Page Transition Classes */
+  .page-slide-up-out {
+    animation: pageSlideUpOut 0.4s ease-in-out forwards;
+  }
+  
+  .page-slide-up-in {
+    animation: pageSlideUpIn 0.4s ease-in-out forwards;
+  }
+  
+  .page-slide-down-out {
+    animation: pageSlideDownOut 0.4s ease-in-out forwards;
+  }
+  
+  .page-slide-down-in {
+    animation: pageSlideDownIn 0.4s ease-in-out forwards;
+  }
+  
+  .page-slide-left-out {
+    animation: pageSlideLeftOut 0.4s ease-in-out forwards;
+  }
+  
+  .page-slide-left-in {
+    animation: pageSlideLeftIn 0.4s ease-in-out forwards;
+  }
+  
+  .page-slide-right-out {
+    animation: pageSlideRightOut 0.4s ease-in-out forwards;
+  }
+  
+  .page-slide-right-in {
+    animation: pageSlideRightIn 0.4s ease-in-out forwards;
+  }
+  
+  /* Tab Transition Classes */
+  .tab-fade-out {
+    animation: tabFadeOut 0.2s ease-in-out forwards;
+  }
+  
+  .tab-slide-in {
+    animation: tabSlideIn 0.3s ease-in-out forwards;
+  }
+  
+  /* Overlay Classes */
+  .overlay-reveal {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, 
+      hsl(217 91% 60%) 0%,
+      hsl(217 91% 55%) 50%,
+      hsl(262 72% 51%) 100%
+    );
+    z-index: 9999;
+    pointer-events: none;
+  }
+  
+  .overlay-reveal-in {
+    animation: overlayRevealIn 0.6s ease-in-out forwards;
+  }
+  
+  .overlay-reveal-out {
+    animation: overlayRevealOut 0.4s 0.3s ease-in-out forwards;
+  }
+  
+  .overlay-reverse-in {
+    animation: overlayReverseIn 0.6s ease-in-out forwards;
+  }
+  
+  .overlay-reverse-out {
+    animation: overlayReverseOut 0.4s 0.3s ease-in-out forwards;
+  }
 }
 
 @keyframes fadeUp {
@@ -427,6 +498,159 @@ All colors MUST be HSL.
   }
   94%, 98% {
     transform: translateX(2px);
+  }
+}
+
+/* Page Transition Animations */
+@keyframes pageSlideUpOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes pageSlideUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageSlideDownOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+@keyframes pageSlideDownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageSlideLeftOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes pageSlideLeftIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pageSlideRightOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+@keyframes pageSlideRightIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Tab Transition Animations */
+@keyframes tabFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes tabSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Overlay Gradient Animations */
+@keyframes overlayRevealIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes overlayRevealOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes overlayReverseIn {
+  0% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes overlayReverseOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
 
