@@ -30,18 +30,18 @@ All colors MUST be HSL.
     --muted: 220 13% 91%;
     --muted-foreground: 217 9% 45%;
 
-    /* Modern Blue Accent */
-    --accent: 217 91% 45%;
+    /* Light Blue Accent */
+    --accent: 210 100% 70%;
     --accent-foreground: 0 0% 100%;
 
-    /* Teal CTA */
-    --cta: 172 85% 40%;
+    /* Red CTA */
+    --cta: 0 84% 60%;
     --cta-foreground: 0 0% 100%;
-    --cta-hover: 172 85% 35%;
+    --cta-hover: 0 84% 55%;
     
-    /* Teal Badge */
-    --badge-teal: 172 83% 88%;
-    --badge-teal-foreground: 172 85% 35%;
+    /* Light Blue Badge */
+    --badge-light-blue: 210 100% 88%;
+    --badge-light-blue-foreground: 210 100% 35%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -53,13 +53,13 @@ All colors MUST be HSL.
     /* Custom Design Tokens */
     --hero-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 45%));
     --light-gradient: linear-gradient(135deg, hsl(213 94% 88%), hsl(213 94% 95%));
-    --cta-gradient: linear-gradient(135deg, hsl(172 85% 40%), hsl(172 85% 35%));
-    --cta-gradient-hover: linear-gradient(135deg, hsl(172 85% 40%), hsl(217 91% 60%));
+    --cta-gradient: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 55%));
+    --cta-gradient-hover: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 50%));
     --hero-bg-light: linear-gradient(135deg, hsl(217 91% 60% / 0.03), hsl(262 72% 51% / 0.03));
     
     /* CTA Effects */
-    --glow-teal: 0 0 20px rgba(20, 184, 166, 0.3);
-    --glow-teal-intense: 0 0 30px rgba(20, 184, 166, 0.5);
+    --glow-red: 0 0 20px rgba(239, 68, 68, 0.3);
+    --glow-red-intense: 0 0 30px rgba(239, 68, 68, 0.5);
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     
@@ -162,10 +162,10 @@ All colors MUST be HSL.
     background: var(--hero-bg-light);
   }
   
-  /* Teal Badge */
-  .bg-badge-teal {
-    background-color: hsl(var(--badge-teal));
-    color: hsl(var(--badge-teal-foreground));
+  /* Light Blue Badge */
+  .bg-badge-light-blue {
+    background-color: hsl(var(--badge-light-blue));
+    color: hsl(var(--badge-light-blue-foreground));
   }
   
   /* Custom Shadows */
@@ -229,7 +229,7 @@ All colors MUST be HSL.
   }
   
   .cta-gradient-dynamic {
-    background: linear-gradient(135deg, hsl(172 85% 40%), hsl(217 91% 60%));
+    background: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 50%));
     background-size: 200% 200%;
     transition: all 0.4s ease;
   }
@@ -353,16 +353,16 @@ All colors MUST be HSL.
 
 @keyframes shimmerGlowIntense {
   0%, 85% {
-    box-shadow: var(--glow-teal);
+    box-shadow: var(--glow-red);
   }
   90% {
-    box-shadow: var(--glow-teal-intense), 0 0 40px rgba(20, 184, 166, 0.4);
+    box-shadow: var(--glow-red-intense), 0 0 40px rgba(239, 68, 68, 0.4);
   }
   95% {
-    box-shadow: var(--glow-teal-intense), 0 0 50px rgba(59, 130, 246, 0.3);
+    box-shadow: var(--glow-red-intense), 0 0 50px rgba(239, 68, 68, 0.3);
   }
   100% {
-    box-shadow: var(--glow-teal);
+    box-shadow: var(--glow-red);
   }
 }
 
@@ -451,13 +451,13 @@ All colors MUST be HSL.
 
 @keyframes shimmerGlow {
   0%, 90% {
-    box-shadow: var(--glow-teal);
+    box-shadow: var(--glow-red);
   }
   95% {
-    box-shadow: var(--glow-teal-intense);
+    box-shadow: var(--glow-red-intense);
   }
   100% {
-    box-shadow: var(--glow-teal);
+    box-shadow: var(--glow-red);
   }
 }
 
