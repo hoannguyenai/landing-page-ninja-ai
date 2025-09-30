@@ -297,19 +297,23 @@ All colors MUST be HSL.
   
   /* Page Transition Classes */
   .page-slide-up-out {
-    animation: pageSlideUpOut 0.4s ease-in-out forwards;
+    animation: pageSlideUpOut 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 10;
   }
   
   .page-slide-up-in {
-    animation: pageSlideUpIn 0.4s ease-in-out forwards;
+    animation: pageSlideUpIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 5;
   }
   
   .page-slide-down-out {
-    animation: pageSlideDownOut 0.4s ease-in-out forwards;
+    animation: pageSlideDownOut 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 10;
   }
   
   .page-slide-down-in {
-    animation: pageSlideDownIn 0.4s ease-in-out forwards;
+    animation: pageSlideDownIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 5;
   }
   
   .page-slide-left-out {
@@ -330,11 +334,11 @@ All colors MUST be HSL.
   
   /* Tab Transition Classes */
   .tab-fade-out {
-    animation: tabFadeOut 0.2s ease-in-out forwards;
+    animation: tabFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
   
   .tab-slide-in {
-    animation: tabSlideIn 0.3s ease-in-out forwards;
+    animation: tabSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
   
   /* Overlay Classes */
@@ -505,44 +509,44 @@ All colors MUST be HSL.
 @keyframes pageSlideUpOut {
   from {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
   to {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-50px) scale(0.98);
   }
 }
 
 @keyframes pageSlideUpIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(50px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 @keyframes pageSlideDownOut {
   from {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
   to {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(50px) scale(0.98);
   }
 }
 
 @keyframes pageSlideDownIn {
   from {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-50px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -594,20 +598,22 @@ All colors MUST be HSL.
 @keyframes tabFadeOut {
   from {
     opacity: 1;
+    transform: translateX(0) scale(1);
   }
   to {
     opacity: 0;
+    transform: translateX(-20px) scale(0.95);
   }
 }
 
 @keyframes tabSlideIn {
   from {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateX(30px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
 }
 

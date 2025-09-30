@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
 import CodingGame from "@/components/CodingGame";
 import { FloatingChatIcon } from "@/components/FloatingChatIcon";
+import { OverlayTransition } from "@/components/OverlayTransition";
 import heroBanner from "@/assets/hero-banner.jpg";
 import instructor1 from "@/assets/instructor-1.jpg";
 import studentProjects from "@/assets/student-projects.jpg";
@@ -408,9 +409,11 @@ const Index = () => {
                     />
                   </div>
                   
-                  <Button type="submit" size="lg" variant="cta" className="w-full group">
-                    <span className="arrow-slide inline-block">👉</span> Bắt đầu làm bài test ngay
-                  </Button>
+                  <OverlayTransition to="/test">
+                    <Button type="submit" size="lg" variant="cta" className="w-full group">
+                      <span className="arrow-slide inline-block">👉</span> Bắt đầu làm bài test ngay
+                    </Button>
+                  </OverlayTransition>
                 </form>
               </div>
             </CardContent>
@@ -465,9 +468,11 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Button size="lg" variant="cta" className="w-full group">
-                <span className="arrow-slide inline-block">👉</span> Đăng ký học thử miễn phí 1 buổi
-              </Button>
+              <OverlayTransition to="/test">
+                <Button size="lg" variant="cta" className="w-full group">
+                  <span className="arrow-slide inline-block">👉</span> Đăng ký học thử miễn phí 1 buổi
+                </Button>
+              </OverlayTransition>
             </div>
 
             <div className="animate-slide-right">
