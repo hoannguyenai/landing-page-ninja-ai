@@ -85,21 +85,23 @@ export function CodingGameSection() {
           viewport={{ once: false, amount: 0.3 }}
         >
           {/* Headline - No Glow Effect */}
-          <motion.h2
-            {...headlineReveal.containerProps}
-            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-foreground flex items-center justify-center gap-3"
-          >
-            <Gamepad2 className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />
-            {"Học lập trình qua trò chơi".split("").map((char, index) => (
-              <motion.span
-                key={index}
-                {...headlineReveal.childProps}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </motion.h2>
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-4">
+            <Gamepad2 className="w-7 h-7 md:w-9 md:h-9 lg:w-11 lg:h-11 text-foreground flex-shrink-0" />
+            <motion.h2
+              {...headlineReveal.containerProps}
+              className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground"
+            >
+              {"Học lập trình qua trò chơi".split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  {...headlineReveal.childProps}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </motion.h2>
+          </div>
 
           {/* Subheadline with Slide-in Effect */}
           <motion.p
