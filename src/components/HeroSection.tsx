@@ -24,14 +24,14 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
   return (
     <section
       ref={containerRef}
-      className={`relative py-24 px-4 overflow-hidden min-h-screen flex items-center ${className}`}
+      className={`relative overflow-hidden w-full h-screen flex items-center ${className}`}
       style={{
         backgroundAttachment: "fixed", // CSS fallback for older browsers
       }}
     >
         {/* Parallax Background */}
         <motion.div
-          className="absolute inset-0 bg-hero-bg-light"
+          className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100"
           style={{ y: backgroundY }}
         />
 
@@ -48,10 +48,10 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
 
         {/* Content Container */}
         <motion.div
-          className="container mx-auto max-w-6xl relative z-10"
+          className="container mx-auto max-w-7xl relative z-10 px-6 md:px-8 py-16 md:py-24"
           style={{ y: contentY }}
         >
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <motion.div className="space-y-8">
               {/* Badge */}
@@ -68,8 +68,12 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
               <div className="min-h-[200px] flex items-start">
                 <StaggerText
                   text="Giúp con khám phá tư duy lập trình từ sớm"
-                  className="text-5xl lg:text-6xl font-bold leading-tight"
+                  className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight"
                   delay={0.4}
+                  highlight={[
+                    { start: 18, end: 23, className: "text-blue-600" },
+                    { start: 24, end: 33, className: "text-emerald-500" }
+                  ]}
                 />
               </div>
 
@@ -102,7 +106,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
                     "Khám phá lộ trình học phù hợp"
                   ]}
                   loop={true}
-                  className="cta-entry bg-cta-gradient hover:bg-cta-gradient font-bold text-white shadow-[0px_4px_10px_rgba(20,184,166,0.3)] hover:shadow-[0px_6px_15px_rgba(20,184,166,0.4)] transition-all duration-300 hover:scale-105 group"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-colors"
                   speed={80}
                   delay={1500}
                 />
@@ -123,6 +127,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
                 src={heroBanner}
                 alt="Học sinh lập trình tại Rocket Tech Academy"
                 className="rounded-2xl shadow-large w-full"
+                style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.2), var(--shadow-large)" }}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               />
@@ -153,6 +158,7 @@ interface StaggerTextProps {
   style?: React.CSSProperties;
   delay?: number;
   staggerType?: "letter" | "word";
+  highlight?: Array<{start: number; end: number; className: string}>;
 }
 
 function StaggerText({
@@ -160,7 +166,8 @@ function StaggerText({
   className = "",
   style,
   delay = 0,
-  staggerType = "letter"
+  staggerType = "letter",
+  highlight = []
 }: StaggerTextProps) {
   const container = {
     hidden: { opacity: 0 },
@@ -201,16 +208,20 @@ function StaggerText({
       initial="hidden"
       animate="visible"
     >
-      {elements.map((element, index) => (
-        <motion.span
-          key={index}
-          variants={child}
-          style={{ display: "inline-block" }}
-        >
-          {element}
-          {staggerType === "word" && index < elements.length - 1 ? "\u00A0" : ""}
-        </motion.span>
-      ))}
+      {elements.map((element, index) => {
+        const highlightClass = highlight.find(h => index >= h.start && index <= h.end)?.className || "";
+        return (
+          <motion.span
+            key={index}
+            variants={child}
+            style={{ display: "inline-block" }}
+            className={highlightClass}
+          >
+            {element}
+            {staggerType === "word" && index < elements.length - 1 ? "\u00A0" : ""}
+          </motion.span>
+        );
+      })}
     </motion.span>
   );
 }

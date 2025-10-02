@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { PageTransition } from "@/components/PageTransition";
+import { ZaloChatWidget } from "@/components/ZaloChatWidget";
 import Index from "./pages/Index";
 import CodingTest from "./pages/CodingTest";
 import NotFound from "./pages/NotFound";
@@ -34,6 +35,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <AppRoutes />
+          <ZaloChatWidget />
         </BrowserRouter>
       </TooltipProvider>
     </HelmetProvider>

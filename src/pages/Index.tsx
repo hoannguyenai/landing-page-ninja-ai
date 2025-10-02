@@ -10,7 +10,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
 import CodingGame from "@/components/CodingGame";
-import { FloatingChatIcon } from "@/components/FloatingChatIcon";
+import { ZaloChatWidget } from "@/components/ZaloChatWidget";
 import { OverlayTransition } from "@/components/OverlayTransition";
 import heroBanner from "@/assets/hero-banner.jpg";
 import instructor1 from "@/assets/instructor-1.jpg";
@@ -40,6 +40,7 @@ import { FeaturesSection } from "@/components/FeaturesSection";
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { CodingGameSection } from "@/components/CodingGameSection";
 import { BasicCourseSection } from "@/components/BasicCourseSection";
+import { SectionDivider } from "@/components/SectionDivider";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const Index = () => {
@@ -148,13 +149,15 @@ const Index = () => {
       <BenefitsSection />
 
       {/* Enhanced Features Section with Advanced Scroll Animations */}
-      <FeaturesSection />
+      <div id="features">
+        <FeaturesSection />
+      </div>
 
       {/* Enhanced Interactive Coding Game Section with Advanced Scroll Animations */}
       <CodingGameSection />
 
       {/* Course Section */}
-      <section id="course" className="py-20 px-4 bg-muted/30 relative overflow-hidden">
+      <section id="course" className="py-20 px-4 bg-white relative overflow-hidden">
         {/* Parallax Background Elements */}
         <motion.div
           className="absolute top-10 right-10 w-28 h-28 bg-gradient-to-br from-green-200 to-blue-200 rounded-full opacity-15"
@@ -176,7 +179,7 @@ const Index = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="shadow-large">
+            <Card className="shadow-large bg-blue-100">
               <CardHeader className="text-center">
                 <motion.div
                   whileInView={{ y: [30, 0] }}
@@ -293,17 +296,20 @@ const Index = () => {
       {/* Enhanced Course Details Section with Advanced Scroll Animations */}
       <BasicCourseSection />
 
+      {/* Gradient Line Divider */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-[#2563EB]/30 via-[#3B82F6]/10 to-transparent my-12"></div>
+
       {/* Instructors Section */}
-      <section id="instructors" className="py-20 px-4 bg-muted/30">
+      <section id="instructors" className="py-20 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-up">
-            <h2 className="text-4xl font-bold mb-6">
+            <h2 className="text-4xl font-bold mb-6 text-blue-600">
               👨‍🏫 Giảng viên – Truyền cảm hứng từ công nghệ
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="shadow-medium">
+            <Card className="shadow-medium bg-blue-50">
               <CardContent className="pt-6">
                 <div className="flex items-start gap-4">
                   <img
@@ -324,7 +330,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="shadow-medium">
+            <Card className="shadow-medium bg-blue-50">
               <CardContent className="pt-6">
                 <div className="flex items-start gap-4">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-xl shadow-soft">
@@ -358,7 +364,7 @@ const Index = () => {
       {/* Additional Pricing Details */}
       <section id="pricing" className="py-20 px-4">
         <div className="container mx-auto max-w-4xl">
-          <Card className="shadow-large bg-gradient-to-r from-primary/5 to-secondary/5">
+          <Card className="shadow-large bg-blue-50">
             <CardHeader className="text-center">
               <CardTitle className="text-3xl mb-4">
                 📋 Chi tiết khóa học & Đăng ký
@@ -400,7 +406,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 px-4 bg-muted/30">
+      <section id="testimonials" className="py-20 px-4 bg-[#a3bafa]/10">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-up">
             <h2 className="text-4xl font-bold mb-6">
@@ -410,7 +416,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="shadow-medium">
+              <Card key={index} className="shadow-medium bg-blue-50">
                 <CardContent className="pt-6">
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -438,7 +444,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card>
+            <Card className="bg-blue-50">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <Award className="text-primary" />
@@ -454,7 +460,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-blue-50">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <CheckCircle2 className="text-success" />
@@ -474,7 +480,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 px-4 bg-hero-gradient text-white">
+      <section className="py-20 px-4 bg-[#93C5FD] text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="space-y-8 animate-fade-up">
             <h2 className="text-4xl lg:text-5xl font-bold">
@@ -521,9 +527,6 @@ const Index = () => {
       </section>
 
       <Footer />
-      
-      {/* Floating Chat Icon */}
-      <FloatingChatIcon />
     </div>
   );
 };

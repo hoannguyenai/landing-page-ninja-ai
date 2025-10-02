@@ -199,7 +199,7 @@ move();`);
 
   return (
     <div className="space-y-6">
-      <Card className="shadow-large">
+      <Card className="shadow-large bg-blue-50">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl flex items-center justify-center gap-2">
             🚀 Thử thách lập trình 

@@ -4,7 +4,7 @@ import { useStaggerGrid } from "@/hooks/useStaggerGrid";
 import { useTextReveal } from "@/hooks/useTextReveal";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Clock, Rocket, Gamepad2, Smartphone } from "lucide-react";
+import { Clock, Rocket, Gamepad2, Smartphone, Check } from "lucide-react";
 import studentProjects from "@/assets/student-projects.jpg";
 
 export function BasicCourseSection() {
@@ -41,7 +41,7 @@ export function BasicCourseSection() {
       ref={containerReveal.ref}
       initial={containerReveal.initial}
       animate={containerReveal.animate}
-      className="py-20 px-4"
+      className="py-20 px-4 bg-[#a3bafa]/5"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
@@ -59,40 +59,51 @@ export function BasicCourseSection() {
             🎯
           </motion.div>
 
-          {/* Headline with Letter Stagger + Glow */}
+          {/* Headline */}
           <motion.h2
-            {...headlineReveal.containerProps}
-            className="text-4xl font-bold mb-6"
+            className="text-4xl font-bold mb-6 tracking-wide text-blue-600"
           >
-            {"Khóa Lập trình Cơ bản".split("").map((char, index) => (
-              <motion.span
-                key={index}
-                {...headlineReveal.childProps}
-                className="inline-block"
-                style={{
-                  textShadow: headlineReveal.isInView
-                    ? "0 0 8px rgba(59, 130, 246, 0.5), 0 0 16px rgba(59, 130, 246, 0.3)"
-                    : "none",
-                  transition: "text-shadow 0.3s ease"
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+            Chương trình Lập trình Cơ bản
           </motion.h2>
 
-          {/* Subheadline with Slide-in Effect */}
-          <motion.p
-            className="text-xl text-muted-foreground"
+          {/* Feature Boxes */}
+          <motion.div
+            className="grid md:grid-cols-3 gap-6 mb-16"
             whileInView={{
               opacity: [0, 1],
-              x: [-30, 0], // Slide in from left
+              y: [30, 0],
               transition: { duration: 0.6, delay: 0.8 }
             }}
             viewport={{ once: false, amount: 0.3 }}
           >
-            12 buổi, 2 dự án thực tế, học xong làm được ngay
-          </motion.p>
+            <motion.div
+              className="bg-blue-50 border border-blue-200 rounded-3xl shadow-soft p-6 flex flex-col items-center text-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Check className="text-blue-600 mb-4" size={32} />
+              <h3 className="text-lg font-bold text-blue-600 mb-2">12 buổi học</h3>
+              <p className="text-gray-500 text-sm">Mỗi buổi 90 phút, học tập hiệu quả</p>
+            </motion.div>
+            <motion.div
+              className="bg-blue-50 border border-blue-200 rounded-3xl shadow-soft p-6 flex flex-col items-center text-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Check className="text-blue-600 mb-4" size={32} />
+              <h3 className="text-lg font-bold text-blue-600 mb-2">2 dự án thực tế</h3>
+              <p className="text-gray-500 text-sm">Xây dựng game và ứng dụng thực tế</p>
+            </motion.div>
+            <motion.div
+              className="bg-blue-50 border border-blue-200 rounded-3xl shadow-soft p-6 flex flex-col items-center text-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Check className="text-blue-600 mb-4" size={32} />
+              <h3 className="text-lg font-bold text-blue-600 mb-2">Học xong có thể viết chương trình</h3>
+              <p className="text-gray-500 text-sm">Tự tin tạo ra sản phẩm của riêng mình</p>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Main Content Grid */}
@@ -118,9 +129,9 @@ export function BasicCourseSection() {
                 }}
                 viewport={{ once: false, amount: 0.3 }}
               >
-                <Card>
+                <Card className="bg-blue-50 border border-blue-200">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
+                    <CardTitle className="flex items-center gap-3 text-blue-600">
                       <motion.div
                         whileInView={{
                           scale: [0.8, 1.2, 1], // Scale-in bounce
@@ -173,9 +184,9 @@ export function BasicCourseSection() {
                 }}
                 viewport={{ once: false, amount: 0.3 }}
               >
-                <Card>
+                <Card className="bg-blue-50 border border-blue-200">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
+                    <CardTitle className="flex items-center gap-3 text-blue-600">
                       <motion.div
                         whileInView={{
                           scale: [0.8, 1.2, 1], // Scale-in bounce

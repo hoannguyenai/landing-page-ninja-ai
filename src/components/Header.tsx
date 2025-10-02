@@ -23,7 +23,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#course" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="#features" className="text-muted-foreground hover:text-primary transition-colors">
               Khóa học
             </a>
             <a href="#instructors" className="text-muted-foreground hover:text-primary transition-colors">

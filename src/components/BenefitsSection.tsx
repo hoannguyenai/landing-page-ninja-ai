@@ -80,7 +80,7 @@ export function BenefitsSection() {
       ref={containerReveal.ref}
       initial={containerReveal.initial}
       animate={containerReveal.animate}
-      className="py-20 px-4 bg-white"
+      className="py-20 px-4 bg-[#a3bafa]/5 relative"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Section Headline */}
@@ -118,6 +118,20 @@ export function BenefitsSection() {
           })}
         </motion.div>
       </div>
+
+      {/* Wave Divider */}
+      <div className="absolute bottom-0 left-0 w-full h-20 md:h-24 lg:h-28 overflow-hidden">
+        <svg
+          className="w-full h-full"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,60 C300,0 900,120 1200,60 L1200,120 L0,120 Z"
+            fill="#a3bafa"
+          />
+        </svg>
+      </div>
     </motion.section>
   );
 }
@@ -126,10 +140,16 @@ export function BenefitsSection() {
 function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
   // Parallax transform for images
   const { scrollYProgress } = useScroll();
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const baseImageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
+  // Set y transform: no parallax for images 3 and 4
+  const imageY = (number === 3 || number === 4)
+    ? useTransform(scrollYProgress, [0, 1], ["0%", "0%"])
+    : baseImageY;
+
 
   return (
-    <div className="flex flex-col space-y-6">
+    <div className="grid md:grid-cols-2 items-center gap-8">
       {/* Icon and Content Row */}
       <div className="flex items-start gap-4">
         {/* Animated Number Icon */}
@@ -164,7 +184,7 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
         </motion.div>
       </div>
 
-      {/* Animated Image with Parallax - Same height for all */}
+      {/* Animated Image with Parallax - Adjusted Y for equal positioning */}
       <motion.div
         className="mt-4"
         whileInView={{
@@ -177,9 +197,9 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
         <motion.img
           src={image}
           alt={alt}
-          className="w-full h-48 object-cover rounded-lg shadow-medium"
+          className="h-64 w-full object-cover rounded-xl shadow-lg"
           style={{
-            y: imageY, // Parallax effect
+            y: imageY,
             willChange: 'transform' // Performance optimization
           }}
           whileHover={{

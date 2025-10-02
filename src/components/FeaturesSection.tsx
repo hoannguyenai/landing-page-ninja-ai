@@ -187,13 +187,9 @@ function UnifiedCard({ icon: Icon, title, description }: FeatureCard) {
       whileTap={{ scale: 0.95 }}
       className="h-full"
     >
-      <Card className={`${
-        isFeatureCard
-          ? "hover:shadow-medium transition-shadow"
-          : "bg-gradient-to-br from-primary/5 to-accent/5 hover:shadow-lg transition-shadow"
-      } h-full flex flex-col justify-between group`}>
+      <Card className="bg-blue-50 hover:shadow-lg transition-shadow h-full flex flex-col justify-between group">
         <CardContent className="pt-6 flex-1 flex flex-col">
-          <div className={`flex items-start gap-3 ${isFeatureCard ? "" : "flex-col items-center text-center"}`}>
+          <div className="flex flex-col items-center text-center">
             <motion.div
               whileHover={isFeatureCard ? {
                 rotate: [0, -10, 10, 0],
@@ -202,21 +198,21 @@ function UnifiedCard({ icon: Icon, title, description }: FeatureCard) {
                 scale: [1, 1.1, 1],
                 transition: { duration: 0.3 }
               }}
-              className={isFeatureCard ? "" : "mb-4"}
+              className="mb-4"
             >
               <Icon
                 className={`${
                   isFeatureCard
-                    ? "text-success mt-1 flex-shrink-0 group-hover:text-primary"
+                    ? "text-blue-600 mt-1 flex-shrink-0 group-hover:text-blue-700"
                     : "text-primary group-hover:text-accent"
                 } transition-colors`}
-                size={isFeatureCard ? 24 : 32}
+                size={isFeatureCard ? 40 : 32}
               />
             </motion.div>
             <div className="flex-1">
               <h3 className={`${
                 isFeatureCard
-                  ? "font-semibold mb-2 group-hover:text-primary"
+                  ? "text-lg font-semibold mb-2 group-hover:text-primary"
                   : "text-xl font-semibold mb-2 group-hover:text-primary"
               } transition-colors`}>
                 {title}

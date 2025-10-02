@@ -37,35 +37,35 @@ const CountdownTimer = () => {
   }, []);
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-slate-800 to-slate-900 text-white">
+    <section className="py-20 px-4 bg-gradient-to-r from-[#EFF6FF] via-[#DBEAFE] to-[#93C5FD]">
       <div className="container mx-auto max-w-4xl">
-        <Card className="bg-slate-800/50 border-slate-700 backdrop-blur shadow-large">
+        <Card className="bg-white border-[#DBEAFE] rounded-2xl shadow-xl">
           <CardContent className="pt-8 pb-8">
             {/* Title */}
             <div className="text-center mb-8">
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl lg:text-4xl font-bold text-blue-700 mb-4">
                 Lịch Khai Giảng & Học Phí
               </h2>
-              <p className="text-lg text-slate-300">
+              <p className="text-lg text-gray-600">
                 Thời gian còn lại để đăng ký ưu đãi:
               </p>
             </div>
 
             {/* Countdown Display */}
             <div className="grid grid-cols-2 gap-8 mb-8 justify-center max-w-md mx-auto">
-              <div className="text-center">
-                <div className="text-6xl lg:text-8xl font-bold text-orange-400 mb-2">
+              <div className="text-center bg-blue-50 rounded-lg p-4">
+                <div className="text-6xl font-extrabold text-blue-600 mb-2">
                   {timeLeft.minutes.toString().padStart(2, "0")}
                 </div>
-                <div className="text-base lg:text-xl text-slate-300 font-medium">
+                <div className="text-base font-semibold text-orange-500">
                   PHÚT
                 </div>
               </div>
-              <div className="text-center">
-                <div className="text-6xl lg:text-8xl font-bold text-orange-400 mb-2">
+              <div className="text-center bg-blue-50 rounded-lg p-4">
+                <div className="text-6xl font-extrabold text-blue-600 mb-2">
                   {timeLeft.seconds.toString().padStart(2, "0")}
                 </div>
-                <div className="text-base lg:text-xl text-slate-300 font-medium">
+                <div className="text-base font-semibold text-orange-500">
                   GIÂY
                 </div>
               </div>
@@ -74,16 +74,16 @@ const CountdownTimer = () => {
             {/* Course Information */}
             <div className="space-y-4 mb-8">
               <div className="flex items-center gap-3">
-                <Calendar className="text-blue-400" size={20} />
-                <span className="text-white">
-                  <strong>Lịch khai giảng gần nhất:</strong> 15/10/2024
+                <Calendar className="text-blue-600" size={20} />
+                <span className="text-gray-700">
+                  <strong>Lịch khai giảng gần nhất:</strong> <span className="text-blue-600">15/10/2024</span>
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-3">
-                <DollarSign className="text-green-400" size={20} />
-                <span className="text-white">
-                  <strong>Học phí:</strong> 3.600.000đ / 12 buổi (≈ 300.000đ/buổi)
+                <DollarSign className="text-blue-600" size={20} />
+                <span className="text-gray-700">
+                  <strong>Học phí:</strong> <span className="text-blue-600">3.600.000đ</span> / 12 buổi (≈ <span className="text-blue-600">300.000đ</span>/buổi)
                 </span>
               </div>
             </div>
@@ -91,23 +91,23 @@ const CountdownTimer = () => {
             {/* Special Offers */}
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <Gift className="text-orange-400" size={20} />
-                <span className="text-orange-400 font-bold text-lg">
+                <Gift className="text-orange-500" size={20} />
+                <span className="text-orange-500 font-bold text-lg">
                   Ưu Đãi Đặc Biệt:
                 </span>
               </div>
-              
+
               <div className="space-y-2 ml-8">
                 <div className="flex items-start gap-2">
-                  <span className="text-orange-400 mt-1">•</span>
-                  <span className="text-slate-200">
-                    Giảm ngay 15% cho đăng ký trước ngày khai giảng.
+                  <span className="text-orange-500 mt-1">•</span>
+                  <span className="text-gray-700">
+                    Giảm ngay <span className="text-blue-600">15%</span> cho đăng ký trước ngày khai giảng.
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-orange-400 mt-1">•</span>
-                  <span className="text-slate-200">
-                    Tặng thêm 1 buổi học thử hoàn toàn miễn phí.
+                  <span className="text-orange-500 mt-1">•</span>
+                  <span className="text-gray-700">
+                    Tặng thêm <span className="text-blue-600">1 buổi học thử</span> hoàn toàn miễn phí.
                   </span>
                 </div>
               </div>
@@ -115,9 +115,9 @@ const CountdownTimer = () => {
 
             {/* CTA Button */}
             <div className="text-center">
-              <Button 
-                size="lg" 
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
+              <Button
+                size="lg"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg"
               >
                 Giữ Chỗ Ngay Hôm Nay
               </Button>

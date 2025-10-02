@@ -49,7 +49,7 @@ export function CodingGameSection() {
         opacity: 0,
         scale: 1.1
       }}
-      className="py-20 px-4 relative overflow-hidden"
+      className="py-20 px-4 relative overflow-hidden bg-[#a3bafa]/5"
     >
       {/* Parallax Background Elements */}
       <motion.div
@@ -83,26 +83,11 @@ export function CodingGameSection() {
           }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          {/* Headline with Typewriter Glow Effect */}
+          {/* Headline */}
           <motion.h2
-            {...headlineReveal.containerProps}
-            className="text-3xl lg:text-4xl font-bold mb-4"
+            className="text-3xl lg:text-4xl font-bold mb-4 text-blue-600"
           >
-            {"🎮 Học lập trình qua trò chơi".split("").map((char, index) => (
-              <motion.span
-                key={index}
-                {...headlineReveal.childProps}
-                className="inline-block"
-                style={{
-                  textShadow: headlineReveal.isInView
-                    ? "0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3)"
-                    : "none",
-                  transition: "text-shadow 0.3s ease"
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+            🎮 Học lập trình qua trò chơi
           </motion.h2>
 
           {/* Subheadline with Slide-in Effect */}
