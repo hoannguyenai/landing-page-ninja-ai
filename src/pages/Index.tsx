@@ -36,6 +36,11 @@ import {
 } from "lucide-react";
 import { CodingTestCTA } from "@/features/coding-test";
 import { TypewriterText } from "@/components/TypewriterText";
+import { FeaturesSection } from "@/components/FeaturesSection";
+import { BenefitsSection } from "@/components/BenefitsSection";
+import { CodingGameSection } from "@/components/CodingGameSection";
+import { BasicCourseSection } from "@/components/BasicCourseSection";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Index = () => {
   const { toast } = useToast();
@@ -77,11 +82,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background scroll-smooth">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative py-24 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-hero-bg-light" />
-        
+
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-fade-up">
@@ -91,10 +96,10 @@ const Index = () => {
                 </div>
                 <div className="min-h-[200px] flex items-start">
                   <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                    <TypewriterText 
+                    <TypewriterText
                       texts={[
                         "Giúp con khám phá tư duy lập trình từ sớm",
-                        "Khơi dậy sáng tạo & tư duy logic", 
+                        "Khơi dậy sáng tạo & tư duy logic",
                         "Trang bị kỹ năng công nghệ cho thế hệ Alpha"
                       ]}
                       loop={true}
@@ -116,9 +121,9 @@ const Index = () => {
                   Khóa học giúp học sinh phát triển tư duy logic, sáng tạo qua dự án thực tế.
                 </p>
               </div>
-              
+
               <div className="space-y-4">
-                <CodingTestCTA 
+                <CodingTestCTA
                   label="Làm Bài Test Miễn Phí Ngay"
                   className="cta-entry bg-cta-gradient hover:bg-cta-gradient font-bold text-white shadow-[0px_4px_10px_rgba(20,184,166,0.3)] hover:shadow-[0px_6px_15px_rgba(20,184,166,0.4)] transition-all duration-300 hover:scale-105 group"
                 />
@@ -127,7 +132,7 @@ const Index = () => {
                 </p>
               </div>
             </div>
-            
+
             <div className="animate-slide-right">
               <img
                 src={heroBanner}
@@ -139,352 +144,154 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 animate-fade-up">
-            <h2 className="text-5xl font-bold mb-6" style={{ color: '#111827' }}>
-              <span className="text-primary">Lý do</span> ba mẹ nên cho con học lập trình sớm
-            </h2>
-          </div>
+      {/* Enhanced Benefits Section with Advanced Scroll Animations */}
+      <BenefitsSection />
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Benefit 1 */}
-            <div className="flex flex-col space-y-6 animate-fade-up">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
-                  1
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-3 text-primary">
-                    Giúp con phát triển trí não trong giai đoạn vàng
-                  </h3>
-                  <p className="leading-relaxed" style={{ color: '#374151' }}>
-                    Học lập trình sớm giúp kích thích tư duy logic, sáng tạo và giải quyết vấn đề.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-4">
-                <img
-                  src={brainDevelopment}
-                  alt="Phát triển trí não cho trẻ"
-                  className="w-full h-64 object-cover rounded-xl shadow-medium"
-                />
-              </div>
-            </div>
+      {/* Enhanced Features Section with Advanced Scroll Animations */}
+      <FeaturesSection />
 
-            {/* Benefit 2 */}
-            <div className="flex flex-col space-y-6 animate-fade-up">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
-                  2
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-3 text-primary">
-                    Phát triển tư duy – học tốt các môn trên trường
-                  </h3>
-                  <p className="leading-relaxed" style={{ color: '#374151' }}>
-                    Lập trình rèn luyện khả năng kết nối kiến thức Toán, Lý, Anh, Tin học.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-4">
-                <img
-                  src={subjectsConnection}
-                  alt="Kết nối kiến thức các môn học"
-                  className="w-full h-64 object-cover rounded-xl shadow-medium"
-                />
-              </div>
-            </div>
-
-            {/* Benefit 3 */}
-            <div className="flex flex-col space-y-6 animate-fade-up">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
-                  3
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-3 text-primary">
-                    Thay đổi thói quen dùng công nghệ của con
-                  </h3>
-                  <p className="leading-relaxed" style={{ color: '#374151' }}>
-                    Từ người tiêu thụ nội dung sang người sáng tạo, biết làm ra sản phẩm công nghệ.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-4">
-                <img
-                  src={techHabits}
-                  alt="Thay đổi thói quen công nghệ"
-                  className="w-full h-64 object-cover rounded-xl shadow-medium"
-                />
-              </div>
-            </div>
-
-            {/* Benefit 4 */}
-            <div className="flex flex-col space-y-6 animate-fade-up">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
-                  4
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-3 text-primary">
-                    Thế hệ Alpha – Công nghệ & AI là kỹ năng bắt buộc
-                  </h3>
-                  <p className="leading-relaxed" style={{ color: '#374151' }}>
-                    Học lập trình giúp trẻ hiểu cách AI hoạt động và làm chủ công nghệ.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-4">
-                <img
-                  src={alphaGeneration}
-                  alt="Thế hệ Alpha và công nghệ AI"
-                  className="w-full h-64 object-cover rounded-xl shadow-medium"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 animate-fade-up">
-            <h2 className="text-4xl font-bold mb-6">
-              Chương trình <span className="text-primary">Lập trình cơ bản</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Khóa học được thiết kế đặc biệt cho học sinh từ 12-18 tuổi (cấp 2 & 3)
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {features.map((feature, index) => (
-              <Card key={index} className="hover:shadow-medium transition-shadow animate-scale-in">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-3">
-                    <feature.icon className="text-success mt-1 flex-shrink-0" size={24} />
-                    <p className="text-foreground">{feature.text}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            <Card className="bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardHeader>
-                <Code className="text-primary mb-2" size={32} />
-                <CardTitle>Giáo trình quốc tế</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Tham khảo từ Code.org, Scratch, Python for Kids</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-secondary/5 to-primary/5">
-              <CardHeader>
-                <Users className="text-secondary mb-2" size={32} />
-                <CardTitle>Giảng viên chuyên nghiệp</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Giảng viên Bách Khoa & chuyên gia CNTT, giàu kinh nghiệm</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-accent/5 to-secondary/5">
-              <CardHeader>
-                <Award className="text-accent mb-2" size={32} />
-                <CardTitle>Đối tượng phù hợp</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Học sinh từ 12–18 tuổi (cấp 2 & 3)</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Coding Game Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              🎮 Học lập trình qua trò chơi
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Thử ngay game lập trình tương tác! Học cách sử dụng loops, điều kiện và biến 
-              thông qua việc điều khiển rocket đến ngôi sao.
-            </p>
-          </div>
-          <CodingGame />
-        </div>
-      </section>
+      {/* Enhanced Interactive Coding Game Section with Advanced Scroll Animations */}
+      <CodingGameSection />
 
       {/* Course Section */}
-      <section id="course" className="py-20 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="shadow-large animate-scale-in">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl mb-4">
-                🎯 Mini-test Lập trình <Badge variant="secondary">MIỄN PHÍ</Badge>
-              </CardTitle>
-              <CardDescription className="text-lg">
-                Bài test nhanh với 5–7 câu hỏi trắc nghiệm về tư duy logic và code cơ bản
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <h3 className="text-xl font-semibold">Lợi ích cho phụ huynh:</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle2 className="text-success" size={20} />
-                      Nhận báo cáo kết quả chi tiết
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle2 className="text-success" size={20} />
-                      Được tư vấn lộ trình học phù hợp cho con
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle2 className="text-success" size={20} />
-                      Phân cấp: Beginner – Intermediate – Advanced
-                    </li>
-                  </ul>
+      <section id="course" className="py-20 px-4 bg-muted/30 relative overflow-hidden">
+        {/* Parallax Background Elements */}
+        <motion.div
+          className="absolute top-10 right-10 w-28 h-28 bg-gradient-to-br from-green-200 to-blue-200 rounded-full opacity-15"
+          style={{
+            y: useTransform(useScroll().scrollYProgress, [0, 1], ["0%", "-35%"])
+          }}
+        />
+        <motion.div
+          className="absolute bottom-10 left-10 w-20 h-20 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full opacity-20"
+          style={{
+            y: useTransform(useScroll().scrollYProgress, [0, 1], ["0%", "50%"])
+          }}
+        />
+
+        <div className="container mx-auto max-w-4xl relative z-10">
+          <motion.div
+            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Card className="shadow-large">
+              <CardHeader className="text-center">
+                <motion.div
+                  whileInView={{ y: [30, 0] }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <CardTitle className="text-3xl mb-4">
+                    🎯 Mini-test Lập trình <Badge variant="secondary">MIỄN PHÍ</Badge>
+                  </CardTitle>
+                </motion.div>
+                <motion.div
+                  whileInView={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  <CardDescription className="text-lg">
+                    Bài test nhanh với 5–7 câu hỏi trắc nghiệm về tư duy logic và code cơ bản
+                  </CardDescription>
+                </motion.div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <motion.div
+                    className="space-y-6"
+                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, x: -50 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <h3 className="text-xl font-semibold">Lợi ích cho phụ huynh:</h3>
+                    <ul className="space-y-3">
+                      <motion.li
+                        className="flex items-center gap-3"
+                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                      >
+                        <CheckCircle2 className="text-success" size={20} />
+                        Nhận báo cáo kết quả chi tiết
+                      </motion.li>
+                      <motion.li
+                        className="flex items-center gap-3"
+                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                      >
+                        <CheckCircle2 className="text-success" size={20} />
+                        Được tư vấn lộ trình học phù hợp cho con
+                      </motion.li>
+                      <motion.li
+                        className="flex items-center gap-3"
+                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                      >
+                        <CheckCircle2 className="text-success" size={20} />
+                        Phân cấp: Beginner – Intermediate – Advanced
+                      </motion.li>
+                    </ul>
+                  </motion.div>
+
+                  <motion.form
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
+                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, x: 50 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    {[
+                      { id: "parentName", label: "Họ tên phụ huynh *", value: formData.parentName },
+                      { id: "phone", label: "Số điện thoại *", value: formData.phone, type: "tel" },
+                      { id: "email", label: "Email *", value: formData.email, type: "email" },
+                      { id: "childName", label: "Tên của con *", value: formData.childName },
+                      { id: "childGrade", label: "Lớp học hiện tại *", value: formData.childGrade, placeholder: "Ví dụ: Lớp 7, Lớp 10..." }
+                    ].map((field, index) => (
+                      <motion.div
+                        key={field.id}
+                        className="space-y-2"
+                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                      >
+                        <Label htmlFor={field.id}>{field.label}</Label>
+                        <Input
+                          id={field.id}
+                          type={field.type || "text"}
+                          placeholder={field.placeholder}
+                          value={field.value}
+                          onChange={(e) => setFormData({...formData, [field.id]: e.target.value})}
+                          required
+                        />
+                      </motion.div>
+                    ))}
+
+                    <motion.div
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.5, delay: 1.0 }}
+                    >
+                      <OverlayTransition to="/test">
+                        <Button type="submit" size="lg" variant="cta" className="w-full group">
+                          <span className="arrow-slide inline-block">👉</span> Bắt đầu làm bài test ngay
+                        </Button>
+                      </OverlayTransition>
+                    </motion.div>
+                  </motion.form>
                 </div>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="parentName">Họ tên phụ huynh *</Label>
-                    <Input
-                      id="parentName"
-                      value={formData.parentName}
-                      onChange={(e) => setFormData({...formData, parentName: e.target.value})}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Số điện thoại *</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="childName">Tên của con *</Label>
-                    <Input
-                      id="childName"
-                      value={formData.childName}
-                      onChange={(e) => setFormData({...formData, childName: e.target.value})}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="childGrade">Lớp học hiện tại *</Label>
-                    <Input
-                      id="childGrade"
-                      placeholder="Ví dụ: Lớp 7, Lớp 10..."
-                      value={formData.childGrade}
-                      onChange={(e) => setFormData({...formData, childGrade: e.target.value})}
-                      required
-                    />
-                  </div>
-                  
-                  <OverlayTransition to="/test">
-                    <Button type="submit" size="lg" variant="cta" className="w-full group">
-                      <span className="arrow-slide inline-block">👉</span> Bắt đầu làm bài test ngay
-                    </Button>
-                  </OverlayTransition>
-                </form>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 
-      {/* Course Details Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 animate-fade-up">
-            <h2 className="text-4xl font-bold mb-6">
-              🎯 Khóa Lập trình Cơ bản
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              12 buổi, 2 dự án thực tế, học xong làm được ngay
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <Clock className="text-primary" />
-                    Thời lượng & Phương pháp
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p>• <strong>12 buổi</strong> (mỗi buổi 90 phút)</p>
-                  <p>• <strong>Phương pháp:</strong> Học qua dự án (Project-based learning)</p>
-                  <p>• <strong>Kết hợp:</strong> Lý thuyết + Thực hành</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <Rocket className="text-secondary" />
-                    Sản phẩm đầu ra
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <Gamepad2 className="text-accent" size={20} />
-                    <span>Mini Game Snake hoặc Flappy Bird</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Smartphone className="text-accent" size={20} />
-                    <span>Ứng dụng nhỏ (Máy tính bỏ túi, Chatbot cơ bản)</span>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <OverlayTransition to="/test">
-                <Button size="lg" variant="cta" className="w-full group">
-                  <span className="arrow-slide inline-block">👉</span> Đăng ký học thử miễn phí 1 buổi
-                </Button>
-              </OverlayTransition>
-            </div>
-
-            <div className="animate-slide-right">
-              <img
-                src={studentProjects}
-                alt="Dự án học viên tại Rocket Tech Academy"
-                className="rounded-2xl shadow-large w-full"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Enhanced Course Details Section with Advanced Scroll Animations */}
+      <BasicCourseSection />
 
       {/* Instructors Section */}
       <section id="instructors" className="py-20 px-4 bg-muted/30">
