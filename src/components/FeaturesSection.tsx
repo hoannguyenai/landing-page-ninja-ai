@@ -87,24 +87,20 @@ export function FeaturesSection() {
       ref={sectionReveal.ref}
       initial={sectionReveal.initial}
       animate={sectionReveal.animate}
-      className="py-20 px-4"
+      className="py-12 md:py-20 px-4"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <motion.h2
             {...headingReveal.containerProps}
-            className="text-4xl font-bold mb-6"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6"
           >
             {"Chương trình ".split("").map((char, index) => (
               <motion.span
                 key={`chuong-trinh-${index}`}
                 {...headingReveal.childProps}
-                style={{
-                  ...headingReveal.childProps.style,
-                  display: char === " " ? "inline" : "inline-block",
-                  marginRight: char === " " ? "0.125em" : "0"
-                }}
+                className="inline-block"
               >
                 {char === " " ? "\u00A0" : char}
               </motion.span>
@@ -114,11 +110,7 @@ export function FeaturesSection() {
                 <motion.span
                   key={`lap-trinh-${index}`}
                   {...headingReveal.childProps}
-                  style={{
-                    ...headingReveal.childProps.style,
-                    display: char === " " ? "inline" : "inline-block",
-                    marginRight: char === " " ? "0.125em" : "0"
-                  }}
+                  className="inline-block"
                 >
                   {char === " " ? "\u00A0" : char}
                 </motion.span>
@@ -128,7 +120,7 @@ export function FeaturesSection() {
 
           <motion.p
             {...subheadingReveal.containerProps}
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4"
           >
             {"Khóa học được thiết kế đặc biệt cho học sinh từ 12-18 tuổi (cấp 2 & 3)".split(" ").map((word, index) => (
               <motion.span
@@ -148,7 +140,7 @@ export function FeaturesSection() {
           variants={allCardsGrid.containerVariants}
           initial="hidden"
           animate={allCardsGrid.isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-stretch"
         >
           {allCards.map((card, index) => {
             const itemVariants = allCardsGrid.getItemVariants(index);
@@ -192,7 +184,7 @@ function UnifiedCard({ icon: Icon, title, description }: FeatureCard) {
           ? "hover:shadow-medium transition-shadow"
           : "bg-gradient-to-br from-primary/5 to-accent/5 hover:shadow-lg transition-shadow"
       } h-full flex flex-col justify-between group`}>
-        <CardContent className="pt-6 flex-1 flex flex-col">
+        <CardContent className="pt-4 md:pt-6 flex-1 flex flex-col">
           <div className={`flex items-start gap-3 ${isFeatureCard ? "" : "flex-col items-center text-center"}`}>
             <motion.div
               whileHover={isFeatureCard ? {
@@ -202,7 +194,7 @@ function UnifiedCard({ icon: Icon, title, description }: FeatureCard) {
                 scale: [1, 1.1, 1],
                 transition: { duration: 0.3 }
               }}
-              className={isFeatureCard ? "" : "mb-4"}
+              className={isFeatureCard ? "" : "mb-3 md:mb-4"}
             >
               <Icon
                 className={`${
@@ -216,15 +208,15 @@ function UnifiedCard({ icon: Icon, title, description }: FeatureCard) {
             <div className="flex-1">
               <h3 className={`${
                 isFeatureCard
-                  ? "font-semibold mb-2 group-hover:text-primary"
-                  : "text-xl font-semibold mb-2 group-hover:text-primary"
+                  ? "text-sm md:text-base font-semibold mb-2 group-hover:text-primary"
+                  : "text-lg md:text-xl font-semibold mb-2 group-hover:text-primary"
               } transition-colors`}>
                 {title}
               </h3>
               <p className={`${
                 isFeatureCard
-                  ? "text-muted-foreground text-sm group-hover:text-foreground"
-                  : "text-muted-foreground group-hover:text-foreground"
+                  ? "text-muted-foreground text-xs md:text-sm group-hover:text-foreground"
+                  : "text-sm md:text-base text-muted-foreground group-hover:text-foreground"
               } transition-colors`}>
                 {description}
               </p>

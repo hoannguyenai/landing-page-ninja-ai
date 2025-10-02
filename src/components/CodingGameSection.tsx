@@ -75,7 +75,7 @@ export function CodingGameSection() {
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Header Section */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
           whileInView={{
             opacity: [0, 1],
             y: [30, 0],
@@ -83,23 +83,16 @@ export function CodingGameSection() {
           }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          {/* Headline with Typewriter Glow Effect */}
+          {/* Headline - No Glow Effect */}
           <motion.h2
             {...headlineReveal.containerProps}
-            className="text-3xl lg:text-4xl font-bold mb-4 text-foreground"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-foreground"
           >
             {"🎮 Học lập trình qua trò chơi".split("").map((char, index) => (
               <motion.span
                 key={index}
                 {...headlineReveal.childProps}
                 className="inline-block"
-                style={{
-                  color: 'hsl(var(--foreground))',
-                  textShadow: headlineReveal.isInView
-                    ? "0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3)"
-                    : "none",
-                  transition: "text-shadow 0.3s ease"
-                }}
               >
                 {char === " " ? "\u00A0" : char}
               </motion.span>

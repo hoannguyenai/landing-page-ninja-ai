@@ -59,22 +59,16 @@ export function BasicCourseSection() {
             🎯
           </motion.div>
 
-          {/* Headline with Letter Stagger + Glow */}
+          {/* Headline with Letter Stagger - No Glow */}
           <motion.h2
             {...headlineReveal.containerProps}
-            className="text-5xl md:text-6xl font-bold mb-8 text-primary"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 text-primary"
           >
             {"Khóa Lập trình Cơ bản".split("").map((char, index) => (
               <motion.span
                 key={index}
                 {...headlineReveal.childProps}
                 className="inline-block"
-                style={{
-                  textShadow: headlineReveal.isInView
-                    ? "0 0 8px rgba(59, 130, 246, 0.5), 0 0 16px rgba(59, 130, 246, 0.3)"
-                    : "none",
-                  transition: "text-shadow 0.3s ease"
-                }}
               >
                 {char === " " ? "\u00A0" : char}
               </motion.span>
@@ -110,30 +104,30 @@ export function BasicCourseSection() {
               initial={boxesGrid.getItemVariants(0).initial}
               animate={boxesGrid.getItemVariants(0).animate}
             >
-              <motion.div
-                whileInView={{
-                  opacity: [0, 1],
-                  x: [-50, 0], // Slide in from left
-                  transition: { duration: 0.6 }
-                }}
-                viewport={{ once: false, amount: 0.3 }}
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <motion.div
-                        whileInView={{
-                          scale: [0.8, 1.2, 1], // Scale-in bounce
-                          transition: { duration: 0.5, delay: 0.2 }
-                        }}
-                        viewport={{ once: false, amount: 0.3 }}
-                      >
-                        <Clock className="text-primary" size={24} />
-                      </motion.div>
-                      Thời lượng & Phương pháp
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
+            <motion.div
+              whileInView={{
+                opacity: [0, 1],
+                x: [-50, 0], // Slide in from left
+                transition: { duration: 0.6 }
+              }}
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              <Card className="h-full">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-base md:text-lg">
+                    <motion.div
+                      whileInView={{
+                        scale: [0.8, 1.2, 1], // Scale-in bounce
+                        transition: { duration: 0.5, delay: 0.2 }
+                      }}
+                      viewport={{ once: false, amount: 0.3 }}
+                    >
+                      <Clock className="text-primary" size={24} />
+                    </motion.div>
+                    Thời lượng & Phương pháp
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 md:space-y-4 text-sm md:text-base">
                     <motion.p
                       whileInView={{ opacity: [0, 1], y: [10, 0] }}
                       transition={{ duration: 0.4, delay: 0.3 }}
@@ -165,30 +159,30 @@ export function BasicCourseSection() {
               initial={boxesGrid.getItemVariants(1).initial}
               animate={boxesGrid.getItemVariants(1).animate}
             >
-              <motion.div
-                whileInView={{
-                  opacity: [0, 1],
-                  y: [50, 0], // Slide in from bottom
-                  transition: { duration: 0.6 }
-                }}
-                viewport={{ once: false, amount: 0.3 }}
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <motion.div
-                        whileInView={{
-                          scale: [0.8, 1.2, 1], // Scale-in bounce
-                          transition: { duration: 0.5, delay: 0.2 }
-                        }}
-                        viewport={{ once: false, amount: 0.3 }}
-                      >
-                        <Rocket className="text-secondary" size={24} />
-                      </motion.div>
-                      Sản phẩm đầu ra
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
+            <motion.div
+              whileInView={{
+                opacity: [0, 1],
+                y: [50, 0], // Slide in from bottom
+                transition: { duration: 0.6 }
+              }}
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              <Card className="h-full">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-base md:text-lg">
+                    <motion.div
+                      whileInView={{
+                        scale: [0.8, 1.2, 1], // Scale-in bounce
+                        transition: { duration: 0.5, delay: 0.2 }
+                      }}
+                      viewport={{ once: false, amount: 0.3 }}
+                    >
+                      <Rocket className="text-secondary" size={24} />
+                    </motion.div>
+                    Sản phẩm đầu ra
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm md:text-base">
                     <motion.div
                       className="flex items-center gap-3"
                       whileInView={{ opacity: [0, 1], x: [20, 0] }}
@@ -237,7 +231,7 @@ export function BasicCourseSection() {
               }}
               viewport={{ once: false, amount: 0.3 }}
             >
-              <Button size="lg" variant="cta" className="w-full group">
+              <Button size="lg" variant="cta" className="w-full text-sm md:text-base group">
                 <span className="arrow-slide inline-block">👉</span> Đăng ký học thử miễn phí 1 buổi
               </Button>
             </motion.div>
@@ -245,6 +239,7 @@ export function BasicCourseSection() {
 
           {/* Right Column - Course Image */}
           <motion.div
+            className="order-first lg:order-last"
             whileInView={{
               opacity: [0, 1],
               x: [50, 0], // Slide in from right
