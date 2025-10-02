@@ -129,7 +129,7 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
   const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <div className="grid grid-rows-[auto_auto] md:grid-rows-[180px_auto] gap-4 md:gap-6">
+    <div className="grid grid-rows-[auto_auto] md:grid-rows-[180px_auto] gap-2 md:gap-3">
       {/* Icon and Content Row - Fixed height section */}
       <div className="flex items-start gap-3 md:gap-4">
         {/* Animated Number Icon */}
