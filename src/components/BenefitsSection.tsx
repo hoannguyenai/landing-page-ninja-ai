@@ -129,9 +129,9 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
   const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="grid grid-rows-[180px_auto] gap-6">
       {/* Icon and Content Row - Fixed height section */}
-      <div className="flex items-start gap-4 min-h-[140px]">
+      <div className="flex items-start gap-4">
         {/* Animated Number Icon */}
         <motion.div
           className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0"
@@ -164,9 +164,9 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
         </motion.div>
       </div>
 
-      {/* Animated Image with Parallax - Always at same position */}
+      {/* Animated Image with Parallax - Always at same y position */}
       <motion.div
-        className="mt-6 w-full"
+        className="w-full"
         whileInView={{
           opacity: [0, 1],
           scale: [0.95, 1], // Subtle scale-in
