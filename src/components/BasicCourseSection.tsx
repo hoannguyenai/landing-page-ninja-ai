@@ -41,11 +41,11 @@ export function BasicCourseSection() {
       ref={containerReveal.ref}
       initial={containerReveal.initial}
       animate={containerReveal.animate}
-      className="py-20 px-4"
+      className="py-12 md:py-20 px-4"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           {/* Header Icon with Pop-in Effect */}
           <motion.div
             className="text-4xl mb-4"
@@ -62,7 +62,7 @@ export function BasicCourseSection() {
           {/* Headline with Letter Stagger + Glow */}
           <motion.h2
             {...headlineReveal.containerProps}
-            className="text-4xl font-bold mb-6"
+            className="text-5xl md:text-6xl font-bold mb-8 text-primary"
           >
             {"Khóa Lập trình Cơ bản".split("").map((char, index) => (
               <motion.span
@@ -83,7 +83,7 @@ export function BasicCourseSection() {
 
           {/* Subheadline with Slide-in Effect */}
           <motion.p
-            className="text-xl text-muted-foreground"
+            className="text-base md:text-lg lg:text-xl text-muted-foreground px-4"
             whileInView={{
               opacity: [0, 1],
               x: [-30, 0], // Slide in from left
@@ -96,14 +96,14 @@ export function BasicCourseSection() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Column - Content Boxes */}
           <motion.div
             ref={boxesGrid.ref}
             variants={boxesGrid.containerVariants}
             initial="hidden"
             animate={boxesGrid.isInView ? "visible" : "hidden"}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
             {/* Content Box 1 - Thời lượng & Phương pháp */}
             <motion.div

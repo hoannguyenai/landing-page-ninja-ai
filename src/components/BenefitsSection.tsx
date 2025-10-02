@@ -80,16 +80,16 @@ export function BenefitsSection() {
       ref={containerReveal.ref}
       initial={containerReveal.initial}
       animate={containerReveal.animate}
-      className="py-20 px-4 bg-white"
+      className="py-12 md:py-20 px-4 bg-white"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Section Headline */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
           {...headlineReveal.containerProps}
         >
           <motion.h2
-            className="text-5xl font-bold mb-6"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6"
             style={{ color: '#111827' }}
           >
             <span className="text-primary">Lý do</span> ba mẹ nên cho con học lập trình sớm
@@ -102,7 +102,7 @@ export function BenefitsSection() {
           variants={itemsGrid.containerVariants}
           initial="hidden"
           animate={itemsGrid.isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
         >
           {benefits.map((benefit, index) => {
             const itemVariants = itemsGrid.getItemVariants(index);
@@ -129,12 +129,12 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
   const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <div className="grid grid-rows-[180px_auto] gap-6">
+    <div className="grid grid-rows-[auto_auto] md:grid-rows-[180px_auto] gap-4 md:gap-6">
       {/* Icon and Content Row - Fixed height section */}
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-3 md:gap-4">
         {/* Animated Number Icon */}
         <motion.div
-          className="w-12 h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0"
+          className="w-10 h-10 md:w-12 md:h-12 bg-cta text-white rounded-full flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0"
           whileInView={{
             scale: [0.8, 1.1, 1], // Scale-in + bounce effect
             rotate: [0, 5, -5, 0], // Subtle bounce rotation
@@ -155,10 +155,10 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
           }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          <h3 className="text-xl font-bold mb-3 text-primary">
+          <h3 className="text-lg md:text-xl font-bold mb-3 text-primary whitespace-normal">
             {title}
           </h3>
-          <p className="leading-relaxed" style={{ color: '#374151' }}>
+          <p className="text-sm md:text-base leading-relaxed" style={{ color: '#374151' }}>
             {description}
           </p>
         </motion.div>
@@ -174,7 +174,7 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
         }}
         viewport={{ once: false, amount: 0.3 }}
       >
-        <div className="relative w-full h-64 overflow-hidden rounded-lg shadow-medium">
+        <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden rounded-lg shadow-medium">
           <motion.img
             src={image}
             alt={alt}

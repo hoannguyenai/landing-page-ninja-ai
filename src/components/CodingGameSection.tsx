@@ -49,7 +49,7 @@ export function CodingGameSection() {
         opacity: 0,
         scale: 1.1
       }}
-      className="py-20 px-4 relative overflow-hidden"
+      className="py-12 md:py-20 px-4 relative overflow-hidden"
     >
       {/* Parallax Background Elements */}
       <motion.div
@@ -86,7 +86,7 @@ export function CodingGameSection() {
           {/* Headline with Typewriter Glow Effect */}
           <motion.h2
             {...headlineReveal.containerProps}
-            className="text-3xl lg:text-4xl font-bold mb-4"
+            className="text-3xl lg:text-4xl font-bold mb-4 text-foreground"
           >
             {"🎮 Học lập trình qua trò chơi".split("").map((char, index) => (
               <motion.span
@@ -94,6 +94,7 @@ export function CodingGameSection() {
                 {...headlineReveal.childProps}
                 className="inline-block"
                 style={{
+                  color: 'hsl(var(--foreground))',
                   textShadow: headlineReveal.isInView
                     ? "0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3)"
                     : "none",
@@ -107,7 +108,7 @@ export function CodingGameSection() {
 
           {/* Subheadline with Slide-in Effect */}
           <motion.p
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            className="text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4"
             whileInView={{
               opacity: [0, 1],
               x: [-50, 0], // Slide in from left
