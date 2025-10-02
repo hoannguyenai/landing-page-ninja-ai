@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useTextReveal } from "@/hooks/useTextReveal";
 import CodingGame from "@/components/CodingGame";
+import { Gamepad2 } from "lucide-react";
 
 export function CodingGameSection() {
   // Section container with directional scroll reveal
@@ -86,9 +87,10 @@ export function CodingGameSection() {
           {/* Headline - No Glow Effect */}
           <motion.h2
             {...headlineReveal.containerProps}
-            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-foreground"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-foreground flex items-center justify-center gap-3"
           >
-            {"🎮 Học lập trình qua trò chơi".split("").map((char, index) => (
+            <Gamepad2 className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />
+            {"Học lập trình qua trò chơi".split("").map((char, index) => (
               <motion.span
                 key={index}
                 {...headlineReveal.childProps}
