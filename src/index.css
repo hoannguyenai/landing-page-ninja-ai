@@ -8,56 +8,69 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Main Colors - 60-30-10 Principle */
     --background: 0 0% 100%;
-    --foreground: 217 33% 13%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 217 19% 27%;
+    --card-foreground: 215 16% 34%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 217 19% 27%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Modern Tech Blue Primary */
-    --primary: 217 91% 60%;
+    /* Primary (60%) - Dark Blue #2563EB */
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 217 91% 55%;
+    --primary-hover: 221 83% 48%;
 
-    /* Clean Light Backgrounds */
-    --secondary: 220 14% 98%;
-    --secondary-foreground: 217 33% 13%;
-    --secondary-hover: 220 13% 91%;
+    /* Secondary - Bright Blue #3B82F6 */
+    --secondary: 221 83% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 221 83% 55%;
 
-    --muted: 220 13% 91%;
-    --muted-foreground: 217 9% 45%;
+    /* Muted - Light Blue Background #EFF6FF */
+    --muted: 214 100% 97%;
+    --muted-foreground: 215 16% 34%;
 
-    /* Light Blue Accent */
-    --accent: 210 100% 70%;
+    /* Accent (10%) - Orange #F97316 */
+    --accent: 25 95% 53%;
     --accent-foreground: 0 0% 100%;
 
-    /* Blue CTA */
-    --cta: 217 91% 60%;
+    /* CTA - Orange for high conversion */
+    --cta: 25 95% 53%;
     --cta-foreground: 0 0% 100%;
-    --cta-hover: 217 91% 55%;
+    --cta-hover: 25 95% 48%;
+    
+    /* Navy Blue for dark sections #1E3A8A */
+    --navy: 224 64% 33%;
+    --navy-foreground: 0 0% 100%;
+    
+    /* Yellow Neon Accent #FACC15 */
+    --yellow: 48 96% 53%;
+    --yellow-foreground: 222 47% 11%;
     
     /* Light Blue Badge */
-    --badge-light-blue: 210 100% 88%;
-    --badge-light-blue-foreground: 210 100% 35%;
+    --badge-light-blue: 214 100% 97%;
+    --badge-light-blue-foreground: 221 83% 53%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 217 91% 60%;
+    --border: 214 100% 97%;
+    --input: 214 100% 97%;
+    --ring: 221 83% 53%;
 
     /* Custom Design Tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 45%));
-    --light-gradient: linear-gradient(135deg, hsl(213 94% 88%), hsl(213 94% 95%));
-    --cta-gradient: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 55%));
-    --cta-gradient-hover: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 50%));
-    --hero-bg-light: linear-gradient(135deg, hsl(217 91% 60% / 0.03), hsl(262 72% 51% / 0.03));
+    --hero-gradient: linear-gradient(135deg, hsl(224 64% 33%), hsl(221 83% 53%));
+    --light-gradient: linear-gradient(135deg, hsl(214 100% 97%), hsl(0 0% 100%));
+    --cta-gradient: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 95% 48%));
+    --cta-gradient-hover: linear-gradient(135deg, hsl(25 95% 48%), hsl(25 95% 43%));
+    --hero-bg-light: linear-gradient(135deg, hsl(221 83% 53% / 0.03), hsl(214 100% 97% / 0.05));
+    --card-gradient: linear-gradient(135deg, hsl(214 100% 97%), hsl(0 0% 100%));
     
     /* CTA Effects */
+    --glow-orange: 0 0 20px rgba(249, 115, 22, 0.3);
+    --glow-orange-intense: 0 0 30px rgba(249, 115, 22, 0.5);
     --glow-blue: 0 0 20px rgba(37, 99, 235, 0.3);
     --glow-blue-intense: 0 0 30px rgba(37, 99, 235, 0.5);
     --success: 142 76% 36%;
@@ -150,6 +163,10 @@ All colors MUST be HSL.
     background: var(--light-gradient);
   }
   
+  .bg-card-gradient {
+    background: var(--card-gradient);
+  }
+  
   .bg-cta-gradient {
     background: var(--cta-gradient);
   }
@@ -162,8 +179,18 @@ All colors MUST be HSL.
     background: var(--hero-bg-light);
   }
   
+  .bg-navy {
+    background-color: hsl(var(--navy));
+    color: hsl(var(--navy-foreground));
+  }
+  
   /* Light Blue Badge */
   .bg-badge-light-blue {
+    background-color: hsl(var(--badge-light-blue));
+    color: hsl(var(--badge-light-blue-foreground));
+  }
+  
+  .bg-badge-teal {
     background-color: hsl(var(--badge-light-blue));
     color: hsl(var(--badge-light-blue-foreground));
   }
@@ -202,7 +229,7 @@ All colors MUST be HSL.
   .cta-shimmer {
     position: relative;
     overflow: hidden;
-    animation: shimmerGlowIntense 7s infinite;
+    animation: shimmerGlowOrange 7s infinite;
   }
   
   .cta-shimmer::before {
@@ -212,7 +239,7 @@ All colors MUST be HSL.
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), rgba(252,211,77,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), rgba(250,204,21,0.4), transparent);
     animation: shimmerFast 7s infinite;
   }
   
@@ -229,7 +256,7 @@ All colors MUST be HSL.
   }
   
   .cta-gradient-dynamic {
-    background: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 50%));
+    background: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 95% 48%));
     background-size: 200% 200%;
     transition: all 0.4s ease;
   }
@@ -346,9 +373,9 @@ All colors MUST be HSL.
     position: fixed;
     inset: 0;
     background: linear-gradient(135deg, 
-      hsl(217 91% 60%) 0%,
-      hsl(217 91% 55%) 50%,
-      hsl(262 72% 51%) 100%
+      hsl(224 64% 33%) 0%,
+      hsl(221 83% 53%) 50%,
+      hsl(221 83% 60%) 100%
     );
     z-index: 9999;
     pointer-events: none;
@@ -482,18 +509,18 @@ All colors MUST be HSL.
   }
 }
 
-@keyframes shimmerGlowIntense {
+@keyframes shimmerGlowOrange {
   0%, 85% {
-    box-shadow: var(--glow-blue);
+    box-shadow: var(--glow-orange);
   }
   90% {
-    box-shadow: var(--glow-blue-intense), 0 0 40px rgba(37, 99, 235, 0.4);
+    box-shadow: var(--glow-orange-intense), 0 0 40px rgba(249, 115, 22, 0.4);
   }
   95% {
-    box-shadow: var(--glow-blue-intense), 0 0 50px rgba(37, 99, 235, 0.3);
+    box-shadow: var(--glow-orange-intense), 0 0 50px rgba(249, 115, 22, 0.3);
   }
   100% {
-    box-shadow: var(--glow-blue);
+    box-shadow: var(--glow-orange);
   }
 }
 
