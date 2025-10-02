@@ -16,7 +16,7 @@ export function useStaggerAnimation(options: UseStaggerAnimationOptions = {}) {
   } = options;
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin });
+  const isInView = useInView(ref, { once, margin: margin as any });
 
   const containerVariants = {
     ...staggerContainer,

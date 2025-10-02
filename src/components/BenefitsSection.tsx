@@ -166,7 +166,7 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
 
       {/* Animated Image with Parallax - Same height for all */}
       <motion.div
-        className="mt-4"
+        className="mt-4 w-full"
         whileInView={{
           opacity: [0, 1],
           scale: [0.95, 1], // Subtle scale-in
@@ -174,19 +174,21 @@ function BenefitItem({ number, title, description, image, alt }: BenefitItem) {
         }}
         viewport={{ once: false, amount: 0.3 }}
       >
-        <motion.img
-          src={image}
-          alt={alt}
-          className="w-full h-48 object-cover rounded-lg shadow-medium"
-          style={{
-            y: imageY, // Parallax effect
-            willChange: 'transform' // Performance optimization
-          }}
-          whileHover={{
-            scale: 1.02,
-            transition: { duration: 0.3 }
-          }}
-        />
+        <div className="relative w-full h-64 overflow-hidden rounded-lg shadow-medium">
+          <motion.img
+            src={image}
+            alt={alt}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              y: imageY, // Parallax effect
+              willChange: 'transform' // Performance optimization
+            }}
+            whileHover={{
+              scale: 1.02,
+              transition: { duration: 0.3 }
+            }}
+          />
+        </div>
       </motion.div>
     </div>
   );
