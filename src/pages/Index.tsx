@@ -85,17 +85,24 @@ const Index = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-hero-bg-light" />
-
-        <div className="container mx-auto max-w-6xl relative z-10">
+      <section className="relative w-full h-screen flex justify-center items-center overflow-hidden bg-gradient-to-b from-[#EAF4FF] to-white">
+        <div className="container mx-auto max-w-6xl relative z-10 px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8 animate-fade-up">
-              <div className="space-y-6">
+            <div className="flex flex-col gap-6 animate-fade-up text-center">
+              <div className="flex flex-col gap-4">
+                <h1
+                  className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-900 to-teal-500 bg-clip-text text-transparent mb-4"
+                  style={{
+                    textShadow: '0 0 20px rgba(20, 184, 166, 0.5), 0 0 40px rgba(20, 184, 166, 0.3)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                  }}
+                >
+                </h1>
                 <div className="bg-badge-teal inline-flex items-center rounded-full px-4 py-2 text-sm font-medium">
                   🚀 Khơi nguồn sáng tạo
                 </div>
-                <div className="min-h-[200px] flex items-start">
+                <div className="min-h-[200px] flex items-start justify-center">
                   <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
                     <TypewriterText
                       texts={[
@@ -119,17 +126,17 @@ const Index = () => {
                   </h1>
                 </div>
                 <p className="text-xl leading-relaxed" style={{ color: '#374151' }}>
-                  Khóa học giúp học sinh phát triển tư duy logic, sáng tạo qua dự án thực tế.
+                  NINJA AI TALENT HUNT” giúp học sinh khám phá tài năng lập trình, phát triển tư duy sáng tạo và hiện thực hóa ý tưởng qua sản phẩm công nghệ thực tế.
                 </p>
               </div>
 
               <div className="space-y-4">
                 <CodingTestCTA
-                  label="Làm Bài Test Miễn Phí Ngay"
+                  label="Thi thử Miễn Phí - Nhận Học Bổng Ngay"
                   className="cta-entry bg-cta-gradient hover:bg-cta-gradient font-bold text-white shadow-[0px_4px_10px_rgba(20,184,166,0.3)] hover:shadow-[0px_6px_15px_rgba(20,184,166,0.4)] transition-all duration-300 hover:scale-105 group"
                 />
                 <p className="text-sm text-muted-foreground">
-                  Xác định trình độ lập trình của con chỉ trong 5 phút – nhận ngay báo cáo kết quả & lộ trình học phù hợp.
+                  Thi thử 45 phút - Nhận học bổng đến 80% - Cam kết sản phẩm thật sau 12 tuần.
                 </p>
               </div>
             </div>
@@ -153,11 +160,20 @@ const Index = () => {
         <FeaturesSection />
       </div>
 
+      {/* Dots Divider */}
+      <div className="flex justify-center gap-2 py-6">
+        <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+        <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-150"></span>
+        <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-300"></span>
+        <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-500"></span>
+        <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-700"></span>
+      </div>
+
       {/* Enhanced Interactive Coding Game Section with Advanced Scroll Animations */}
       <CodingGameSection />
 
       {/* Course Section */}
-      <section id="course" className="py-20 px-4 bg-white relative overflow-hidden">
+      <section id="course" className="py-16 px-4 bg-white relative overflow-hidden">
         {/* Parallax Background Elements */}
         <motion.div
           className="absolute top-10 right-10 w-28 h-28 bg-gradient-to-br from-green-200 to-blue-200 rounded-full opacity-15"
@@ -300,7 +316,7 @@ const Index = () => {
       <div className="h-[2px] w-full bg-gradient-to-r from-[#2563EB]/30 via-[#3B82F6]/10 to-transparent my-12"></div>
 
       {/* Instructors Section */}
-      <section id="instructors" className="py-20 px-4 bg-white">
+      <section id="instructors" className="py-16 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-up">
             <h2 className="text-4xl font-bold mb-6 text-blue-600">
@@ -360,9 +376,9 @@ const Index = () => {
 
       {/* Countdown & Pricing Section */}
       <CountdownTimer />
-      
+
       {/* Additional Pricing Details */}
-      <section id="pricing" className="py-20 px-4">
+      <section id="pricing" className="py-16 px-4">
         <div className="container mx-auto max-w-4xl">
           <Card className="shadow-large bg-blue-50">
             <CardHeader className="text-center">
@@ -406,7 +422,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 px-4 bg-[#a3bafa]/10">
+      <section id="testimonials" className="py-16 px-4 bg-[#a3bafa]/10">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-up">
             <h2 className="text-4xl font-bold mb-6">
@@ -435,7 +451,7 @@ const Index = () => {
       </section>
 
       {/* Partners Section */}
-      <section className="py-20 px-4">
+      <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16 animate-fade-up">
             <h2 className="text-4xl font-bold mb-6">
@@ -480,7 +496,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 px-4 bg-[#93C5FD] text-white">
+      <section className="py-16 px-4 bg-[#93C5FD] text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="space-y-8 animate-fade-up">
             <h2 className="text-4xl lg:text-5xl font-bold">

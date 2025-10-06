@@ -84,7 +84,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
                 <StaggerText
-                  text="Khóa học giúp học sinh phát triển tư duy logic, sáng tạo qua dự án thực tế."
+                  text='Chương trình "NINJA AI TALENT HUNT" giúp học sinh khám phá tài năng lập trình, phát triển tư duy sáng tạo và hiện thực hóa ý tưởng qua sản phẩm công nghệ thực tế.'
                   className="text-xl leading-relaxed"
                   style={{ color: '#374151' }}
                   delay={1.0}
@@ -101,7 +101,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
               >
                 <TypewriterText
                   texts={[
-                    "Làm Bài Test Miễn Phí Ngay",
+                    "Thi thử Miễn Phí - Nhận Học Bổng Ngay",
                     "Đăng ký học thử miễn phí",
                     "Khám phá lộ trình học phù hợp"
                   ]}
@@ -111,7 +111,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
                   delay={1500}
                 />
                 <p className="text-sm text-muted-foreground">
-                  Xác định trình độ lập trình của con chỉ trong 5 phút – nhận ngay báo cáo kết quả & lộ trình học phù hợp.
+                  Thi thử 45 phút - Nhận học bổng đến 80% - Cam kết sản phẩm thật sau 12 tuần
                 </p>
               </motion.div>
             </motion.div>
