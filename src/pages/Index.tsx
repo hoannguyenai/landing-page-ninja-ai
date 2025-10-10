@@ -134,52 +134,111 @@ const Index = () => {
       <CountdownTimer />
 
       {/* Additional Pricing Details */}
-      <section id="pricing" className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="shadow-large bg-blue-50">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl mb-4">
+      <section id="pricing" className="py-12 md:py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <Card className="shadow-lg bg-gradient-to-br from-blue-50 to-blue-100">
+            <CardHeader className="text-center pb-8 md:pb-12">
+              <CardTitle className="text-2xl md:text-3xl lg:text-4xl">
                 📋 Chi tiết khóa học & Đăng ký
               </CardTitle>
+              <CardDescription className="text-sm md:text-base mt-2">
+                Thông tin đầy đủ và cách thức đăng ký
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-3 gap-8 text-center">
-                <div className="space-y-3">
-                  <Calendar className="text-primary mx-auto" size={32} />
-                  <h3 className="text-xl font-semibold">Khai giảng</h3>
-                  <p className="text-2xl font-bold text-primary">15/10/2024</p>
+            <CardContent className="space-y-8">
+              {/* Pricing Grid - Responsive */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                {/* Khai giảng */}
+                <div className="bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow text-center">
+                  <div className="flex justify-center mb-3">
+                    <Calendar className="text-primary" size={28} />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">
+                    Khai giảng
+                  </h3>
+                  <p className="text-xl md:text-2xl font-bold text-primary">
+                    15/10/2024
+                  </p>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="text-3xl">💰</div>
-                  <h3 className="text-xl font-semibold">Học phí</h3>
-                  <p className="text-2xl font-bold">3.600.000đ</p>
-                  <p className="text-sm text-muted-foreground">
+                {/* Học phí */}
+                <div className="bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow text-center">
+                  <div className="flex justify-center mb-3">
+                    <div className="text-2xl md:text-3xl">💰</div>
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">
+                    Học phí
+                  </h3>
+                  <p className="text-xl md:text-2xl font-bold">3.600.000đ</p>
+                  <p className="text-xs md:text-sm text-muted-foreground mt-1">
                     ≈ 300.000đ/buổi
                   </p>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="text-3xl">🎁</div>
-                  <h3 className="text-xl font-semibold">Ưu đãi</h3>
+                {/* Ưu đãi */}
+                <div className="bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow text-center sm:col-span-2 lg:col-span-1">
+                  <div className="flex justify-center mb-3">
+                    <div className="text-2xl md:text-3xl">🎁</div>
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold mb-3">
+                    Ưu đãi
+                  </h3>
                   <Badge
                     variant="secondary"
-                    className="text-base px-3 py-1 mb-2"
+                    className="text-sm md:text-base px-2 md:px-3 py-1 inline-block"
                   >
                     Giảm 15%
                   </Badge>
-                  <p className="text-sm">+ Tặng 1 buổi học thử</p>
+                  <p className="text-xs md:text-sm mt-2">
+                    + Tặng 1 buổi học thử
+                  </p>
                 </div>
               </div>
 
-              <div className="mt-8 text-center">
+              {/* Divider */}
+              <div className="h-px bg-gray-200"></div>
+
+              {/* Additional Info */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div className="bg-blue-50 rounded-lg p-4 md:p-5">
+                  <h4 className="font-semibold text-sm md:text-base mb-3 flex items-center gap-2">
+                    <Clock size={18} className="text-primary" />
+                    Thời gian học
+                  </h4>
+                  <p className="text-sm md:text-base text-gray-700">
+                    12 buổi, mỗi buổi 90 phút
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-600 mt-1">
+                    Lịch học linh hoạt, phù hợp cho học sinh
+                  </p>
+                </div>
+
+                <div className="bg-blue-50 rounded-lg p-4 md:p-5">
+                  <h4 className="font-semibold text-sm md:text-base mb-3 flex items-center gap-2">
+                    <Users size={18} className="text-primary" />
+                    Đối tượng học
+                  </h4>
+                  <p className="text-sm md:text-base text-gray-700">
+                    Học sinh lớp 6, 7, 8, 9
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-600 mt-1">
+                    Không cần kinh nghiệm lập trình trước
+                  </p>
+                </div>
+              </div>
+
+              {/* CTA Button - Full width on mobile */}
+              <div className="pt-4">
                 <Button
-                  size="xl"
-                  variant="secondary"
-                  className="animate-scale-in"
+                  size="lg"
+                  variant="default"
+                  className="w-full md:w-auto animate-scale-in text-base md:text-lg"
                 >
                   👉 Giữ chỗ ngay hôm nay
                 </Button>
+                <p className="text-xs md:text-sm text-gray-600 mt-3">
+                  ⏰ Chỉ còn vài chỗ - Giới hạn 15 học sinh
+                </p>
               </div>
             </CardContent>
           </Card>
