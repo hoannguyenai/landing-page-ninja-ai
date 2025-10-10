@@ -10,6 +10,8 @@ import {
   Clock,
   Rocket
 } from "lucide-react";
+import rocketLogo from "@/assets/rocket-logo.jpg";
+
 
 const Footer = () => {
   return (
@@ -20,7 +22,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-hero-gradient rounded-lg flex items-center justify-center text-white font-bold">
-                RT
+                <img src={rocketLogo} alt="Rocket Tech Academy Logo" className="w-8 h-8" />
               </div>
               <div>
                 <h3 className="font-bold text-lg">Rocket Tech Academy</h3>

@@ -13,7 +13,7 @@ interface Position {
 
 interface GameState {
   rocketPos: Position;
-  rocketDirection: number; // 0: up, 1: right, 2: down, 3: left
+  rocketDirection: number;
   targetPos: Position;
   gameWon: boolean;
   isRunning: boolean;
@@ -21,13 +21,11 @@ interface GameState {
 
 const GRID_SIZE = 6;
 const DIRECTIONS = [
-  { x: 0, y: -1 }, // up
-  { x: 1, y: 0 },  // right
-  { x: 0, y: 1 },  // down
-  { x: -1, y: 0 }  // left
+  { x: 0, y: -1 },
+  { x: 1, y: 0 },
+  { x: 0, y: 1 },
+  { x: -1, y: 0 }
 ];
-
-const DIRECTION_EMOJIS = ['🚀', '🚀', '🚀', '🚀'];
 
 const CodingGame = () => {
   const [gameState, setGameState] = useState<GameState>({
@@ -72,7 +70,7 @@ move();`);
     setGameState(prev => ({ ...prev, isRunning: true }));
     setExecutionLog([]);
 
-    let currentState = {
+    const currentState = {
       rocketPos: { x: 0, y: 5 },
       rocketDirection: 0
     };
@@ -90,13 +88,11 @@ move();`);
         currentState.rocketPos = newPos;
         log.push(`🚀 Rocket di chuyển đến (${newPos.x}, ${newPos.y})`);
         
-        // Update UI immediately for smooth animation
         setGameState(prev => ({
           ...prev,
           rocketPos: { ...currentState.rocketPos }
         }));
         
-        // Small delay for visual feedback
         await new Promise(resolve => setTimeout(resolve, 400));
         
         return true;
@@ -110,7 +106,6 @@ move();`);
       currentState.rocketDirection = (currentState.rocketDirection + 1) % 4;
       log.push(`🔄 Rocket xoay phải`);
       
-      // Update UI for rotation
       setGameState(prev => ({
         ...prev,
         rocketDirection: currentState.rocketDirection
@@ -123,7 +118,6 @@ move();`);
       currentState.rocketDirection = (currentState.rocketDirection + 3) % 4;
       log.push(`🔄 Rocket xoay trái`);
       
-      // Update UI for rotation
       setGameState(prev => ({
         ...prev,
         rocketDirection: currentState.rocketDirection
@@ -143,7 +137,6 @@ move();`);
     };
 
     try {
-      // Simple parser for basic commands
       const lines = code.split('\n').filter(line => 
         line.trim() && !line.trim().startsWith('//')
       );
@@ -158,7 +151,6 @@ move();`);
         } else if (trimmedLine === 'turnLeft();') {
           await turnLeft();
         } else if (trimmedLine.startsWith('repeat(')) {
-          // Simple repeat parser for basic cases
           const match = trimmedLine.match(/repeat\((\d+),\s*\[(.*?)\]\);/);
           if (match) {
             const times = parseInt(match[1]);
@@ -179,7 +171,6 @@ move();`);
 
       setExecutionLog(log);
 
-      // Check win condition
       if (currentState.rocketPos.x === gameState.targetPos.x && 
           currentState.rocketPos.y === gameState.targetPos.y) {
         setGameState(prev => ({ ...prev, gameWon: true }));
@@ -198,26 +189,28 @@ move();`);
   }, [code, gameState.targetPos, gameState.isRunning]);
 
   return (
-    <div className="space-y-6">
-      <Card className="shadow-large bg-blue-50">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl flex items-center justify-center gap-2">
+    <div className="space-y-4 sm:space-y-6">
+      <Card className="shadow-large bg-blue-50 border-0 sm:border">
+        <CardHeader className="text-center px-3 sm:px-6 py-4 sm:py-6">
+          <CardTitle className="text-lg sm:text-2xl flex flex-col sm:flex-row items-center justify-center gap-2">
             🚀 Thử thách lập trình 
-            <Badge variant="secondary">Tương tác</Badge>
+            <Badge variant="secondary" className="text-xs sm:text-sm">Tương tác</Badge>
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-xs sm:text-sm mt-2">
             Hướng dẫn rocket đến ngôi sao bằng code! Học loops, điều kiện và biến một cách vui nhộn.
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="grid lg:grid-cols-2 gap-6">
+        <CardContent className="px-3 sm:px-6 py-4 sm:py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             {/* Game Board */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-center gap-2">
-                <Lightbulb className="text-primary" size={20} />
-                Bảng game
+            <div className="space-y-3 sm:space-y-4 order-2 lg:order-1">
+              <h3 className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                <Lightbulb className="text-primary flex-shrink-0" size={18} />
+                <span className="truncate">Bảng game</span>
               </h3>
-              <div className="grid grid-cols-6 gap-1 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+              
+              {/* Grid - Responsive size */}
+              <div className="grid grid-cols-6 gap-0.5 sm:gap-1 p-2 sm:p-4 bg-slate-100 dark:bg-slate-800 rounded-lg w-full overflow-hidden">
                 {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, index) => {
                   const x = index % GRID_SIZE;
                   const y = Math.floor(index / GRID_SIZE);
@@ -228,29 +221,40 @@ move();`);
                   return (
                     <div
                       key={index}
-                      className={`aspect-square flex items-center justify-center text-2xl rounded border-2 transition-all duration-500 ${
+                      className={`aspect-square flex flex-col items-center justify-center rounded border transition-all duration-500 ${
                         isRocket 
-                          ? 'bg-blue-200 dark:bg-blue-800 border-blue-400 scale-110 shadow-lg' 
+                          ? 'bg-blue-200 dark:bg-blue-800 border-blue-400 scale-105 sm:scale-110 shadow-lg border-2' 
                           : isTarget 
-                          ? 'bg-yellow-200 dark:bg-yellow-800 border-yellow-400' 
-                          : 'bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600'
+                          ? 'bg-yellow-200 dark:bg-yellow-800 border-yellow-400 border-2' 
+                          : 'bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 border'
                       }`}
                     >
                       {isRocket && (
                         <span 
-                          className={`text-3xl transition-transform duration-300 ${
+                          className={`transition-transform duration-300 w-full flex items-center justify-center ${
                             gameState.isRunning ? 'animate-pulse scale-110' : ''
                           }`}
                           style={{
-                            transform: `rotate(${gameState.rocketDirection * 90}deg)`
+                            transform: `rotate(${gameState.rocketDirection * 90}deg)`,
+                            fontSize: 'clamp(1.25rem, 5vw, 2rem)'
                           }}
                         >
                           🚀
                         </span>
                       )}
-                      {isTarget && <span className="animate-pulse">⭐</span>}
+                      {isTarget && (
+                        <span 
+                          className="animate-pulse w-full flex items-center justify-center"
+                          style={{ fontSize: 'clamp(1rem, 4vw, 1.75rem)' }}
+                        >
+                          ⭐
+                        </span>
+                      )}
                       {!isRocket && !isTarget && (
-                        <span className="text-xs text-slate-400">
+                        <span 
+                          className="text-slate-400 font-medium text-center"
+                          style={{ fontSize: 'clamp(0.5rem, 2.5vw, 0.75rem)' }}
+                        >
                           {x},{y}
                         </span>
                       )}
@@ -260,9 +264,9 @@ move();`);
               </div>
               
               {gameState.gameWon && (
-                <div className="text-center p-4 bg-green-100 dark:bg-green-900 rounded-lg animate-bounce">
-                  <div className="text-2xl">🎉 Thành công!</div>
-                  <p className="text-green-700 dark:text-green-300">
+                <div className="text-center p-3 sm:p-4 bg-green-100 dark:bg-green-900 rounded-lg animate-bounce">
+                  <div className="text-xl sm:text-2xl">🎉 Thành công!</div>
+                  <p className="text-sm sm:text-base text-green-700 dark:text-green-300">
                     Rocket đã đến được ngôi sao!
                   </p>
                 </div>
@@ -270,37 +274,41 @@ move();`);
             </div>
 
             {/* Code Editor */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">💻 Viết code của bạn</h3>
+            <div className="space-y-3 sm:space-y-4 order-1 lg:order-2">
+              <h3 className="text-base sm:text-lg font-semibold">💻 Viết code của bạn</h3>
               <Textarea
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 placeholder="Nhập code của bạn ở đây..."
-                className="min-h-[200px] font-mono text-sm"
+                className="min-h-[180px] sm:min-h-[200px] font-mono text-xs sm:text-sm"
                 disabled={gameState.isRunning}
               />
               
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Button 
                   onClick={executeCommands}
                   disabled={gameState.isRunning}
-                  className="flex-1"
+                  className="flex-1 text-sm sm:text-base"
                   variant="default"
                 >
                   <Play size={16} className="mr-2" />
                   {gameState.isRunning ? 'Đang chạy...' : 'Chạy Code'}
                 </Button>
-                <Button onClick={resetGame} variant="outline">
+                <Button 
+                  onClick={resetGame} 
+                  variant="outline"
+                  className="text-sm sm:text-base"
+                >
                   <RotateCcw size={16} className="mr-2" />
                   Reset
                 </Button>
               </div>
 
               {executionLog.length > 0 && (
-                <div className="bg-slate-100 dark:bg-slate-800 rounded-lg p-3 space-y-1">
-                  <h4 className="font-semibold text-sm">📋 Nhật ký thực thi:</h4>
+                <div className="bg-slate-100 dark:bg-slate-800 rounded-lg p-3 space-y-1 max-h-32 sm:max-h-40 overflow-y-auto">
+                  <h4 className="font-semibold text-xs sm:text-sm">📋 Nhật ký thực thi:</h4>
                   {executionLog.map((log, index) => (
-                    <div key={index} className="text-sm text-slate-600 dark:text-slate-400">
+                    <div key={index} className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 break-words">
                       {log}
                     </div>
                   ))}
@@ -309,12 +317,13 @@ move();`);
             </div>
           </div>
 
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
-            <h4 className="font-semibold mb-2">💡 Gợi ý:</h4>
-            <ul className="text-sm space-y-1 text-blue-700 dark:text-blue-300">
-              <li>• Sử dụng <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">move()</code> để di chuyển về phía trước</li>
-              <li>• Sử dụng <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">turnRight()</code> và <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">turnLeft()</code> để xoay</li>
-              <li>• Thử <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">repeat(3, ["move()"])</code> để lặp lại lệnh</li>
+          {/* Tips Section */}
+          <div className="mt-6 p-3 sm:p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
+            <h4 className="font-semibold text-sm sm:text-base mb-2">💡 Gợi ý:</h4>
+            <ul className="text-xs sm:text-sm space-y-1 text-blue-700 dark:text-blue-300">
+              <li>• Sử dụng <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded text-xs">move()</code> để di chuyển về phía trước</li>
+              <li>• Sử dụng <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded text-xs">turnRight()</code> và <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded text-xs">turnLeft()</code> để xoay</li>
+              <li>• Thử <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded text-xs">repeat(3, ["move()"])</code> để lặp lại lệnh</li>
             </ul>
           </div>
         </CardContent>

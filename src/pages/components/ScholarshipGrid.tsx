@@ -166,8 +166,7 @@ export default function ScholarshipTiers() {
         >
           <em>
             * Học phí gốc khóa 12 tuần: <strong>5.000.000 – 7.000.000đ</strong>.
-            Tất cả học viên đều được nhận học bổng dựa trên kết quả thi thực
-            tế.
+            Tất cả học viên đều được nhận học bổng dựa trên kết quả thi thực tế.
           </em>
         </motion.p>
       </div>
