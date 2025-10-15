@@ -29,6 +29,7 @@ import CoreProgramSection from "./components/CoreProgramSection";
 import HeroSection from "./components/HeroSection";
 import FeedbackSection from "./components/FeedbackSection";
 import InstructorsSection from "./components/InstructorsSection";
+import FinalCTASection from "./components/FinalCTASection";
 
 const Index = () => {
   const { toast } = useToast();
@@ -85,7 +86,9 @@ const Index = () => {
       {/* Enhanced Benefits Section with Advanced Scroll Animations */}
       <BenefitsSection />
 
-      <CoreProgramSection />
+      <div id="course">
+        <CoreProgramSection />
+      </div>
 
       {/* Dots Divider */}
       <div className="flex justify-center gap-2 py-6">
@@ -106,10 +109,15 @@ const Index = () => {
       <InstructorsSection />
 
       {/* Countdown & Pricing Section */}
-      <CountdownTimer />
+      <div id="pricing">
+        <CountdownTimer />
+      </div>
+      
 
-      <FeedbackSection />
-
+      <div id="testimonials">
+        <FeedbackSection />
+      </div>
+      
       {/* Partners Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
@@ -156,32 +164,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-16 px-4 bg-[#93C5FD] text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <div className="space-y-8 animate-fade-up">
-            <h2 className="text-4xl lg:text-5xl font-bold">
-              🌟 Hãy để con bắt đầu hành trình lập trình ngay hôm nay
-            </h2>
-            <p className="text-xl opacity-90 max-w-2xl mx-auto">
-              cùng Rocket Tech Academy - nơi ươm mầm những lập trình viên tương
-              lai
-            </p>
-
-            <div className="space-y-4">
-              <Button
-                size="xl"
-                variant="secondary"
-                className="animate-scale-in"
-              >
-                👉 Làm Mini-test Lập trình ngay – Miễn phí
-              </Button>
-              <p className="text-sm opacity-75">
-                Nhận ngay báo cáo chi tiết và lộ trình học phù hợp cho con
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FinalCTASection />
 
       {/* Contact Section */}
       <section className="py-12 px-4 bg-card">

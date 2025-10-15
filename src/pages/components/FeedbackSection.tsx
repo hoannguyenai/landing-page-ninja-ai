@@ -1,16 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Star, CheckCircle2, Shield, Trophy } from "lucide-react";
+import { Star, Trophy, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 import { type ComponentType, type SVGProps } from "react";
-
-// components/FeedbackSection.tsx
 
 type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 
 interface Stat {
-  label: string; // tiêu đề ngắn gọn
-  valueText: string; // số liệu nổi bật
-  note: string; // chú thích ngắn
+  label: string;
+  valueText: string;
+  note: string;
   Icon: IconType;
 }
 
@@ -38,7 +36,7 @@ const stats: Stat[] = [
 interface Testimonial {
   content: string;
   author: string;
-  rating: number; // 1-5
+  rating: number;
 }
 
 const testimonials: Testimonial[] = [
@@ -63,7 +61,7 @@ const fadeUp = {
 
 export default function FeedbackSection() {
   return (
-    <section id="feedback" className="py-16 px-4 bg-[#a3bafa]/10">
+    <section id="feedback" className="py-16 px-4 bg-white">
       <div className="container mx-auto max-w-6xl">
         {/* Title */}
         <motion.div
@@ -79,8 +77,8 @@ export default function FeedbackSection() {
           </p>
         </motion.div>
 
-        {/* KPI / Proof Bar (thoáng, không lặp ý) */}
-        <div className="grid gap-6 md:grid-cols-3 mb-12">
+        {/* KPI / Proof Bar */}
+        <div className="grid gap-6 md:grid-cols-3 mb-8">
           {stats.map(({ label, valueText, note, Icon }, i) => (
             <motion.div
               key={label}
@@ -90,17 +88,19 @@ export default function FeedbackSection() {
               transition={{ delay: i * 0.06, duration: 0.5 }}
               className="flex"
             >
-              <Card className="flex flex-col justify-between bg-blue-50 shadow-medium hover:shadow-large transition-shadow w-full">
+              <Card className="flex flex-col justify-between bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 shadow-lg hover:shadow-xl transition-shadow w-full">
                 <CardHeader className="flex flex-row items-center gap-3">
                   <div className="p-2 rounded-xl bg-white shadow-sm">
-                    <Icon className="w-5 h-5 text-primary" />
+                    <Icon className="w-5 h-5 text-blue-600" />
                   </div>
-                  <CardTitle className="text-lg">{label}</CardTitle>
+                  <CardTitle className="text-lg text-gray-900">{label}</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0 flex flex-col flex-grow justify-between">
                   <div>
-                    <div className="text-4xl font-extrabold tracking-tight text-primary">{valueText}</div>
-                    <p className="mt-2 text-sm text-muted-foreground">{note}</p>
+                    <div className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
+                      {valueText}
+                    </div>
+                    <p className="mt-2 text-sm text-gray-600">{note}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -108,7 +108,12 @@ export default function FeedbackSection() {
           ))}
         </div>
 
-        {/* Testimonials Cards (ngắn gọn, súc tích) */}
+        {/* Divider Line */}
+        <div className="mb-12">
+          <div className="h-px bg-gradient-to-r from-transparent via-teal-300 to-transparent"></div>
+        </div>
+
+        {/* Testimonials Cards */}
         <div className="grid md:grid-cols-2 gap-8">
           {testimonials.map((t, index) => (
             <motion.div
@@ -119,7 +124,7 @@ export default function FeedbackSection() {
               transition={{ delay: index * 0.08, duration: 0.5 }}
               className="flex"
             >
-              <Card className="flex flex-col justify-between shadow-medium bg-blue-50 w-full">
+              <Card className="flex flex-col justify-between shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-teal-50 to-cyan-50 border-2 border-teal-200 w-full">
                 <CardContent className="pt-6 flex flex-col flex-grow justify-between">
                   <div>
                     <div className="flex mb-3">
@@ -127,9 +132,11 @@ export default function FeedbackSection() {
                         <Star key={i} className="text-yellow-400 fill-current" size={20} />
                       ))}
                     </div>
-                    <blockquote className="text-lg mb-4 italic">“{t.content}”</blockquote>
+                    <blockquote className="text-lg mb-4 italic text-gray-800">"{t.content}"</blockquote>
                   </div>
-                  <p className="font-medium text-primary mt-auto">— {t.author}</p>
+                  <p className="font-medium bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mt-auto">
+                    — {t.author}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>

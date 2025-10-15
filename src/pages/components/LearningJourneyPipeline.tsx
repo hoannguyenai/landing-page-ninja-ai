@@ -1,14 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-
-import {
-  durations,
-  easings,
-  staggerContainer,
-  staggerItem,
-} from "@/lib/animations";
 
 type Step = {
   icon: string;
@@ -40,87 +33,102 @@ const steps: Step[] = [
 ];
 
 export default function LearningJourneyPipeline() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       aria-labelledby="learning-journey-title"
       className="relative w-full py-16 px-6 md:px-8 bg-white"
     >
       <div className="container mx-auto max-w-6xl">
-        {/* Tiêu đề: đồng bộ easing/duration */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-          variants={staggerContainer}
-          className="text-center mb-12"
-        >
-          <motion.h2
+        {/* Tiêu đề */}
+        <div className="text-center mb-12">
+          <h2
             id="learning-journey-title"
-            variants={staggerItem}
-            className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-700 to-teal-500 bg-clip-text text-transparent pb-2"
+            className={`text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-700 to-teal-500 bg-clip-text text-transparent pb-2 transition-all duration-700 ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
           >
             Hành Trình 4 Bước Khám Phá Tài Năng
-          </motion.h2>
-          <motion.p
-            variants={staggerItem}
-            className="mt-3 text-muted-foreground"
+          </h2>
+          <p
+            className={`mt-3 text-muted-foreground transition-all duration-700 delay-100 ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
           >
             Lộ trình rõ ràng – minh bạch – dễ bắt đầu
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Wrapper để vẽ line + grid cột */}
         <div className="relative">
-          {/* Line nối các hình tròn (desktop) – animate scaleX theo presets */}
-          <motion.div
+          {/* Line nối các hình tròn (desktop) */}
+          <div
             aria-hidden="true"
-            className="hidden md:block absolute left-0 right-0 top-[28px] h-1 origin-left bg-gradient-to-r from-blue-200 via-teal-200 to-blue-200"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: durations.slow, ease: easings.smooth }}
+            className={`hidden md:block absolute left-0 right-0 top-[28px] h-1 origin-left bg-gradient-to-r from-blue-200 via-teal-200 to-blue-200 transition-transform duration-1000 delay-200 ease-out ${
+              isVisible ? "scale-x-100" : "scale-x-0"
+            }`}
           />
 
-          {/* Grid các bước với stagger chung */}
-          <motion.ol
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-4 gap-6 md:gap-8 items-start"
-          >
+          {/* Grid các bước */}
+          <ol className="grid md:grid-cols-4 gap-6 md:gap-8 items-start">
             {steps.map((step, idx) => (
-              <motion.li
+              <li
                 key={idx}
-                variants={staggerItem}
                 className="flex flex-col items-center h-full"
+                style={{
+                  transitionDelay: `${300 + idx * 150}ms`,
+                }}
               >
-                {/* Circle index (cùng cao độ với line) */}
-                <motion.div
-                  className="relative z-10 mb-4"
-                  initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{
-                    duration: durations.normal,
-                    ease: easings.smooth,
+                {/* Circle index */}
+                <div
+                  className={`relative z-10 mb-4 transition-all duration-700 ease-out ${
+                    isVisible
+                      ? "opacity-100 scale-100 translate-y-0"
+                      : "opacity-0 scale-90 translate-y-4"
+                  }`}
+                  style={{
+                    transitionDelay: `${300 + idx * 150}ms`,
                   }}
                 >
                   <div className="absolute inset-0 blur-xl rounded-full bg-teal-300/30 -z-10" />
                   <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-teal-500 text-white font-bold flex items-center justify-center shadow-lg">
                     {idx + 1}
                   </div>
-                </motion.div>
+                </div>
 
-                {/* Card nội dung – h-full để bằng nhau */}
-                <motion.div
-                  className="w-full h-full"
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{
-                    duration: durations.normal,
-                    ease: easings.smooth,
+                {/* Card nội dung */}
+                <div
+                  className={`w-full h-full transition-all duration-700 ease-out ${
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-6"
+                  }`}
+                  style={{
+                    transitionDelay: `${350 + idx * 150}ms`,
                   }}
                 >
                   <Card className="w-full h-full border-blue-100 bg-blue-50/60">
@@ -141,10 +149,10 @@ export default function LearningJourneyPipeline() {
                       <div className="flex-1" />
                     </CardContent>
                   </Card>
-                </motion.div>
-              </motion.li>
+                </div>
+              </li>
             ))}
-          </motion.ol>
+          </ol>
         </div>
       </div>
     </section>

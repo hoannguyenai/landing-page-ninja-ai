@@ -24,7 +24,7 @@ export const ZaloChatWidget = () => {
       {/* Floating Zalo Button */}
       <button
         onClick={() => setIsPopupOpen(!isPopupOpen)}
-        className="fixed bottom-6 right-6 md:bottom-4 md:right-4 z-50 w-14 h-14 md:w-12 md:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg hover:shadow-xl transition"
+        className="fixed bottom-6 right-6 md:bottom-4 md:right-4 z-50 w-14 h-14 md:w-12 md:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg hover:shadow-2xl hover:scale-110 hover:-translate-y-1 transition-all duration-300"
       >
         <MessageCircle size={20} />
       </button>

@@ -41,7 +41,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 font-medium">
             <a
-              href="#features"
+              href="#course"
               className="hover:text-primary transition-colors"
             >
               Khóa học
@@ -53,7 +53,7 @@ const Header = () => {
               Giảng viên
             </a>
             <a href="#pricing" className="hover:text-primary transition-colors">
-              Học phí
+              Ưu đãi
             </a>
             <a
               href="#testimonials"
