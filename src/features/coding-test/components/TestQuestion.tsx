@@ -25,9 +25,11 @@ export function TestQuestion({
   selectedAnswer,
   onAnswer,
   onNext,
-  isLastQuestion
+  isLastQuestion,
 }: TestQuestionProps) {
-  const [currentAnswer, setCurrentAnswer] = useState<number | undefined>(selectedAnswer);
+  const [currentAnswer, setCurrentAnswer] = useState<number | undefined>(
+    selectedAnswer
+  );
 
   const handleAnswerChange = (value: string) => {
     const choiceIndex = parseInt(value);
@@ -89,14 +91,17 @@ export function TestQuestion({
             className="space-y-4"
           >
             {question.choices.map((choice, index) => (
-              <div key={index} className="flex items-start space-x-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors">
-                <RadioGroupItem 
-                  value={index.toString()} 
+              <div
+                key={index}
+                className="flex items-start space-x-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors"
+              >
+                <RadioGroupItem
+                  value={index.toString()}
                   id={`choice-${index}`}
                   className="mt-0.5"
                 />
-                <Label 
-                  htmlFor={`choice-${index}`} 
+                <Label
+                  htmlFor={`choice-${index}`}
                   className="flex-1 text-base leading-relaxed cursor-pointer"
                 >
                   {choice}

@@ -107,11 +107,6 @@ export default function InstructorsSection() {
             </Card>
           ))}
         </div>
-
-        {/* Subnote */}
-        <div className="mt-8 text-center text-sm text-muted-foreground">
-          Kèm cặp theo nhóm nhỏ, phản hồi nhanh trên từng bài làm – giúp học sinh tiến bộ từng buổi.
-        </div>
       </div>
     </section>
   );

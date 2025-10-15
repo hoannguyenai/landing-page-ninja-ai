@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,47 +6,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/pages/components/CountdownTimer";
-import CodingGame from "@/pages/components/CodingGame";
-import { ZaloChatWidget } from "@/components/ZaloChatWidget";
-import { OverlayTransition } from "@/components/OverlayTransition";
-import heroBanner from "@/assets/hero-banner.jpg";
-import instructor1 from "@/assets/instructor-1.jpg";
-import studentProjects from "@/assets/student-projects.jpg";
-import brainDevelopment from "@/assets/brain-development.jpg";
-import subjectsConnection from "@/assets/subjects-connection.jpg";
-import techHabits from "@/assets/tech-habits.jpg";
-import alphaGeneration from "@/assets/alpha-generation.jpg";
 import {
   CheckCircle2,
-  Code,
   Users,
   Award,
   Calendar,
   Clock,
-  Star,
-  Rocket,
-  Gamepad2,
-  Smartphone,
   Phone,
   Mail,
   MessageCircle,
 } from "lucide-react";
-import { CodingTestCTA } from "@/features/coding-test";
-import { TypewriterText } from "@/components/TypewriterText";
-import { FeaturesSection } from "@/components/FeaturesSection";
-import { BenefitsSection } from "@/components/BenefitsSection";
+import { BenefitsSection } from "@/pages/components/BenefitsSection";
 import { CodingGameSection } from "@/pages/components/CodingGameSection";
-import { BasicCourseSection } from "@/components/BasicCourseSection";
-import { SectionDivider } from "@/components/SectionDivider";
-import { motion, useScroll, useTransform } from "framer-motion";
 import LearningJourneyPipeline from "./components/LearningJourneyPipeline";
 import ScholarshipTiers from "./components/ScholarshipGrid";
 import CoreProgramSection from "./components/CoreProgramSection";
@@ -133,118 +108,6 @@ const Index = () => {
       {/* Countdown & Pricing Section */}
       <CountdownTimer />
 
-      {/* Additional Pricing Details */}
-      <section id="pricing" className="py-12 md:py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <Card className="shadow-lg bg-gradient-to-br from-blue-50 to-blue-100">
-            <CardHeader className="text-center pb-8 md:pb-12">
-              <CardTitle className="text-2xl md:text-3xl lg:text-4xl">
-                📋 Chi tiết khóa học & Đăng ký
-              </CardTitle>
-              <CardDescription className="text-sm md:text-base mt-2">
-                Thông tin đầy đủ và cách thức đăng ký
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-8">
-              {/* Pricing Grid - Responsive */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {/* Khai giảng */}
-                <div className="bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow text-center">
-                  <div className="flex justify-center mb-3">
-                    <Calendar className="text-primary" size={28} />
-                  </div>
-                  <h3 className="text-lg md:text-xl font-semibold mb-2">
-                    Khai giảng
-                  </h3>
-                  <p className="text-xl md:text-2xl font-bold text-primary">
-                    15/10/2024
-                  </p>
-                </div>
-
-                {/* Học phí */}
-                <div className="bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow text-center">
-                  <div className="flex justify-center mb-3">
-                    <div className="text-2xl md:text-3xl">💰</div>
-                  </div>
-                  <h3 className="text-lg md:text-xl font-semibold mb-2">
-                    Học phí
-                  </h3>
-                  <p className="text-xl md:text-2xl font-bold">3.600.000đ</p>
-                  <p className="text-xs md:text-sm text-muted-foreground mt-1">
-                    ≈ 300.000đ/buổi
-                  </p>
-                </div>
-
-                {/* Ưu đãi */}
-                <div className="bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow text-center sm:col-span-2 lg:col-span-1">
-                  <div className="flex justify-center mb-3">
-                    <div className="text-2xl md:text-3xl">🎁</div>
-                  </div>
-                  <h3 className="text-lg md:text-xl font-semibold mb-3">
-                    Ưu đãi
-                  </h3>
-                  <Badge
-                    variant="secondary"
-                    className="text-sm md:text-base px-2 md:px-3 py-1 inline-block"
-                  >
-                    Giảm 15%
-                  </Badge>
-                  <p className="text-xs md:text-sm mt-2">
-                    + Tặng 1 buổi học thử
-                  </p>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="h-px bg-gray-200"></div>
-
-              {/* Additional Info */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                <div className="bg-blue-50 rounded-lg p-4 md:p-5">
-                  <h4 className="font-semibold text-sm md:text-base mb-3 flex items-center gap-2">
-                    <Clock size={18} className="text-primary" />
-                    Thời gian học
-                  </h4>
-                  <p className="text-sm md:text-base text-gray-700">
-                    12 buổi, mỗi buổi 90 phút
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-600 mt-1">
-                    Lịch học linh hoạt, phù hợp cho học sinh
-                  </p>
-                </div>
-
-                <div className="bg-blue-50 rounded-lg p-4 md:p-5">
-                  <h4 className="font-semibold text-sm md:text-base mb-3 flex items-center gap-2">
-                    <Users size={18} className="text-primary" />
-                    Đối tượng học
-                  </h4>
-                  <p className="text-sm md:text-base text-gray-700">
-                    Học sinh lớp 6, 7, 8, 9
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-600 mt-1">
-                    Không cần kinh nghiệm lập trình trước
-                  </p>
-                </div>
-              </div>
-
-              {/* CTA Button - Full width on mobile */}
-              <div className="pt-4">
-                <Button
-                  size="lg"
-                  variant="default"
-                  className="w-full md:w-auto animate-scale-in text-base md:text-lg"
-                >
-                  👉 Giữ chỗ ngay hôm nay
-                </Button>
-                <p className="text-xs md:text-sm text-gray-600 mt-3">
-                  ⏰ Chỉ còn vài chỗ - Giới hạn 15 học sinh
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       <FeedbackSection />
 
       {/* Partners Section */}
@@ -329,15 +192,15 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button variant="outline" className="flex items-center gap-2">
                 <Phone size={20} />
-                📞 Hotline: 09xx.xxx.xxx
+                Hotline: 09xx.xxx.xxx
               </Button>
               <Button variant="outline" className="flex items-center gap-2">
                 <MessageCircle size={20} />
-                💬 Zalo: Click-to-Call
+                Zalo: Click-to-Call
               </Button>
               <Button variant="outline" className="flex items-center gap-2">
                 <Mail size={20} />
-                ✉️ Email: info@rockettechacademy.vn
+                Email: info@rockettechacademy.vn
               </Button>
             </div>
           </div>

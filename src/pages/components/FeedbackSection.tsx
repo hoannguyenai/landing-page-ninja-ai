@@ -135,22 +135,6 @@ export default function FeedbackSection() {
             </motion.div>
           ))}
         </div>
-
-        {/* Trust row (giữ nhẹ nhàng) */}
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <CheckCircle2 className="w-4 h-4 text-green-600" />
-            Lộ trình rõ ràng
-          </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <CheckCircle2 className="w-4 h-4 text-green-600" />
-            Dự án thực tế
-          </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <CheckCircle2 className="w-4 h-4 text-green-600" />
-            Hướng dẫn dùng AI an toàn
-          </div>
-        </div>
       </div>
     </section>
   );
