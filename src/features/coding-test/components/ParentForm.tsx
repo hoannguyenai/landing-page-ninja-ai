@@ -68,8 +68,8 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
           "Chúng tôi đã ghi nhận thông tin để gửi kết quả test cho quý phụ huynh.",
       });
 
-      // ✅ Tiếp tục luồng làm bài test
       onSubmit(data);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error);
       toast({

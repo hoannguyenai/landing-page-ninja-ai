@@ -160,7 +160,7 @@ const HeroSection = memo(function HeroSection({
         style={{ pointerEvents: "none" }}
       >
         {/* NINJA AI TALENT HUNT — Mobile nhỏ lại; Desktop đặt col3/row1 */}
-        <div className="row-start-1 col-start-1 px-6 md:px-8 pt-6 lg:pt-8 self-start justify-self-center text-center lg:justify-self-start lg:text-left lg:row-start-1 lg:col-start-3">
+        <div className="row-start-1 col-start-1 px-6 md:px-8 pt-6 lg:pt-20 self-start justify-self-center text-center lg:justify-self-start lg:text-left lg:row-start-1 lg:col-start-3">
           <h2
             className="
               font-extrabold tracking-tight uppercase text-gray-900
@@ -185,7 +185,7 @@ const HeroSection = memo(function HeroSection({
             flex lg:block
             items-center lg:items-auto
             h-full
-            lg:self-end lg:pb-10 lg:pt-6
+            lg:self-end lg:pt-20
           "
         >
           <h1
