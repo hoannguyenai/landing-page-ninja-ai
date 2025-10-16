@@ -1,26 +1,16 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-
-// Presets animation dùng chung
-import {
-  durations,
-  easings,
-  staggerContainer,
-  staggerItem,
-} from "@/lib/animations"; // chỉnh path đúng nơi bạn lưu
 
 type Tier = {
   score: string;
   icon: string;
   rank: string;
   fee: string;
-  // style
-  bg: string; // nền card
-  ring: string; // viền card
-  barBg: string; // thanh tiêu đề trên cùng
+  bg: string;
+  ring: string;
+  barBg: string;
 };
 
 const TIERS: Tier[] = [
@@ -64,12 +54,37 @@ const TIERS: Tier[] = [
 
 export default function ScholarshipTiers() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const inView = useInView(sectionRef, { once: true, amount: 0.3 });
-  const controls = useAnimation();
+  const [isVisible, setIsVisible] = useState(false);
+  const [visibleItems, setVisibleItems] = useState<boolean[]>(
+    new Array(TIERS.length).fill(false)
+  );
 
   useEffect(() => {
-    if (inView) controls.start("visible");
-  }, [inView, controls]);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          // Trigger items one by one
+          TIERS.forEach((_, i) => {
+            setTimeout(() => {
+              setVisibleItems((prev) => {
+                const newArray = [...prev];
+                newArray[i] = true;
+                return newArray;
+              });
+            }, i * 100);
+          });
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
@@ -79,42 +94,47 @@ export default function ScholarshipTiers() {
     >
       <div className="container mx-auto max-w-6xl">
         {/* Tiêu đề */}
-        <motion.div
-          initial="hidden"
-          animate={controls}
-          variants={staggerContainer}
-          className="text-center mb-10"
-        >
-          <motion.h2
+        <div className="text-center mb-10">
+          <h2
             id="scholarship-title"
-            variants={staggerItem}
-            className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-700 to-teal-500 bg-clip-text text-transparent pb-2"
+            className={`text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-700 to-teal-500 bg-clip-text text-transparent pb-2 transition-all duration-700 ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
           >
             Học Bổng Được Trao Theo Đúng Năng Lực
-          </motion.h2>
-          <motion.p
-            variants={staggerItem}
-            className="mt-3 text-muted-foreground"
+          </h2>
+          <p
+            className={`mt-3 text-muted-foreground transition-all duration-700 delay-150 ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
           >
             Minh bạch – công bằng – dựa trên kết quả thi thực tế
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
-        {/* 4 card ngang, equal height */}
-        <motion.ol
-          initial="hidden"
-          animate={controls}
-          variants={staggerContainer}
-          className="grid md:grid-cols-4 gap-6 md:gap-8 items-stretch"
-          aria-label="Các mức học bổng theo điểm test"
-        >
+        {/* 4 card ngang */}
+        <ol className="grid md:grid-cols-4 gap-6 md:gap-8 items-stretch">
           {TIERS.map((t, i) => (
-            <motion.li key={i} variants={staggerItem} className="h-full">
+            <li
+              key={i}
+              className={`h-full transition-all duration-700 ease-out ${
+                visibleItems[i]
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{
+                transitionDelay: `${150 + i * 100}ms`,
+              }}
+            >
               <Card
                 className={`relative h-full w-full ${t.bg} ${t.ring} rounded-2xl shadow-sm hover:shadow-md transition-shadow`}
               >
                 <CardContent className="p-6 pt-10 flex flex-col h-full">
-                  {/* Thanh tiêu đề hạng ở cạnh trên của card */}
+                  {/* Thanh tiêu đề hạng */}
                   <div
                     className={`absolute left-0 right-0 top-0 ${t.barBg} text-white rounded-t-2xl h-9 flex items-center justify-center gap-2 text-[11px] md:text-xs font-semibold tracking-wide uppercase`}
                     aria-label={`Xếp hạng: ${t.rank}`}
@@ -123,7 +143,7 @@ export default function ScholarshipTiers() {
                     <span>{t.rank}</span>
                   </div>
 
-                  {/* Nội dung chính: Điểm nổi bật nhất */}
+                  {/* Nội dung chính */}
                   <div className="space-y-4">
                     <div>
                       <div className="text-[11px] md:text-xs font-medium uppercase text-slate-500 tracking-wider">
@@ -138,37 +158,35 @@ export default function ScholarshipTiers() {
                       <div className="text-[11px] md:text-xs font-medium uppercase text-slate-500 tracking-wider">
                         HỌC PHÍ SAU GIẢM
                       </div>
-                      {/* Vừa đủ, không quá to */}
                       <div className="mt-1 text-base md:text-lg font-semibold text-blue-700">
                         {t.fee}
                       </div>
                     </div>
                   </div>
 
-                  {/* Spacer để equal height */}
                   <div className="flex-1" />
                 </CardContent>
               </Card>
-            </motion.li>
+            </li>
           ))}
-        </motion.ol>
+        </ol>
 
         {/* Note dưới bảng */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={controls}
-          transition={{
-            duration: durations.normal,
-            ease: easings.smooth,
-            delay: 0.05,
+        <p
+          className={`mt-8 text-center text-sm text-slate-600 transition-all duration-700 ease-out ${
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4"
+          }`}
+          style={{
+            transitionDelay: isVisible ? "500ms" : "0ms",
           }}
-          className="mt-8 text-center text-sm text-slate-600"
         >
           <em>
             * Học phí gốc khóa 12 tuần: <strong>5.000.000 – 7.000.000đ</strong>.
             Tất cả học viên đều được nhận học bổng dựa trên kết quả thi thực tế.
           </em>
-        </motion.p>
+        </p>
       </div>
     </section>
   );

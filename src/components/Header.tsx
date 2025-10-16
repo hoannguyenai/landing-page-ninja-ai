@@ -1,17 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // hoặc sử dụng next/router nếu dùng Next.js
 import rocketLogo from "@/assets/rocket-logo.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate(); // Nếu Next.js: const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleFormNavigation = () => {
+    navigate("/test"); 
+    setIsMenuOpen(false);
+  };
 
   return (
     <header
@@ -24,7 +31,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
             <div className="w-10 h-10 rounded-lg flex items-center justify-center">
               <img
                 src={rocketLogo}
@@ -69,7 +76,7 @@ const Header = () => {
               <Phone size={16} className="text-primary" />
               <span className="font-medium">0901.234.567</span>
             </div>
-            <Button size="sm" variant="hero">
+            <Button size="sm" variant="hero" onClick={handleFormNavigation}>
               Đăng ký ngay
             </Button>
           </div>
@@ -106,7 +113,12 @@ const Header = () => {
                   <Phone size={16} className="text-primary" />
                   <span className="font-medium">0901.234.567</span>
                 </div>
-                <Button size="sm" variant="hero" className="w-fit">
+                <Button 
+                  size="sm" 
+                  variant="hero" 
+                  className="w-fit"
+                  onClick={handleFormNavigation}
+                >
                   Đăng ký ngay
                 </Button>
               </div>

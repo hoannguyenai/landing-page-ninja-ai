@@ -8,6 +8,7 @@ type FinalCTASectionProps = {
   title?: string;
   subtitle?: string;
   buttonText?: string;
+  buttonTextMobile?: string;
   noteText?: string;
 };
 
@@ -16,6 +17,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
   title = "🌟 Hãy để con bắt đầu hành trình lập trình ngay hôm nay",
   subtitle = "Cùng Rocket Tech Academy - Nơi ươm mầm những lập trình viên tương lai",
   buttonText = "👉 Làm Mini-test Lập trình ngay – Miễn phí",
+  buttonTextMobile = "👉 Làm Mini-test ngay",
   noteText = "Nhận ngay báo cáo chi tiết và lộ trình học phù hợp cho con",
 }) => {
   return (
@@ -41,7 +43,8 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
               onClick={onStartMiniTest}
               aria-label="Làm mini-test lập trình miễn phí"
             >
-              {buttonText}
+              <span className="hidden sm:inline">{buttonText}</span>
+              <span className="inline sm:hidden">{buttonTextMobile}</span>
             </Button>
             <p className="text-xs sm:text-sm opacity-90 drop-shadow">
               {noteText}
