@@ -14,13 +14,65 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          created_at: string
+          email: string
+          grade: string
+          id: string
+          parent_name: string
+          phone: string
+          student_name: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          grade: string
+          id?: string
+          parent_name: string
+          phone: string
+          student_name?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          grade?: string
+          id?: string
+          parent_name?: string
+          phone?: string
+          student_name?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      citext: {
+        Args: { "": boolean } | { "": string } | { "": unknown }
+        Returns: string
+      }
+      citext_hash: {
+        Args: { "": string }
+        Returns: number
+      }
+      citextin: {
+        Args: { "": unknown }
+        Returns: string
+      }
+      citextout: {
+        Args: { "": string }
+        Returns: unknown
+      }
+      citextrecv: {
+        Args: { "": unknown }
+        Returns: string
+      }
+      citextsend: {
+        Args: { "": string }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
