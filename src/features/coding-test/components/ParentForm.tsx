@@ -1,12 +1,33 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { ParentFormSchema, type ParentFormData } from "../types";
 import { toast } from "@/hooks/use-toast";
+import { saveLead } from "@/integrations/supabase/services/leads";
 
 interface ParentFormProps {
   onSubmit: (data: ParentFormData) => void;
@@ -14,6 +35,8 @@ interface ParentFormProps {
 }
 
 export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
+  const [saving, setSaving] = useState(false);
+
   const form = useForm<ParentFormData>({
     resolver: zodResolver(ParentFormSchema),
     defaultValues: {
@@ -22,19 +45,41 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
       phone: "",
       studentName: "",
       grade: "",
-      ...defaultValues
-    }
+      ...defaultValues,
+    },
   });
 
-  const handleSubmit = (data: ParentFormData) => {
+  const handleSubmit = async (data: ParentFormData) => {
     try {
+      setSaving(true);
+
+      // ✅ Ghi dữ liệu vào bảng leads trên Supabase
+      await saveLead({
+        parent_name: data.parentName,
+        email: data.email,
+        phone: data.phone,
+        student_name: data.studentName || null,
+        grade: data.grade,
+      });
+
+      toast({
+        title: "Đã lưu thông tin",
+        description:
+          "Chúng tôi đã ghi nhận thông tin để gửi kết quả test cho quý phụ huynh.",
+      });
+
       onSubmit(data);
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error(error);
       toast({
         title: "Lỗi",
-        description: "Có lỗi xảy ra, vui lòng thử lại.",
-        variant: "destructive"
+        description:
+          error?.message || "Không thể lưu thông tin, vui lòng thử lại.",
+        variant: "destructive",
       });
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -42,14 +87,22 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
     <div className="max-w-2xl mx-auto">
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Thông tin phụ huynh để gửi kết quả</CardTitle>
+          <CardTitle className="text-2xl">
+            Thông tin phụ huynh để gửi kết quả
+          </CardTitle>
           <CardDescription>
-            Vui lòng điền thông tin để chúng tôi có thể gửi báo cáo kết quả test và lộ trình học phù hợp
+            Vui lòng điền thông tin để chúng tôi có thể gửi báo cáo kết quả test
+            và lộ trình học phù hợp cho học sinh
           </CardDescription>
         </CardHeader>
+
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+            <form
+              onSubmit={form.handleSubmit(handleSubmit)}
+              className="space-y-6"
+            >
+              {/* Họ tên phụ huynh */}
               <FormField
                 control={form.control}
                 name="parentName"
@@ -57,16 +110,14 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
                   <FormItem>
                     <FormLabel>Tên phụ huynh *</FormLabel>
                     <FormControl>
-                      <Input 
-                        placeholder="Nguyễn Văn A" 
-                        {...field} 
-                      />
+                      <Input placeholder="Nguyễn Văn A" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
+              {/* Email */}
               <FormField
                 control={form.control}
                 name="email"
@@ -74,10 +125,10 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
                   <FormItem>
                     <FormLabel>Email *</FormLabel>
                     <FormControl>
-                      <Input 
+                      <Input
                         type="email"
-                        placeholder="example@email.com" 
-                        {...field} 
+                        placeholder="example@email.com"
+                        {...field}
                       />
                     </FormControl>
                     <FormMessage />
@@ -85,6 +136,7 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
                 )}
               />
 
+              {/* Số điện thoại */}
               <FormField
                 control={form.control}
                 name="phone"
@@ -92,27 +144,24 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
                   <FormItem>
                     <FormLabel>Số điện thoại *</FormLabel>
                     <FormControl>
-                      <Input 
-                        type="tel"
-                        placeholder="0901234567" 
-                        {...field} 
-                      />
+                      <Input type="tel" placeholder="0901234567" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
+              {/* Tên học sinh */}
               <FormField
                 control={form.control}
                 name="studentName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tên học sinh</FormLabel>
+                    <FormLabel>Tên học sinh *</FormLabel>
                     <FormControl>
-                      <Input 
-                        placeholder="Tên con (tùy chọn)" 
-                        {...field} 
+                      <Input
+                        placeholder="Tên con"
+                        {...field}
                       />
                     </FormControl>
                     <FormMessage />
@@ -120,13 +169,17 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
                 )}
               />
 
+              {/* Khối lớp */}
               <FormField
                 control={form.control}
                 name="grade"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Khối lớp hiện tại *</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Chọn khối lớp" />
@@ -145,13 +198,14 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
                 )}
               />
 
-              <Button 
-                type="submit" 
-                size="lg" 
+              {/* Nút submit */}
+              <Button
+                type="submit"
+                size="lg"
                 className="w-full"
-                disabled={form.formState.isSubmitting}
+                disabled={form.formState.isSubmitting || saving}
               >
-                Tiếp tục làm bài test
+                {saving ? "Đang lưu..." : "Tiếp tục làm bài test"}
               </Button>
             </form>
           </Form>
