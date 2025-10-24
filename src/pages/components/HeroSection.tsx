@@ -1,18 +1,13 @@
 import React, {
   memo,
-  lazy,
-  Suspense,
-  useEffect,
   useLayoutEffect,
   useRef,
   useState,
 } from "react";
 import { TypewriterText } from "@/components/TypewriterText";
 
-const Spline = lazy(() => import("@splinetool/react-spline"));
-
-const SIDE_CROP = 175; // px mỗi bên
-
+// Các hàm tiện ích useHeaderHeightAuto và findHeaderEl được giữ nguyên
+// vì chúng rất hữu ích để tính toán chiều cao của section một cách chính xác.
 function findHeaderEl(host: HTMLElement | null) {
   let node: Element | null = host?.previousElementSibling || null;
   while (node) {
@@ -77,150 +72,130 @@ function useHeaderHeightAuto(hostRef: React.RefObject<HTMLElement>) {
   return h;
 }
 
-const HeroSection = memo(function HeroSection({
-  scene = "https://prod.spline.design/2di31lDY8GOXaDfF/scene.splinecode",
-}: {
-  scene?: string;
-}) {
+const HeroSection = memo(function HeroSection() {
   const hostRef = useRef<HTMLElement | null>(null);
   const headerH = useHeaderHeightAuto(hostRef as React.RefObject<HTMLElement>);
-  const [mount3D, setMount3D] = useState(false);
-
-  useEffect(() => {
-    const prevBodyOverflowX = document.body.style.overflowX;
-    const prevHtmlOverflowX = document.documentElement.style.overflowX;
-    document.body.style.overflowX = "hidden";
-    document.documentElement.style.overflowX = "hidden";
-    return () => {
-      document.body.style.overflowX = prevBodyOverflowX;
-      document.documentElement.style.overflowX = prevHtmlOverflowX;
-    };
-  }, []);
-
-  useEffect(() => {
-    const el = hostRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => setMount3D(entries[0].isIntersecting),
-      { threshold: 0.15 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-
   const heroHeight = `calc(100vh - ${headerH}px)`;
+
+  // --- Mảng chứa các link ảnh để dễ quản lý ---
+  const images = {
+    main: "https://w.ladicdn.com/s1050x900/631e92c346981f00203a3f59/new-uc-home-page-1-e1632382217968-copy-20230513074116-ukxfn.png",
+    scratch: "https://w.ladicdn.com/s550x550/631e92c346981f00203a3f59/scratch-20230513074301-eyeof.png",
+    robot: "https://w.ladicdn.com/s650x550/631e92c346981f00203a3f59/nxt-20230513074116-i1wcv.png",
+    classroom: "https://w.ladicdn.com/s550x500/631e92c346981f00203a3f59/c28145b3a124ee8d89cda8383f06d81e-20230513074116-oqfon.png",
+  }
 
   return (
     <section
       ref={hostRef as React.RefObject<HTMLElement>}
-      className="relative w-[100vw] mx-auto bg-white overflow-hidden select-none"
-      style={{ height: heroHeight }}
+      className="relative w-full mx-auto bg-white overflow-hidden select-none"
+      style={{ minHeight: '700px', height: heroHeight }}
       aria-label="Hero"
     >
-      {/* Lớp 3D (bị CẮT 175px mỗi bên nhờ overflow-hidden ở section) */}
-      <div
-        className="absolute inset-y-0 left-1/2 -translate-x-1/2 z-0"
-        style={{
-          width: `calc(100vw + ${SIDE_CROP * 2}px)`,
-          height: "100%",
-          pointerEvents: "auto",
-          touchAction: "auto",
-        }}
-      >
-        {mount3D && !prefersReducedMotion ? (
-          <Suspense fallback={null}>
-            <Spline
-              scene={scene}
-              style={{
-                width: "100%",
-                height: "100%",
-                display: "block",
-                willChange: "transform",
-              }}
-            />
-          </Suspense>
-        ) : null}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div className="absolute bg-purple-100 rounded-full w-96 h-96 -top-20 -left-20 opacity-50 blur-2xl"></div>
+        <div className="absolute bg-blue-100 rounded-full w-[500px] h-[500px] -bottom-40 -right-20 opacity-60 blur-3xl"></div>
       </div>
 
-      {/* Lưới nội dung:
-          - Mobile: 1 cột x 5 hàng
-              H1 (NINJA): hàng 1, font nhỏ hơn để không che hình
-              Typewriter: hàng 2-5 (row-span-4) và flex items-center để "ở giữa màn hình"
-          - Desktop (>=lg): 3 cột x 2 hàng
-              Typewriter: col1/row1 và căn xuống đáy ô (self-end)
-              NINJA: col3/row1, cỡ chữ gọn gàng
-          Giữ pointer-events: none ở container để không chặn tương tác Spline
-      */}
-      <div
-        className="relative z-10 h-full w-full grid grid-cols-1 grid-rows-5 lg:grid-cols-3 lg:grid-rows-2"
-        style={{ pointerEvents: "none" }}
-      >
-        {/* NINJA AI TALENT HUNT — Mobile nhỏ lại; Desktop đặt col3/row1 */}
-        <div className="row-start-1 col-start-1 px-6 md:px-8 pt-6 lg:pt-20 self-start justify-self-center text-center lg:justify-self-start lg:text-left lg:row-start-1 lg:col-start-3">
+      <div className="container relative z-10 mx-auto px-6 md:px-8 h-full grid lg:grid-cols-2 gap-12 items-center">
+
+        <div className="text-center lg:text-left animate-fade-in-up">
           <h2
             className="
-              font-extrabold tracking-tight uppercase text-gray-900
-              text-lg sm:text-2xl md:text-2xl
-              lg:text-[1.6rem] xl:text-2xl
+              font-extrabold tracking-widest uppercase text-purple-600
+              text-sm sm:text-base
             "
-            style={{ pointerEvents: "auto" }}
           >
-            NINJA AI TALENT HUNT{" "}
-            <span className="block normal-case text-gray-800 font-bold">
-              – Săn tài năng lập trình nhí
-            </span>
+            NINJA AI TALENT HUNT
           </h2>
-        </div>
 
-        {/* Typewriter — Mobile: giữa màn hình; Desktop: căn xuống đáy ô góc trái */}
-        <div
-          className="
-            row-start-2 row-span-4 col-start-1
-            lg:row-start-1 lg:row-span-1 lg:col-start-1
-            px-6 md:px-8
-            flex lg:block
-            items-center lg:items-auto
-            h-full
-            lg:self-end lg:pt-20
-          "
-        >
+          <p className="mt-2 text-xl text-slate-700 font-medium">
+            Trang bị kỹ năng công nghệ cho thế hệ Alpha
+          </p>
+
+
           <h1
             className="
-              font-bold leading-tight text-gray-900
-              text-3xl sm:text-4xl md:text-5xl
-              lg:text-4xl xl:text-5xl
+              mt-5 font-black leading-tight text-slate-800
+              text-4xl sm:text-5xl md:text-6xl
             "
           >
             <TypewriterText
               texts={[
-                "Giúp con khám phá tư duy lập trình từ sớm",
-                "Khơi dậy sáng tạo & tư duy logic",
-                "Trang bị kỹ năng công nghệ cho thế hệ Alpha",
+                "Phát triển tư duy Lập trình",
+                "Khơi dậy sự Sáng tạo",
+                "Xây dựng Kỹ năng tương lai",
               ]}
               loop
-              className="text-[#1E90FF]"
-              speed={80}
-              delay={400}
+              className="text-blue-600"
+              speed={70}
+              delay={500}
               highlights={{
-                "khám phá": "text-[#FFA500]",
-                "tư duy lập trình": "text-[#B266FF]",
-                "sáng tạo": "text-[#FFA500]",
-                "tư duy logic": "text-[#B266FF]",
-                "kỹ năng công nghệ": "text-[#B266FF]",
-                "thế hệ Alpha": "text-[#FFA500]",
+                "Lập trình": "text-purple-600",
+                "Sáng tạo": "text-amber-500",
+                "Kỹ năng tương lai": "text-purple-600",
               }}
             />
           </h1>
+
+          <p className="mt-6 max-w-xl mx-auto lg:mx-0 text-slate-600 text-lg">
+            Hãy để con bạn biến những ý tưởng sáng tạo thành sản phẩm công nghệ thực tế và trang bị những kỹ năng cần thiết cho một tương lai rộng mở.
+          </p>
+
+          <button className="
+            mt-10 group relative inline-flex items-center justify-center
+            bg-[#3177E5] text-white font-bold
+            py-4 px-10 rounded-full text-lg
+            shadow-lg shadow-purple-500/30
+            hover:bg-purple-700
+            transition-all duration-300 ease-in-out
+            transform hover:scale-105"
+          >
+            <span>Đăng Ký Trải Nghiệm Miễn Phí</span>
+            {/* Icon mũi tên */}
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-3 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
         </div>
 
-        {/* Giữ chỗ desktop cho layout 3x2 */}
-        <div className="hidden lg:block lg:row-start-1 lg:col-start-2" />
-        <div className="hidden lg:block lg:row-start-2 lg:col-start-2" />
-        <div className="hidden lg:block lg:row-start-2 lg:col-start-3" />
+        {/* === CẢI TIẾN: Bố cục collage cho các hình ảnh === */}
+        <div className="hidden lg:flex items-center justify-center h-full relative animate-fade-in">
+          <div className="relative w-full max-w-2xl h-[500px] animate-float">
+            
+            {/* Khung nền trang trí */}
+            <div className="absolute top-0 left-0 w-full h-full bg-blue-200 rounded-3xl transform -rotate-6 opacity-50"></div>
+            <div className="absolute bottom-0 right-0 w-full h-full bg-amber-200 rounded-3xl transform rotate-6 opacity-50"></div>
+            
+            {/* Ảnh chính */}
+            <img
+              src={images.main}
+              alt="Học sinh học lập trình với robot"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] object-cover rounded-2xl shadow-2xl z-10"
+            />
+            
+            {/* Ảnh phụ: Lớp học */}
+            <img 
+              src={images.classroom}
+              alt="Lớp học lập trình"
+              className="absolute top-0 left-10 w-48 h-auto object-cover rounded-xl shadow-lg transform -rotate-6 z-20"
+            />
+
+            {/* Ảnh phụ: Robot NXT */}
+            <img 
+              src={images.robot}
+              alt="Robot NXT"
+              className="absolute top-12 right-0 w-52 h-auto object-cover rounded-xl shadow-lg transform rotate-6 z-0"
+            />
+            
+            {/* Ảnh phụ: Scratch */}
+            <img 
+              src={images.scratch}
+              alt="Lập trình Scratch"
+              className="absolute bottom-4 left-0 w-48 h-auto object-cover rounded-xl shadow-lg z-20"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -118,77 +118,13 @@ const Index = () => {
         <FeedbackSection />
       </div>
       
-      {/* Partners Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 animate-fade-up">
-            <h2 className="text-4xl font-bold mb-6">🤝 Đối tác & Uy tín</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-blue-50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <Award className="text-primary" />
-                  Giáo trình tham khảo
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li>
-                    • Code.org - Nền tảng giáo dục lập trình hàng đầu thế giới
-                  </li>
-                  <li>• Scratch - Ngôn ngữ lập trình trực quan cho trẻ em</li>
-                  <li>• Python for Kids - Tài liệu học Python chuyên biệt</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-blue-50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <CheckCircle2 className="text-success" />
-                  Chuẩn quốc tế
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li>• Phù hợp định hướng thi Tin học trẻ</li>
-                  <li>• Theo chuẩn các kỳ thi quốc tế</li>
-                  <li>• Đáp ứng nhu cầu học tập hiện đại</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Final CTA Section */}
       <FinalCTASection />
 
       {/* Contact Section */}
-      <section className="py-12 px-4 bg-card">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center space-y-6">
-            <h3 className="text-2xl font-semibold">Liên hệ với chúng tôi</h3>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button variant="outline" className="flex items-center gap-2">
-                <Phone size={20} />
-                Hotline: 09xx.xxx.xxx
-              </Button>
-              <Button variant="outline" className="flex items-center gap-2">
-                <MessageCircle size={20} />
-                Zalo: Click-to-Call
-              </Button>
-              <Button variant="outline" className="flex items-center gap-2">
-                <Mail size={20} />
-                Email: info@rockettechacademy.vn
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       <Footer />
     </div>

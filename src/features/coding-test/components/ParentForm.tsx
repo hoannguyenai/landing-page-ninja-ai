@@ -30,11 +30,16 @@ import { toast } from "@/hooks/use-toast";
 import { saveLead } from "@/integrations/supabase/services/leads";
 
 interface ParentFormProps {
-  onSubmit: (data: ParentFormData) => void;
+  onTakeTest: (data: ParentFormData) => void;
+  onRegisterTrial: (data: ParentFormData) => void;
   defaultValues?: Partial<ParentFormData>;
 }
 
-export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
+export function ParentForm({
+  onTakeTest,
+  onRegisterTrial,
+  defaultValues,
+}: ParentFormProps) {
   const [saving, setSaving] = useState(false);
 
   const form = useForm<ParentFormData>({
@@ -49,7 +54,11 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
     },
   });
 
-  const handleSubmit = async (data: ParentFormData) => {
+  // Xử lý chung để lưu dữ liệu
+  const handleSaveData = async (
+    data: ParentFormData,
+    onSuccess: (data: ParentFormData) => void
+  ) => {
     try {
       setSaving(true);
 
@@ -65,10 +74,10 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
       toast({
         title: "Đã lưu thông tin",
         description:
-          "Chúng tôi đã ghi nhận thông tin để gửi kết quả test cho quý phụ huynh.",
+          "Chúng tôi đã ghi nhận thông tin của quý phụ huynh.",
       });
 
-      onSubmit(data);
+      onSuccess(data);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error);
@@ -98,8 +107,12 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
 
         <CardContent>
           <Form {...form}>
+            {/* 
+              Không cần thẻ <form> với onSubmit ở đây nữa vì 
+              chúng ta sẽ xử lý submit qua onClick của từng nút.
+            */}
             <form
-              onSubmit={form.handleSubmit(handleSubmit)}
+              onSubmit={(e) => e.preventDefault()} // Ngăn chặn hành vi submit mặc định
               className="space-y-6"
             >
               {/* Họ tên phụ huynh */}
@@ -198,15 +211,29 @@ export function ParentForm({ onSubmit, defaultValues }: ParentFormProps) {
                 )}
               />
 
-              {/* Nút submit */}
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full"
-                disabled={form.formState.isSubmitting || saving}
-              >
-                {saving ? "Đang lưu..." : "Tiếp tục làm bài test"}
-              </Button>
+              {/* Các nút submit */}
+              <div className="flex flex-col space-y-4 pt-4">
+                <Button
+                  type="button" // Sử dụng type="button" để tránh submit mặc định
+                  size="lg"
+                  className="w-full"
+                  disabled={form.formState.isSubmitting || saving}
+                  onClick={form.handleSubmit((data) => handleSaveData(data, onTakeTest))}
+                >
+                  {saving ? "Đang lưu..." : "Làm bài thi"}
+                </Button>
+
+                <Button
+                  type="button"
+                  size="lg"
+                  variant="secondary" // Sử dụng màu khác cho nút thứ hai
+                  className="w-full"
+                  disabled={form.formState.isSubmitting || saving}
+                  onClick={form.handleSubmit((data) => handleSaveData(data, onRegisterTrial))}
+                >
+                  {saving ? "Đang lưu..." : "Đăng ký học thử"}
+                </Button>
+              </div>
             </form>
           </Form>
         </CardContent>

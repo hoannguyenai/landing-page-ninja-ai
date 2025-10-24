@@ -1,10 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Award, Sparkles } from "lucide-react";
-import instructor1 from "@/assets/instructor-1.jpg";
+import { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Instructor = {
   name: string;
@@ -23,7 +20,8 @@ const INSTRUCTORS: Instructor[] = [
     role: "Python & AI • ĐH Bách Khoa",
     bio: "Nhiều năm dạy học sinh THCS/THPT, định hướng sản phẩm thực tế và tư duy thuật toán.",
     avatarType: "image",
-    avatarSrc: instructor1,
+    avatarSrc:
+      "https://vnanet.vn/Data/Articles/2018/07/21/286283/vna_potal_thanh_pho_ho_chi_minh_hoi_thao_chuyen_de_%E2%80%9Cai-powered_startup%E2%80%9D_stand.jpg",
     skills: ["Python", "AI cơ bản", "Thuật toán", "Project-based"],
     highlight: "Mentor sản phẩm học sinh đạt giải cụm",
   },
@@ -31,154 +29,152 @@ const INSTRUCTORS: Instructor[] = [
     name: "Nguyễn Quang",
     role: "Full-stack Developer",
     bio: "Kinh nghiệm dự án phần mềm thực chiến, giúp học sinh hiểu nhanh – làm được ngay.",
-    avatarType: "initial",
-    avatarText: "NQ",
+    avatarType: "image",
+    avatarSrc:
+      "https://media.licdn.com/dms/image/v2/C5603AQF3u26PgmyO9g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638464717970?e=2147483647&v=beta&t=X43UW_AAU_lhNKqcU8nTiQOEW1iCdJVSMApUUaXVuiE",
     skills: ["HTML/CSS", "JS/TS", "React", "UX cơ bản"],
     highlight: "Thiết kế lộ trình học theo năng lực",
   },
 ];
 
-export default function InstructorsSection() {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [visibleItems, setVisibleItems] = useState<boolean[]>(
-    new Array(INSTRUCTORS.length).fill(false)
-  );
+export default function HeroSectionWithInstructors() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const current = INSTRUCTORS[currentIndex];
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Trigger items with staggered delay
-          INSTRUCTORS.forEach((_, i) => {
-            setTimeout(() => {
-              setVisibleItems((prev) => {
-                const newArray = [...prev];
-                newArray[i] = true;
-                return newArray;
-              });
-            }, i * 150);
-          });
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    startAutoSlide();
+    return stopAutoSlide;
   }, []);
 
+  const startAutoSlide = () => {
+    stopAutoSlide();
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) =>
+        prev === INSTRUCTORS.length - 1 ? 0 : prev + 1
+      );
+    }, 3000);
+  };
+
+  const stopAutoSlide = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
+
+  const handlePrev = () => {
+    stopAutoSlide();
+    setCurrentIndex((prev) =>
+      prev === 0 ? INSTRUCTORS.length - 1 : prev - 1
+    );
+    startAutoSlide();
+  };
+
+  const handleNext = () => {
+    stopAutoSlide();
+    setCurrentIndex((prev) =>
+      prev === INSTRUCTORS.length - 1 ? 0 : prev + 1
+    );
+    startAutoSlide();
+  };
+
   return (
-    <section id="instructors" className="py-16 px-4 bg-white" ref={sectionRef}>
-      <div className="container mx-auto max-w-6xl">
-        {/* Section header */}
-        <div className="text-center mb-14">
-          <div
-            className={`inline-flex items-center gap-2 rounded-full bg-blue-50 text-blue-700 px-3 py-1 text-xs font-medium transition-all duration-700 ease-out ${
-              isVisible
-                ? "opacity-100 scale-100"
-                : "opacity-0 scale-95"
-            }`}
-          >
-            <Sparkles size={14} /> Đội ngũ giảng viên
-          </div>
-          <h2
-            className={`text-3xl lg:text-4xl font-bold mt-4 text-blue-700 transition-all duration-700 ease-out ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-            style={{
-              transitionDelay: isVisible ? "100ms" : "0ms",
-            }}
-          >
-            Giảng viên – Truyền cảm hứng từ công nghệ
-          </h2>
-          <p
-            className={`text-muted-foreground mt-3 max-w-2xl mx-auto transition-all duration-700 ease-out ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-            style={{
-              transitionDelay: isVisible ? "200ms" : "0ms",
-            }}
-          >
-            Kết hợp kinh nghiệm giảng dạy và thực chiến để biến kiến thức thành sản phẩm thật.
-          </p>
-        </div>
+    <section className="bg-white overflow-hidden relative">
+      <div className="container mx-auto px-6 py-16 lg:py-24 flex flex-col lg:flex-row items-center justify-between gap-12">
+        {/* Cột trái */}
+        <div className="lg:w-1/2 w-full text-center lg:text-left z-10 order-2 lg:order-1 transition-all duration-700 ease-in-out animate-fade-in">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1D4ED8] mb-4 tracking-tight">
+            Trung tâm giảng dạy lập trình Rocket Edu
+          </h1>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {INSTRUCTORS.map((ins, idx) => (
-            <div
-              key={idx}
-              className={`transition-all duration-700 ease-out ${
-                visibleItems[idx]
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-              style={{
-                transitionDelay: `${300 + idx * 150}ms`,
-              }}
-            >
-              <Card className="h-full bg-blue-50/70 border-blue-200/70 hover:shadow-lg transition-shadow duration-300">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center gap-4">
-                    {/* Avatar */}
-                    {ins.avatarType === "image" ? (
-                      <img
-                        src={ins.avatarSrc}
-                        alt={ins.name}
-                        className="w-16 h-16 rounded-full object-cover ring-2 ring-white shadow-md flex-shrink-0"
-                      />
-                    ) : (
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-indigo-500 text-white flex items-center justify-center text-xl font-bold ring-2 ring-white shadow-md flex-shrink-0">
-                        {ins.avatarText}
-                      </div>
-                    )}
-
-                    <div className="min-w-0">
-                      <CardTitle className="text-xl">{ins.name}</CardTitle>
-                      <CardDescription className="mt-0.5">{ins.role}</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="pt-0">
-                  {/* Highlight */}
-                  {ins.highlight && (
-                    <div className="mb-3 inline-flex items-center gap-2 rounded-lg bg-white text-blue-700 border border-blue-200 px-3 py-1.5 text-xs">
-                      <Award size={14} />
-                      <span className="font-medium">{ins.highlight}</span>
-                    </div>
-                  )}
-
-                  {/* Bio */}
-                  <p className="text-sm text-slate-700">{ins.bio}</p>
-
-                  {/* Skills */}
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {ins.skills.map((s) => (
-                      <Badge
-                        key={s}
-                        variant="secondary"
-                        className="bg-white text-slate-700 border border-slate-200"
-                      >
-                        {s}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+          <div className="transition-all duration-700 ease-in-out">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+              {current.name}
+            </h2>
+            <p className="text-blue-600 font-medium mt-1">{current.role}</p>
+            <p className="mt-4 text-gray-700 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+              {current.bio}
+            </p>
+            {current.highlight && (
+              <p className="mt-3 text-indigo-600 font-semibold italic">
+                “{current.highlight}”
+              </p>
+            )}
+            <div className="mt-5 flex flex-wrap justify-center lg:justify-start gap-2">
+              {current.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm"
+                >
+                  {skill}
+                </span>
+              ))}
             </div>
-          ))}
+
+            <a
+              href="/test"
+              className="mt-10 inline-block px-10 py-4 bg-gradient-to-r from-[#1D4ED8] to-[#4788F1] text-white font-bold rounded-xl hover:scale-105 transition-transform duration-300 shadow-xl"
+            >
+              Đăng ký ngay &rarr;
+            </a>
+          </div>
+        </div>
+        {/* Cột phải - Ảnh giảng viên */}
+        <div className="relative lg:w-1/2 w-full flex justify-center items-center order-1 lg:order-2 min-h-[500px]">
+          {/* Hiệu ứng nền xoay */}
+          <div className="absolute w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-blue-200 via-indigo-200 to-transparent blur-3xl opacity-50 animate-spin-slow"></div>
+
+          {/* Khung ảnh lớn, đổ bóng mịn và ánh sáng gradient */}
+          <div
+            key={currentIndex}
+            className="relative z-10 w-[420px] h-[420px] bg-white shadow-[0_20px_60px_rgba(29,78,216,0.25)] flex items-center justify-center overflow-hidden rounded-[2rem] border-[8px] border-transparent bg-clip-padding hover:scale-105 transition-transform duration-700 ease-in-out group before:absolute before:inset-0 before:rounded-[2rem] before:p-[3px] before:bg-gradient-to-br before:from-blue-400 before:via-indigo-400 before:to-transparent before:-z-10 before:opacity-70 before:transition-opacity before:duration-500 hover:before:opacity-100"
+          >
+            {current.avatarType === "image" && current.avatarSrc ? (
+              <img
+                src={current.avatarSrc}
+                alt={current.name}
+                className="w-full h-full object-cover rounded-[1.5rem] scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex flex-col items-center justify-center text-white text-7xl font-bold rounded-[1.5rem]">
+                {current.avatarText}
+              </div>
+            )}
+          </div>
+
+          {/* Nút chuyển slide */}
+          <button
+            onClick={handlePrev}
+            aria-label="Previous"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-3 shadow-lg hover:bg-white transition"
+          >
+            <ChevronLeft className="w-7 h-7 text-gray-700" />
+          </button>
+          <button
+            onClick={handleNext}
+            aria-label="Next"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-3 shadow-lg hover:bg-white transition"
+          >
+            <ChevronRight className="w-7 h-7 text-gray-700" />
+          </button>
         </div>
       </div>
+
+      {/* CSS animation */}
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-in-out;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+      `}</style>
     </section>
   );
 }
