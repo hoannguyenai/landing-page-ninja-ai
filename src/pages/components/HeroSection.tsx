@@ -131,9 +131,9 @@ const HeroSection = memo(function HeroSection() {
               speed={70}
               delay={500}
               highlights={{
-                "Lập trình": "text-purple-600",
-                "Sáng tạo": "text-amber-500",
-                "Kỹ năng tương lai": "text-purple-600",
+                "Lập trình": "text-blue-600  font-bold ",
+                "Sáng tạo": "text-blue-600 font-bold",
+                "Kỹ năng tương lai": "text-blue-600 font-bold",
               }}
             />
           </h1>

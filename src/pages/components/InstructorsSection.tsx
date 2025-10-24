@@ -20,8 +20,7 @@ const INSTRUCTORS: Instructor[] = [
     role: "Python & AI • ĐH Bách Khoa",
     bio: "Nhiều năm dạy học sinh THCS/THPT, định hướng sản phẩm thực tế và tư duy thuật toán.",
     avatarType: "image",
-    avatarSrc:
-      "https://vnanet.vn/Data/Articles/2018/07/21/286283/vna_potal_thanh_pho_ho_chi_minh_hoi_thao_chuyen_de_%E2%80%9Cai-powered_startup%E2%80%9D_stand.jpg",
+    avatarSrc: "/src/assets/instructor-1.jpg",
     skills: ["Python", "AI cơ bản", "Thuật toán", "Project-based"],
     highlight: "Mentor sản phẩm học sinh đạt giải cụm",
   },
@@ -30,8 +29,7 @@ const INSTRUCTORS: Instructor[] = [
     role: "Full-stack Developer",
     bio: "Kinh nghiệm dự án phần mềm thực chiến, giúp học sinh hiểu nhanh – làm được ngay.",
     avatarType: "image",
-    avatarSrc:
-      "https://media.licdn.com/dms/image/v2/C5603AQF3u26PgmyO9g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638464717970?e=2147483647&v=beta&t=X43UW_AAU_lhNKqcU8nTiQOEW1iCdJVSMApUUaXVuiE",
+    avatarSrc: "/src/assets/z7150648687704_96023c9cd9ec57e28a772f8981fb936c.jpg",
     skills: ["HTML/CSS", "JS/TS", "React", "UX cơ bản"],
     highlight: "Thiết kế lộ trình học theo năng lực",
   },
@@ -53,7 +51,7 @@ export default function HeroSectionWithInstructors() {
       setCurrentIndex((prev) =>
         prev === INSTRUCTORS.length - 1 ? 0 : prev + 1
       );
-    }, 3000);
+    }, 4000);
   };
 
   const stopAutoSlide = () => {
@@ -77,64 +75,68 @@ export default function HeroSectionWithInstructors() {
   };
 
   return (
-    <section className="bg-white overflow-hidden relative">
-      <div className="container mx-auto px-6 py-16 lg:py-24 flex flex-col lg:flex-row items-center justify-between gap-12">
-        {/* Cột trái */}
-        <div className="lg:w-1/2 w-full text-center lg:text-left z-10 order-2 lg:order-1 transition-all duration-700 ease-in-out animate-fade-in">
+    <section id = "instructors" className="bg-white overflow-hidden relative">
+      <div className="w-full mx-auto py-16 lg:py-24 flex flex-col lg:flex-row items-center justify-between gap-12">
+        {/* --- Cột trái: Thông tin giảng viên --- */}
+        <div className="lg:w-1/2 w-full text-center lg:text-left order-2 lg:order-1 animate-fade-in px-4 lg:px-12">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1D4ED8] mb-4 tracking-tight">
             Trung tâm giảng dạy lập trình Rocket Edu
           </h1>
 
-          <div className="transition-all duration-700 ease-in-out">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
-              {current.name}
-            </h2>
-            <p className="text-blue-600 font-medium mt-1">{current.role}</p>
-            <p className="mt-4 text-gray-700 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
-              {current.bio}
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+            {current.name}
+          </h2>
+          <p className="text-blue-600 font-medium mt-1">{current.role}</p>
+
+          <p className="mt-4 text-gray-700 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+            {current.bio}
+          </p>
+
+          {current.highlight && (
+            <p className="mt-3 text-indigo-600 font-semibold italic">
+              “{current.highlight}”
             </p>
-            {current.highlight && (
-              <p className="mt-3 text-indigo-600 font-semibold italic">
-                “{current.highlight}”
-              </p>
-            )}
-            <div className="mt-5 flex flex-wrap justify-center lg:justify-start gap-2">
-              {current.skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+          )}
 
-            <a
-              href="/test"
-              className="mt-10 inline-block px-10 py-4 bg-gradient-to-r from-[#1D4ED8] to-[#4788F1] text-white font-bold rounded-xl hover:scale-105 transition-transform duration-300 shadow-xl"
-            >
-              Đăng ký ngay &rarr;
-            </a>
+          <div className="mt-5 flex flex-wrap justify-center lg:justify-start gap-2">
+            {current.skills.map((skill) => (
+              <span
+                key={skill}
+                className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm"
+              >
+                {skill}
+              </span>
+            ))}
           </div>
-        </div>
-        {/* Cột phải - Ảnh giảng viên */}
-        <div className="relative lg:w-1/2 w-full flex justify-center items-center order-1 lg:order-2 min-h-[500px]">
-          {/* Hiệu ứng nền xoay */}
-          <div className="absolute w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-blue-200 via-indigo-200 to-transparent blur-3xl opacity-50 animate-spin-slow"></div>
 
-          {/* Khung ảnh lớn, đổ bóng mịn và ánh sáng gradient */}
+          <a
+            href="/test"
+            className="mt-10 inline-block px-10 py-4 bg-gradient-to-r from-[#1D4ED8] to-[#4788F1] text-white font-bold rounded-xl hover:scale-105 transition-transform duration-300 shadow-xl"
+          >
+            Đăng ký ngay &rarr;
+          </a>
+        </div>
+
+        {/* --- Cột phải: Ảnh giảng viên --- */}
+        <div className="relative lg:w-1/2 w-full flex justify-center items-center order-1 lg:order-2 min-h-[420px] sm:min-h-[520px]">
+          {/* Hiệu ứng nền xoay gradient */}
+          <div className="absolute w-[460px] sm:w-[520px] h-[460px] sm:h-[520px] rounded-full bg-gradient-to-tr from-blue-200 via-indigo-200 to-transparent blur-3xl opacity-60 animate-spin-slow"></div>
+
+          {/* Khung ảnh giảng viên */}
           <div
             key={currentIndex}
-            className="relative z-10 w-[420px] h-[420px] bg-white shadow-[0_20px_60px_rgba(29,78,216,0.25)] flex items-center justify-center overflow-hidden rounded-[2rem] border-[8px] border-transparent bg-clip-padding hover:scale-105 transition-transform duration-700 ease-in-out group before:absolute before:inset-0 before:rounded-[2rem] before:p-[3px] before:bg-gradient-to-br before:from-blue-400 before:via-indigo-400 before:to-transparent before:-z-10 before:opacity-70 before:transition-opacity before:duration-500 hover:before:opacity-100"
+            className="relative z-10 w-[400px] sm:w-[460px] h-[400px] sm:h-[460px] bg-white shadow-[0_25px_80px_rgba(29,78,216,0.3)] overflow-hidden rounded-[2rem] border-[3px] border-transparent bg-clip-padding group transition-transform duration-700 ease-in-out hover:scale-105"
           >
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-blue-100/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[2rem]"></div>
+
             {current.avatarType === "image" && current.avatarSrc ? (
               <img
                 src={current.avatarSrc}
                 alt={current.name}
-                className="w-full h-full object-cover rounded-[1.5rem] scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                className="w-full h-full object-cover object-top rounded-[2rem] transition-transform duration-700 ease-in-out group-hover:scale-105"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex flex-col items-center justify-center text-white text-7xl font-bold rounded-[1.5rem]">
+              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex flex-col items-center justify-center text-white text-7xl font-bold rounded-[2rem]">
                 {current.avatarText}
               </div>
             )}
@@ -144,14 +146,14 @@ export default function HeroSectionWithInstructors() {
           <button
             onClick={handlePrev}
             aria-label="Previous"
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-3 shadow-lg hover:bg-white transition"
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-3 shadow-lg hover:bg-white hover:scale-110 transition"
           >
             <ChevronLeft className="w-7 h-7 text-gray-700" />
           </button>
           <button
             onClick={handleNext}
             aria-label="Next"
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-3 shadow-lg hover:bg-white transition"
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-3 shadow-lg hover:bg-white hover:scale-110 transition"
           >
             <ChevronRight className="w-7 h-7 text-gray-700" />
           </button>
@@ -172,7 +174,7 @@ export default function HeroSectionWithInstructors() {
           animation: fade-in 0.6s ease-in-out;
         }
         .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
+          animation: spin-slow 25s linear infinite;
         }
       `}</style>
     </section>

@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // hoặc sử dụng next/router nếu dùng Next.js
-import rocketLogo from "@/assets/rocket-logo.jpg";
+import { useNavigate } from "react-router-dom";
+import rocketLogo from "@/assets/Screenshot 2025-10-24 150244.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate(); // Nếu Next.js: const router = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -16,7 +16,7 @@ const Header = () => {
   }, []);
 
   const handleFormNavigation = () => {
-    navigate("/test"); 
+    navigate("/test");
     setIsMenuOpen(false);
   };
 
@@ -24,48 +24,45 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-[9999] transition-colors duration-300 border-b ${
         scrolled
-          ? "bg-white text-black border-gray-200"
+          ? "bg-white text-black border-gray-200 shadow-md"
           : "bg-[#e3e3e3] text-black border-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between"> {/* tăng chiều cao header */}
+          
           {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center">
+          <div
+            className="flex items-center gap-3 cursor-pointer group"
+            onClick={() => navigate("/")}
+          >
+            <div className="relative w-14 h-14 rounded-xl overflow-hidden flex items-center justify-center bg-white shadow-md group-hover:scale-105 transition-transform duration-300">
               <img
                 src={rocketLogo}
                 alt="Rocket Tech Academy Logo"
-                className="w-8 h-8"
+                className="w-12 h-12 object-contain"
               />
             </div>
-            <div>
-              <h1 className="font-bold text-lg">Rocket Tech</h1>
-              <p className="text-xs opacity-80">Academy</p>
+            <div className="leading-tight">
+              <h1 className="font-extrabold text-xl tracking-tight group-hover:text-primary transition-colors duration-200">
+                Rocket Coding
+              </h1>
+              {/* <p className="text-sm text-gray-600 font-medium">Academy</p> */}
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 font-medium">
-            <a
-              href="#course"
-              className="hover:text-primary transition-colors"
-            >
+            <a href="#4-course" className="hover:text-primary transition-colors">
               Khóa học
             </a>
-            <a
-              href="#instructors"
-              className="hover:text-primary transition-colors"
-            >
+            <a href="#instructors" className="hover:text-primary transition-colors">
               Giảng viên
             </a>
             <a href="#pricing" className="hover:text-primary transition-colors">
               Ưu đãi
             </a>
-            <a
-              href="#testimonials"
-              className="hover:text-primary transition-colors"
-            >
+            <a href="#testimonials" className="hover:text-primary transition-colors">
               Đánh giá
             </a>
           </nav>
@@ -88,7 +85,7 @@ const Header = () => {
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <Menu size={20} />
+            <Menu size={22} />
           </Button>
         </div>
 
@@ -96,7 +93,7 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t animate-fade-in">
             <nav className="flex flex-col space-y-3">
-              <a href="#course" className="hover:text-primary py-2">
+              <a href="#4-course" className="hover:text-primary py-2">
                 Khóa học
               </a>
               <a href="#instructors" className="hover:text-primary py-2">
@@ -113,9 +110,9 @@ const Header = () => {
                   <Phone size={16} className="text-primary" />
                   <span className="font-medium">0901.234.567</span>
                 </div>
-                <Button 
-                  size="sm" 
-                  variant="hero" 
+                <Button
+                  size="sm"
+                  variant="hero"
                   className="w-fit"
                   onClick={handleFormNavigation}
                 >

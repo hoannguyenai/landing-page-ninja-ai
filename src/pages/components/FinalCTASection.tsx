@@ -84,7 +84,7 @@ const FinalCTASection: React.FC<HeroSectionProps> = ({
   noteText = "Thi thử 45 phút - Nhận học bổng đến 80% - Cam kết sản phẩm thật sau 12 tuần.",
 }) => {
   return (
-    <section className="bg-white">
+    <section  className="bg-white">
       {/* PHẦN TRÊN GIỮ NGUYÊN */}
       <div className="container mx-auto px-4 py-16 sm:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -143,7 +143,7 @@ const FinalCTASection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* PHẦN 4 CỘT ĐÃ ĐƯỢC THAY THẾ HOÀN TOÀN */}
-      <div className="bg-gray-50">
+      <div id ="4-course" className="bg-gray-50">
         <div className="container mx-auto px-4 py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {coursesData.map((course, index) => (
